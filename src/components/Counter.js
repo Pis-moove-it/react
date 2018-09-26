@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // Map the global state to the props of a component
 const mapStateToProps = state => ({
@@ -12,6 +13,15 @@ const mapDispatchToProps = dispatch => ({
   increment: () => dispatch({ type: 'INCREMENT' }),
   decrement: () => dispatch({ type: 'DECREMENT' }),
 });
+
+const Button = styled.button`
+  color: green;
+  background: yellow;
+`;
+
+const Message = styled.h2`
+  color: blue;
+`;
 
 const Counter = (props) => {
   const {
@@ -25,21 +35,17 @@ const Counter = (props) => {
 
   return (
     <div className="counter-container">
-      <h2 className="counter-message">
+      <Message>
         Counter:
         {' '}
         {count}
-      </h2>
-      <div className="boton-aumentar">
-        <button type="button" onClick={increment}>
-          +
-        </button>
-      </div>
-      <div className="boton-decrementar">
-        <button type="button" onClick={decrement}>
-          -
-        </button>
-      </div>
+      </Message>
+      <Button onClick={increment}>
+        +
+      </Button>
+      <Button onClick={decrement}>
+        -
+      </Button>
     </div>
   );
 };

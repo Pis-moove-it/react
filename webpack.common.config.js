@@ -8,7 +8,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|__tests__)/,
         loader: 'babel-loader',
-        options: { presets: ['env', 'react'], plugins: ['transform-object-rest-spread'] },
+        options: { presets: ['env', 'react'], plugins: ['styled-components', 'transform-object-rest-spread'] },
       },
       {
         test: /\.css$/,
