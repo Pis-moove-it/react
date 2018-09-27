@@ -5,7 +5,9 @@ import Message from './MessageComponent';
 import Button from './ButtonComponent';
 
 // Map the global state to the props of a component
-const mapStateToProps = state => ({ count: state.count });
+const mapStateToProps = state => ({
+  count: state.home.count,
+});
 
 // Dispatch an action to change the global state
 const mapDispatchToProps = dispatch => ({
@@ -13,12 +15,9 @@ const mapDispatchToProps = dispatch => ({
   decrement: () => dispatch({ type: 'DECREMENT' }),
 });
 
-const Counter = (props) => {
+const CounterContainer = (props) => {
   const {
     count,
-  } = props;
-
-  const {
     increment,
     decrement,
   } = props;
@@ -41,10 +40,10 @@ const Counter = (props) => {
 };
 
 // Type checking of props
-Counter.propTypes = {
+CounterContainer.propTypes = {
   count: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);

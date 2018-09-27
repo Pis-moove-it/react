@@ -14,7 +14,7 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "author": "NicoPis-moove-it",
+  "author": "Pis-moove-it",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
