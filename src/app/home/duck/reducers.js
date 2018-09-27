@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from '../constants/CounterActionTypes';
+import types from './types';
 
 // Initial global state
 const initialState = {
@@ -6,13 +6,13 @@ const initialState = {
 };
 
 // Change global state
-const rootReducer = (state = initialState, action) => {
+const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT:
+    case types.INCREMENT:
       return {
         ...state, count: state.count + 1,
       };
-    case DECREMENT:
+    case types.DECREMENT:
       return {
         ...state, count: state.count - 1,
       };
@@ -21,4 +21,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default homeReducer;

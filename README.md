@@ -52,6 +52,8 @@ npm install
 - babel: for transpilling into traditional JavaScript
 - webpack: for running the development server and building the application
 - redux: as the single source of truth
+- redux-thunk: for the middleware
+- styled-components: for adding style to React components
 - jest: the testing framework
 - enzyme: the JavaScript testing utility
 
@@ -62,35 +64,60 @@ You can see the full dependencies list in package.json
 
 ```
 .
-+-- __tests__
-|   +-- actions
-|   +-- components
-|   +-- constants
-|   +-- reducers
-|   +-- store
-+-- public
-+-- src
-|   +-- actions
-|   +-- components
-|   +-- constants
-|   +-- reducers
-|   +-- store
-App.js
-index.js
++-- /__tests__
++-- /coverage
++-- /node_modules
++-- /public
++-- /src
+|   +-- /app
+|   |   +-- /common
+|   |   +-- /home
+|   |   |   +-- /duck
+|   |   |   |   +-- actions.js
+|   |   |   |   +-- index.js
+|   |   |   |   +-- operations.js
+|   |   |   |   +-- reducers.js
+|   |   |   |   +-- types.js
+|   |   |   |   +-- tests.js
+|   |   |   +-- SomeComponent.js
+|   |   |   +-- SomeContainer.js
+|   |   |   +-- SomeOtherComponent.js
+|   |   |   +-- SomeOtherContainer.js
+|   |   +-- App.js
+|   +-- /utils
+|   +-- index.js
+|   +-- reducers.js
++-- package.json
 ```
-
-App.js file is a component that represents the whole application, which is rendered inside index.js.
-
-### src folder
-
-Components should be in src. actions, constants, reducers and store folders are dedicated to redux; while components folder has the react components that make up the application. You should specify the action types in the constants folder. Then you import them when you define a new action, which should be in the actions folder. Likewise, reducers go in reducers folder. You should split actions and reducers in separate files, according to the components you have.
-
-### public
-Static assest like images should be here. Notice that the index.html of the whole application is inside here.
 
 ### __tests__
 
 Tests should be here. Notice that it's structure is a mirror of src's. Jest is configured to watch only inside this folder for tests. See Scripts section for running them.
+
+### coverage
+
+Contains coverage information collected with npm test -- --coverage.
+
+### public
+
+Static assest like images should be here. Notice that the index.html of the whole application is inside here.
+
+### src
+
+index.js is the main script called from index.html and reducers.js imports all the reducers of each view.
+
+### src/app folder
+
+Inside here are all React components. We distinguish between presentational and container components. The first ones have "Component" suffix and are only concerned with how information is presented to the user; while the second ones have "Container" suffix and provide the data needed to render the presentational components. We structure this directory according to the views: each route of the application has one directory. common folder contains components that are shared throughout the app.
+
+Inside each view, the duck directory is dedicated to Redux:
+- actions.js has all the actions creators of home view
+- index.js just re-exports all the reducers of the home view (which are later combined in the reducers.js file of the src folder)
+- operations.js contains any logic surrounding our actions and side effects, including async logic
+- reducers.js has all the reducers of the home view
+- types.js contains string literals for the action types
+
+App.js file is a component that represents the whole application, which is rendered inside the index.js of the src folder.
 
 ## Integration with VS Code
 
