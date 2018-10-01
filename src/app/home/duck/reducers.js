@@ -1,24 +1,9 @@
-import types from './types';
+// import types from './types';
 
 // Initial global state
-const initialState = {
-  count: 0,
-};
+const initialState = {};
 
 // Change global state
-const homeReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.INCREMENT:
-      return {
-        ...state, count: state.count + 1,
-      };
-    case types.DECREMENT:
-      return {
-        ...state, count: state.count - 1,
-      };
-    default:
-      return state;
-  }
-};
+const homeReducer = (state = initialState) => state;
 
 export default homeReducer;
