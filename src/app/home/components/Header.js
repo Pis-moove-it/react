@@ -9,13 +9,13 @@ import {
 
 const Header = () => (
   <Box>
-    <ReciclandoLogo src={logo} className="logo-reciclando" />
+    <ReciclandoLogo src={logo} />
     <SubBox>
       <HeaderTitle>¿Dónde reciclo?</HeaderTitle>
       <HeaderTitle>¿Qué reciclo?</HeaderTitle>
       <HeaderTitle>¿Sabías qué?</HeaderTitle>
     </SubBox>
-    <LeafLogo className="logo-leaf" src={leafLogo} />
+    <LeafLogo src={leafLogo} />
   </Box>
 );
 
