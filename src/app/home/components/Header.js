@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
 import logo from '../assets/logoBlanco.png';
 import leafLogo from '../assets/icons8-natural-food-50.png';
 import {
@@ -19,4 +18,4 @@ const Header = () => (
   </Box>
 );
 
-export default hot(module)(Header);
+export default Header;

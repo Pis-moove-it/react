@@ -38,24 +38,17 @@ npm install
 
 - npm start: start the development server on localhost:3000
 - npm run lint: runs eslint with our configuration (which is adapted form the aribnb configuration) over all .js files in the project folder, excluding node_modules, dist and cover directories (cover folder is created when you run tests with --coverage). It automatically fix all auto-fixable problems.
-- npm run build: build the application in the dist folder. The output bundled file is bundled.js.
-- npm test [-- --coverage]:  execute the tests in the __tests__ folder. Optionally, you can ask for coverage statistics in tabular form inside the console and get code mark ups in html format (inside coverage directory). With coverage enabled, it also verifies if the thresholds coverage defined in package.json are covered.
-- npm run test:watch: execute Jest in watch mode. This allows you, besides running all test, to run only the test of files related to the last uncommited changes. Also, you can specify a regex in order to run only the tests whose filename matches the expression.
+- npm run build: build the application in the build folder.
+- npm run test [-- --coverage]:  execute the tests in the `src/__tests__` folder. Optionally, you can ask for coverage statistics in tabular form inside the console and get code mark ups in html format (inside coverage directory).
 
 ## Main dependencies
 
-- eslint: we use airbnbn style guide with a couple of modifications (which you can find in .eslintrc)
+- eslint: we use airbnbn style guide with a couple of modifications (which you can find in .eslintrc.json)
 - react: the main JavaScript library for building user interfaces
-- react-hot-loader: allows you to see the changes in your browser without the need to refresh the page
-- react-router: for client-side routing. In order to make dynamic routing work during deployment, you need to configure your production server to support client-side routing. Basically, you need to configure it to always serve index.html for any route requested.
 - axios: to interface with a REST API
-- babel: for transpilling into traditional JavaScript
-- webpack: for running the development server and building the application
 - redux: as the single source of truth
 - redux-thunk: for the middleware
 - styled-components: for adding style to React components
-- jest: the testing framework
-- enzyme: the JavaScript testing utility
 
 You can see the full dependencies list in package.json
 
@@ -64,11 +57,11 @@ You can see the full dependencies list in package.json
 
 ```
 .
-+-- /__tests__
 +-- /coverage
 +-- /node_modules
 +-- /public
 +-- /src
+|   +-- /__tests__
 |   +-- /app
 |   |   +-- /common
 |   |   +-- /home
@@ -90,7 +83,7 @@ You can see the full dependencies list in package.json
 +-- package.json
 ```
 
-### __tests__
+### src/__tests__
 
 Tests should be here. Notice that it's structure is a mirror of src's. Jest is configured to watch only inside this folder for tests. See Scripts section for running them.
 
@@ -104,7 +97,7 @@ Static assest like images should be here. Notice that the index.html of the whol
 
 ### src
 
-index.js is the main script called from index.html and reducers.js imports all the reducers of each view.
+index.js is the main script called from index.html. reducers.js imports all the reducers of each view.
 
 ### src/app folder
 
