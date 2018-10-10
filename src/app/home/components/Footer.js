@@ -6,7 +6,7 @@ const today = new Date();
 const Footer = () => (
   <Box>
     <FooterText>
-      {'\u00A9 PIS '}
+      {'\u00A9 PIS, '}
       {today.getFullYear()}
     </FooterText>
   </Box>);
