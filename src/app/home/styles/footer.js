@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Box = styled.header`
+export const Box = styled.footer`
   position: relative;
   left: 0;
   bottom: 0;
