@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
 export const Box = styled.header`
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
-  width: -webkit-fill-available;
+  width: 100%;
   background: #0797BA;
   color: #FFFFFF;
   font-family: "Candara";
   font-weight: bold;
   padding: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;

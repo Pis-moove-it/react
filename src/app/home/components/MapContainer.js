@@ -13,7 +13,10 @@ const MapContainer = () => (
       style="mapbox://styles/mapbox/streets-v9"
       containerStyle={{
         height: '100vh',
-        width: '100vw',
+        width: '100%',
+        "-webkit-box-sizing": 'border-box',
+        "-moz-box-sizing": 'border-box',
+        "box-sizing": 'border-box',
       }}
     >
       <Layer
