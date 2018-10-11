@@ -1,8 +1,11 @@
 import React from 'react';
-import back from '../css/back.css';
+import arrowUp from '../assets/arrow-up.png'
+import { BackIcon, BackLink} from '../styles/backtotop';
 
 const BackToTop = () => (
-    <a href="#top" className="color: white"><button id="myBtn">^</button></a>
+  <BackLink href="#top">
+      <BackIcon src={arrowUp}/>
+  </BackLink>
 );
 
 export default BackToTop;
