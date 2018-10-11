@@ -18,9 +18,6 @@ export const Box = styled.footer`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  @media (max-width: 767px) {
-        display: none;
-  }
   flex: 10;
   `;
 
