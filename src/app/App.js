@@ -39,7 +39,9 @@ const App = () => (
           There are now a set of mock banners available here in three colours and in a range of standard banner sizes:
           BannersBannersBanners
 
-    </h1><a name="top" /><h1>
+    </h1>
+    <a name="top" />
+    <h1>
           Donate: If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click here to donate using PayPal. Thank you for your support.
           Chrome Firefox Add-on NodeJS TeX Package Python Interface GTK Lipsum Rails .NET Groovy Adobe Plugin
           The standard Lorem Ipsum passage, used since the 1500s
