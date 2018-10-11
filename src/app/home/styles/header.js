@@ -3,11 +3,15 @@ import styled from 'styled-components';
 export const Box = styled.header`
     position: fixed;
     top: 0;
-    width: -webkit-fill-available;
+    z-index: 1;
+    width: 100%;
     background: #0797BA;
     color: #FFFFFF;
     font-family: "Candara";
     font-weight: bold;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     padding: 15px;
     flex-wrap: wrap;
     display: flex;
