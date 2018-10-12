@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl from 'react-mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import MapComponent from './MapComponent';
 
 const Map = ReactMapboxGl({
@@ -14,19 +15,14 @@ const MapContainer = () => (
       containerStyle={{
         height: '100vh',
         width: '100%',
-        "-webkit-box-sizing": 'border-box',
-        "-moz-box-sizing": 'border-box',
-        "box-sizing": 'border-box',
       }}
-    >
-      <Layer
-        type="symbol"
-        id="marker"
-        layout={{ 'icon-image': 'marker-15' }}
-      >
-        <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-      </Layer>
-    </Map>
+      onStyleLoad={map => map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      }))}
+    />
   </MapComponent>
 );
 
