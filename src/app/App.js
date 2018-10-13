@@ -3,13 +3,16 @@ import Footer from './home/components/Footer';
 import Header from './home/components/Header';
 import MapContainer from './home/components/MapContainer';
 import Wrapper from './home/components/Wrapper';
+import BodyWrapper from './home/components/BodyWrapper';
 import global from './home/css/global.css';
 
 const App = () => (
   <Wrapper>
     <Header />
-    <MapContainer />
-    <Footer />
+    <BodyWrapper>
+      <MapContainer />
+      <Footer />
+    </BodyWrapper>
   </Wrapper>
 );
 
