@@ -5,6 +5,8 @@ const MapComponent = styled.div`
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   z-index: 0;
+  flex: 1;
+  height: calc(100vh - 55px);
 `;
 
 export default MapComponent;
