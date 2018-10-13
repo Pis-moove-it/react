@@ -13,7 +13,7 @@ const MapContainer = () => (
     <Map
       style="mapbox://styles/mapbox/streets-v9"
       containerStyle={{
-        height: '100vh',
+        height: '100%',
         width: '100%',
       }}
       onStyleLoad={map => map.addControl(new mapboxgl.GeolocateControl({
