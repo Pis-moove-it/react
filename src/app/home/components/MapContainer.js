@@ -7,15 +7,16 @@ const Map = ReactMapboxGl({
   accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA',
 });
 
-// in render()
 const MapContainer = () => (
   <MapComponent>
     <Map
-      style="mapbox://styles/mapbox/streets-v9"
+      // style prop is required by React Mapbox
+      style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
       containerStyle={{
         height: '100%',
         width: '100%',
       }}
+      // Add button to detect user's current location
       onStyleLoad={map => map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,

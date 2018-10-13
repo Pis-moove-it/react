@@ -6,7 +6,7 @@ const MapComponent = styled.div`
   box-sizing: border-box;
   z-index: 0;
   flex: 1;
-  height: calc(100vh - 55px);
+  height: calc(100vh - 55px); /* all vertical height minus header */
 `;
 
 export default MapComponent;
