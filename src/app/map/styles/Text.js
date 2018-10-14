@@ -5,6 +5,8 @@ const Text = styled.a`
   line-height: normal;
   font-size: 18px;
 
+  text-align: center;
+
   color: #000000;
 
   flex: 1;

@@ -5,6 +5,8 @@ const Question = styled.a`
   line-height: normal;
   font-size: 22px;
 
+  text-align: center;
+
   color: #0797BA;
 
   flex: 1;
