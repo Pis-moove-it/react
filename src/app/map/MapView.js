@@ -5,11 +5,16 @@ import MapComponent from '../home/components/MapComponent';
 import MapContainer from '../home/components/MapContainer';
 import BoxComponent from './styles/BoxComponent';
 import Question from './styles/Question';
+import QuestionContent from './styles/QuestionContent';
 import Text from './styles/Text';
+import TextContent from './styles/TextContent';
 import BoxTitle from './styles/BoxTitle';
+import SubBoxTitle from './styles/SubBoxTitle';
 import BoxInfo from './styles/BoxInfo';
-import Logo from './styles/Logo';
+import BoxLogo from './styles/BoxLogo';
+import SubBoxLogo from './styles/SubBoxLogo';
 import BoxText from './styles/BoxText';
+import SubBoxText from './styles/SubBoxText';
 import carton from './assets/carton.png';
 import paper from './assets/paper.png';
 import water from './assets/water.png';
@@ -19,32 +24,50 @@ const MapView = () => (
     <InfoComponent>
       <BoxComponent>
         <BoxTitle>
-          En Agosto hemos reciclado
+          <SubBoxTitle>
+            En Agosto hemos reciclado
+          </SubBoxTitle>
         </BoxTitle>
         <BoxInfo>
-          <Logo src={carton} />
+          <BoxLogo>
+            <SubBoxLogo src={carton} />
+          </BoxLogo>
           <BoxText>
-            10.582 kg de cartón
+            <SubBoxText>
+              10.582 kg de cartón
+            </SubBoxText>
           </BoxText>
         </BoxInfo>
         <BoxInfo>
-          <Logo src={paper} />
+          <BoxLogo>
+            <SubBoxLogo src={paper} />
+          </BoxLogo>
           <BoxText>
-            2.303 kg de papel
+            <SubBoxText>
+              2.303 kg de papel
+            </SubBoxText>
           </BoxText>
         </BoxInfo>
         <BoxInfo>
-          <Logo src={water} />
+          <BoxLogo>
+            <SubBoxLogo src={water} />
+          </BoxLogo>
           <BoxText>
-            5.273 kg de plástico
+            <SubBoxText>
+              5.273 kg de plástico
+            </SubBoxText>
           </BoxText>
         </BoxInfo>
       </BoxComponent>
       <Question>
+        <QuestionContent>
         ¿Sabes cuánto se recicló en tu barrio?
+        </QuestionContent>
       </Question>
       <Text>
-        Presiona sobre la isla para más información
+        <TextContent>
+          Presiona sobre la isla para más información
+        </TextContent>
       </Text>
     </InfoComponent>
     <MapComponent>
