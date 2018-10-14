@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import MapComponent from './MapComponent';
 
 const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA',
+  accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
 });
 
 const MapContainer = () => (
