@@ -41,7 +41,7 @@ const MapView = () => (
         </BoxInfo>
       </BoxComponent>
       <Question>
-        ¿Sabes cuánto se reciclón en tu barrio?
+        ¿Sabes cuánto se recicló en tu barrio?
       </Question>
       <Text>
         Presiona sobre la isla para más información
