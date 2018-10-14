@@ -6,15 +6,9 @@ const BoxComponent = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-top: 38px;
-  margin-bottom: 38px;
+  margin: 16% 4%;
 
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 10% 5%;
 
   flex: 6;
 
