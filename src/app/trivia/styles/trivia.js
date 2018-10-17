@@ -56,6 +56,16 @@ export const SubBox = styled.div`
     }
     
 `;
+export const BoxQuestion = styled.div`
+    flex: 7;
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+`;
+
 
 export const Question = styled.a`
     @media (max-width: 768px) {
@@ -65,7 +75,6 @@ export const Question = styled.a`
     @media (max-width: 376px) {
         font-size: 16px;
         width: 66%;
-        padding-top: 10px;
         margin: 10px;
     }
 
@@ -76,7 +85,7 @@ export const Question = styled.a`
     align-items: center;
     font-size: 28px;
     color: #067995;
-    flex: 7;
+
 
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);
