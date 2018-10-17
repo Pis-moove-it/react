@@ -13,7 +13,12 @@
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.4",
     "redux": "^4.0.0",
-    "styled-components": "^3.4.9"
+    "styled-components": "^3.4.9",
+    "prop-types": "latest",
+    "performance-now": "latest",
+    "easing-js": "latest",
+    "raf": "latest",
+    "lodash": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
