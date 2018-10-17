@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './home/components/Footer';
 import Header from './home/components/Header';
-import BodyWrapper from './home/components/BodyWrapper';
+import BodyWrapper from './home/styles/BodyWrapper';
 import MapView from './map/MapView';
 import global from './home/css/global.css';
 
