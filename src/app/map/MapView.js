@@ -4,6 +4,7 @@ import InfoComponent from './styles/InfoComponent';
 import MapComponent from './styles/MapComponent';
 import MapContainer from './components/MapContainer';
 import BoxComponent from './styles/BoxComponent';
+import QuestionTexBox from './styles/QuestionTextBox';
 import Question from './styles/Question';
 import QuestionContent from './styles/QuestionContent';
 import Text from './styles/Text';
@@ -59,16 +60,18 @@ const MapView = () => (
           </BoxText>
         </BoxInfo>
       </BoxComponent>
-      <Question>
-        <QuestionContent>
-        ¿Sabes cuánto se recicló en tu barrio?
-        </QuestionContent>
-      </Question>
-      <Text>
-        <TextContent>
-          Presiona sobre la isla para más información
-        </TextContent>
-      </Text>
+      <QuestionTexBox>
+        <Question>
+          <QuestionContent>
+          ¿Sabes cuánto se recicló en tu barrio?
+          </QuestionContent>
+        </Question>
+        <Text>
+          <TextContent>
+            Presiona sobre la isla para más información
+          </TextContent>
+        </Text>
+      </QuestionTexBox>
     </InfoComponent>
     <MapComponent>
       <MapContainer />

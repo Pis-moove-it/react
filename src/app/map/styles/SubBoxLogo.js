@@ -10,6 +10,10 @@ const SubBoxLogo = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 425px) {
+  height: 17px;
+  }
 `;
 
 export default SubBoxLogo;

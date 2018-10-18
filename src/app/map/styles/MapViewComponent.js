@@ -9,6 +9,10 @@ const MapView = styled.div`
   height: calc(100vh - 55px); /* all vertical height minus header */
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
 `;
 
 export default MapView;

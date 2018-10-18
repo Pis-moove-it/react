@@ -16,6 +16,11 @@ const InfoComponent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export default InfoComponent;

@@ -15,6 +15,13 @@ const BoxComponent = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 425px) {
+    height: auto;
+    padding: 10px;
+    margin: 5px;
+    justify-content: space-between;
+  }
 `;
 
 export default BoxComponent;

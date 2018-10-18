@@ -15,7 +15,7 @@ const SubBoxTitle = styled.a`
   transform: translate(-50%, -50%);
 
   @media (max-width: 425px) {
-    font-size: 17px;
+    font-size: 15px;
   }
 `;
 
