@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.header`
-    position: fixed;
+    position: relative;
     top: 0;
     width: -webkit-fill-available;
     background: #0797BA;

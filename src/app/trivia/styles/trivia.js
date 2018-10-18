@@ -8,8 +8,7 @@ export const Box = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 85vh;
-    padding-top: 9vh;
+    height: 90vh;
 `;
 
 export const Title = styled.a`
@@ -28,10 +27,6 @@ export const Title = styled.a`
 `;
 
 export const TitleBox = styled.div`
-    with: -webkit-fill-available;
-    height: auto;
-    align-items: center;
-    justify-content: center;
     flex:1
     display: flex;
     flex-direction: column;
@@ -39,13 +34,12 @@ export const TitleBox = styled.div`
 
 export const SubBox = styled.div`
     width: -webkit-fill-available;
-    height: 100%;
     background-image: url(${cityPicture});
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    
     display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     flex: 4;
@@ -86,10 +80,8 @@ export const Question = styled.a`
     font-size: 28px;
     color: #067995;
 
-
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);
-    border-style: double;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -103,9 +95,9 @@ export const Option = styled.a`
     }
     @media (max-width: 376px) {
         font-size: 16px;
-        line-height: 4.5;
         width: 66%;
-        margin: 10px;
+        line-height: 3.2;
+        margin: 16px;
         flex: 4;
     }
     flex: 6;
