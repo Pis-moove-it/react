@@ -2,14 +2,20 @@ import React from 'react';
 import Footer from './home/components/Footer';
 import Header from './home/components/Header';
 import Trivia from './trivia/components/Trivia';
-import global from './home/css/global.css'; //eslint-disable-line
-
+import BackToTop from './home/components/BackToTop';
+import MapContainer from './home/components/MapContainer';
+import BodyWrapper from './home/components/BodyWrapper';
+import global from './home/css/global.css';
 
 const App = () => (
   <div>
     <Header />
-    <Trivia />
-    <Footer />
+    <BackToTop />
+    <BodyWrapper>
+      <MapContainer />
+      <Trivia />
+      <Footer />
+    </BodyWrapper>
   </div>
 );
 

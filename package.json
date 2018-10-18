@@ -8,8 +8,15 @@
   },
   "private": true,
   "dependencies": {
+    "easing-js": "^1.1.2",
+    "lodash": "latest",
+    "mapbox-gl": "^0.50.0-beta.1",
+    "performance-now": "latest",
+    "prop-types": "latest",
+    "raf": "latest",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-mapbox-gl": "^3.9.2",
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.4",
     "redux": "^4.0.0",
@@ -20,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js || exit 0"
+    "lint": "eslint src --fix || exit 0"
   },
   "eslintConfig": {
     "extends": "airbnb",
