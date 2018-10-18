@@ -75,7 +75,6 @@ class BackToTop extends Component {
         this.animate = this.animate.bind(this);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.updateScroll = this.updateScroll.bind(this);
-        this.shouldAnimate = this.shouldAnimate.bind(this);
         this.animate = this.animate.bind(this);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.getScrollTop = this.getScrollTop.bind(this);
@@ -96,17 +95,13 @@ class BackToTop extends Component {
         window.removeEventListener('scroll', this.throttledUpdateScroll);
     }
 
-    shouldAnimate() {
-        return true;
-    }
-
     animate(name, endValue, duration, options = {}) {
         var animations = privates.get(this);
         if (!animations) {
             privates.set(this, animations = new Map());
         }
         var animation = animations.get(name);
-        var shouldAnimate = this.shouldAnimate() && options.animation !== false;
+        var shouldAnimate = options.animation !== false;
         if (!animation || !shouldAnimate || !isNumber(endValue)) {
             let easing = options.easing || 'linear';
             let startValue = isNumber(options.startValue) && shouldAnimate ? options.startValue : endValue;

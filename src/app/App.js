@@ -2,13 +2,18 @@ import React from 'react';
 import Footer from './home/components/Footer';
 import Header from './home/components/Header';
 import BackToTop from './home/components/BackToTop';
+import MapContainer from './home/components/MapContainer';
+import BodyWrapper from './home/components/BodyWrapper';
 import global from './home/css/global.css';
 
 const App = () => (
   <div>
     <Header />
     <BackToTop />
-    <Footer />
+    <BodyWrapper>
+      <MapContainer />
+      <Footer />
+    </BodyWrapper>
   </div>
 );
 
