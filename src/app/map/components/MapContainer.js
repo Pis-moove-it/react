@@ -21,8 +21,8 @@ const MapContainer = () => (
       height: '100%',
       width: '100%',
     }}
-    center={[-54.328653, -34.481665]}
-    zoom={[7.5]}
+    center={[-54.330362, -34.482448]}
+    zoom={[15.5]}
     // Add button to detect user's current location
     onStyleLoad={
       (map) => {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const BoxInfo = styled.div`
-  flex: 1;
+  flex: 2;
 
   display: flex;
   flex-direction: row;

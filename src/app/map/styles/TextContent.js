@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 const TextContent = styled.a`
   font-family: Candara;
+  font-weight: bold;
   line-height: normal;
   font-size: 18px;
 
   text-align: center;
 
-  color: #000000;
+  color: #7c7c7c;
 
   flex: 1;
 

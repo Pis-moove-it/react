@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const QuestionContent = styled.a`
   font-family: Candara;
+  font-weight: bold;
   line-height: normal;
   font-size: 22px;
 

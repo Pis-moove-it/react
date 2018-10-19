@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const SubBoxText = styled.a`
   font-family: Candara;
+  font-weight: bold;
   line-height: normal;
   font-size: 20px;
 
@@ -10,7 +11,7 @@ const SubBoxText = styled.a`
   position: relative;
   float: left;
   top: 50%;
-  left: 50%;
+  left: 30%;
   transform: translate(-50%, -50%);
 
   @media (max-width: 425px) {

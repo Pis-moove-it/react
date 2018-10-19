@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const SubBoxTitle = styled.a`
   font-family: Candara;
+  font-weight: bold;
   line-height: normal;
   font-size: 35px;
   text-align: center;
@@ -10,7 +11,7 @@ const SubBoxTitle = styled.a`
 
   position: relative;
   float: left;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 
