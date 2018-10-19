@@ -20,6 +20,7 @@ const InfoComponent = styled.div`
   @media (max-width: 425px) {
     flex-direction: column;
     height: auto;
+    flex: 2;
   }
 `;
 
