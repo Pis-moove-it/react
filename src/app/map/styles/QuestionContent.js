@@ -16,6 +16,10 @@ const QuestionContent = styled.a`
   left: 50%;
   transform: translate(-50%, -50%);
 
+  @media (max-width: 1024px) {
+    font-size: 17px;
+  }
+
   @media (max-width: 425px) {
     font-size: 11px;
   }

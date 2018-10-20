@@ -11,10 +11,16 @@ const SubBoxText = styled.a`
   position: relative;
   float: left;
   top: 50%;
-  left: 30%;
+  left: 35%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 425px) {
+  @media(max-width: 1024px) {
+    left: 55%;
+    font-size: 15px;
+  }
+
+    @media(max-width: 425px) {
+    left: 35%;
     font-size: 10px;
   }
 `;
