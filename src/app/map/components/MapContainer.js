@@ -27,12 +27,16 @@ const MapContainer = () => (
     onStyleLoad={
       (map) => {
         map.addControl(new mapboxgl.GeolocateControl({
+          position: 'bottom-right',
           positionOptions: {
             enableHighAccuracy: true,
           },
           trackUserLocation: true,
         }));
+        map.addControl(new mapboxgl.NavigationControl());
         enableMobileScroll(map);
+        map.addControl(new mapboxgl.FullscreenControl());
+        map.addControl(new mapboxgl.ScaleControl());
       }
     }
   />
