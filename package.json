@@ -8,8 +8,13 @@
   },
   "private": true,
   "dependencies": {
+    "easing-js": "^1.1.2",
+    "lodash": "latest",
     "mapbox-gl": "^0.50.0-beta.1",
     "mapbox-gl-multitouch": "^1.0.3",
+    "performance-now": "latest",
+    "prop-types": "latest",
+    "raf": "latest",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-mapbox-gl": "^3.9.2",

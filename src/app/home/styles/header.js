@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.header`
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 1;
     width: 100%;
