@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import cityPicture from '../assets/landing50.png'
 
 export const Box = styled.div`
+    padding: 40px 0px;
     font-family: "Candara";
     font-weight: bold;
     display: flex;
