@@ -79,7 +79,7 @@ export const Question = styled.a`
     text-align: center;
     align-items: center;
     font-size: 28px;
-    color: #067995;
+    color: #000000;
 
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);
@@ -111,7 +111,7 @@ export const Option = styled.a`
     font-size: 28px;
     align-items: center;
     vertical-align: middle;
-    color: #067995;
+    color: #000000;
 
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);
