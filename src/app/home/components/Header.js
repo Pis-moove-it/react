@@ -10,7 +10,6 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scrollingLock: false,
       position: 'relative',
       animation: 'none',
     };
@@ -29,13 +28,11 @@ class Header extends React.Component {
   handleScroll() {
     if (window.scrollY > 200) {
       this.setState({
-        scrollingLock: true,
         position: 'fixed',
         animation: 'fadeStickyIn .6s ease-in-out forwards',
       });
     } else if (window.scrollY < 200) {
       this.setState({
-        scrollingLock: false,
         position: 'relative',
         animation: 'none',
       });
