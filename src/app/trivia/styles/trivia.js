@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import cityPicture from '../assets/landing50.png'
 
 export const Box = styled.div`
+    padding: 40px 0px;
     font-family: "Candara";
     font-weight: bold;
     display: flex;
@@ -78,7 +79,7 @@ export const Question = styled.a`
     text-align: center;
     align-items: center;
     font-size: 28px;
-    color: #067995;
+    color: #000000;
 
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);
@@ -110,7 +111,7 @@ export const Option = styled.a`
     font-size: 28px;
     align-items: center;
     vertical-align: middle;
-    color: #067995;
+    color: #000000;
 
     background: #FFFFFF;
     border: 2px solid rgba(196, 196, 196, 0.5);

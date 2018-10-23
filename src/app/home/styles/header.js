@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Box = styled.header`
-    position: relative;
+    position: ${props => props.position};
+    animation: ${props => props.transition};
     top: 0;
     z-index: 1;
     width: 100%;
@@ -18,6 +19,11 @@ export const Box = styled.header`
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    
+    @keyframes fadeStickyIn{
+    from{opacity:0}
+    to{opacity:1}
+    }
     `;
 
 export const SubBox = styled.div`
