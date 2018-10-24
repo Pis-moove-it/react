@@ -26,7 +26,7 @@ const MapView = () => (
       <BoxComponent>
         <BoxTitle>
           <SubBoxTitle>
-            En Agosto hemos reciclado
+            En Rocha, durante el mes de Agosto hemos reciclado
           </SubBoxTitle>
         </BoxTitle>
         <BoxInfo>

@@ -39,10 +39,7 @@ export const ReciclandoLogo = styled.img`
     padding-right: 20px;
 `;
 
-export const LeafLogo = styled.img`
-    height: 20px;
-    width: 20px;
-`;
+
 
 export const HeaderTitle = styled.a`
     padding-left: 40px;
