@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logoBlanco.png';
 import {
-  Box, SubBox, ReciclandoLogo, LeafLogo, HeaderTitle,
+  Box, SubBox, ReciclandoLogo, HeaderTitle,
 } from '../styles/header';
 
 

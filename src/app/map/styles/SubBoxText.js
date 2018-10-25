@@ -6,13 +6,12 @@ const SubBoxText = styled.a`
   line-height: normal;
   font-size: 18px;
 
+  display: table-cell;
+  vertical-align: middle;
+  //position: absolute;
+
   color: #000000;
 
-  position: relative;
-  float: initial;
-  top: 35%;
-  left: 5%;
-  transform: translate(-50%, -50%);
 
   @media(max-width: 1024px) {
     font-size: 15px;
@@ -20,7 +19,6 @@ const SubBoxText = styled.a`
 
     @media(max-width: 425px) {
     font-size: 10px;
-    top: 15%;
   }
 `;
 

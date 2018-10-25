@@ -83,30 +83,40 @@ export const Question = styled.a`
 
 `;
 
-export const Option = styled.a`
+export const BoxOption = styled.div`
+
     @media (max-width: 768px) {
-        font-size: 18px;
-        line-height: 2.5;
         width: 25%;
         margin: 2%;
     }
     @media (max-width: 376px) {
-        font-size: 16px;
         width: 66%;
-        line-height: 3.2;
         margin: 16px;
+    }
+     
+    display: table;
+    width: 20%;
+    margin: 1%;
+`;
+
+export const Option = styled.a`
+    @media (max-width: 768px) {
+        font-size: 18px;
+        line-height: 2.5;
+    }
+    @media (max-width: 376px) {
+        font-size: 16px;
+        line-height: 3.4;
         flex: 4;
     }
     flex: 6;
 
+    display: table-cell;
+    vertical-align: middle;
 
-    width: 20%;
-    margin: 1%;
     text-align: center;
     line-height: 2.5;
     font-size: 22px;
-    align-items: center;
-    vertical-align: middle;
     color: #000000;
 
     background: #FFFFFF;
