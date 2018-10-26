@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const SubBoxLogo = styled.img`
-  height: 37px;
+  height: 30px;
   width: auto;
-  padding-right: 8%;
+  padding-left: 15%;
+  padding-right: 20%;
 
   position: relative;
   float: left;
