@@ -4,23 +4,20 @@ const SubBoxText = styled.a`
   font-family: Candara;
   font-weight: bold;
   line-height: normal;
-  font-size: 20px;
+  font-size: 18px;
+
+  display: table-cell;
+  vertical-align: middle;
+  //position: absolute;
 
   color: #000000;
 
-  position: relative;
-  float: left;
-  top: 50%;
-  left: 35%;
-  transform: translate(-50%, -50%);
 
   @media(max-width: 1024px) {
-    left: 55%;
     font-size: 15px;
   }
 
     @media(max-width: 425px) {
-    left: 35%;
     font-size: 10px;
   }
 `;

@@ -6,7 +6,7 @@ const BoxComponent = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  margin: 16% 4%;
+  margin: 16% 12%;
 
   padding: 10% 5%;
 
@@ -19,7 +19,7 @@ const BoxComponent = styled.div`
   @media (max-width: 425px) {
     height: auto;
     padding: 10px;
-    margin: 5px;
+    margin: 20px;
     justify-content: space-between;
   }
 `;

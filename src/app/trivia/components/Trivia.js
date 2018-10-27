@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Title, SubBox, Option, Question, Triangle, TitleBox
+  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption,
 } from '../styles/trivia';
 
 
@@ -12,10 +12,18 @@ const Trivia = () => (
     </TitleBox>
     <SubBox>
       <Question>¿Cuánto tarda en degradarse una botella?</Question>
-      <Option>10 años</Option>
-      <Option>500 años</Option>
-      <Option>10 años</Option>
-      <Option>500 años</Option>
+      <BoxOption>
+        <Option>10 años</Option>
+      </BoxOption>    
+      <BoxOption>
+        <Option>500 años</Option>
+      </BoxOption>   
+      <BoxOption>
+        <Option>100 años</Option>
+      </BoxOption> 
+      <BoxOption>
+        <Option>700 años</Option>
+      </BoxOption> 
     </SubBox>
   </Box>
 );

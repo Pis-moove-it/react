@@ -64,8 +64,8 @@ export const BoxQuestion = styled.div`
 
 export const Question = styled.a`
     @media (max-width: 768px) {
-        font-size: 23px;
-        width: 50%;
+        font-size: 20px;
+        width: 40%;
     }
     @media (max-width: 376px) {
         font-size: 16px;
@@ -78,39 +78,45 @@ export const Question = styled.a`
 
     text-align: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 24px;
     color: #000000;
 
-    background: #FFFFFF;
-    border: 2px solid rgba(196, 196, 196, 0.5);
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
 
+export const BoxOption = styled.div`
+
+    @media (max-width: 768px) {
+        width: 25%;
+        margin: 2%;
+    }
+    @media (max-width: 376px) {
+        width: 66%;
+        margin: 16px;
+    }
+     
+    display: table;
+    width: 20%;
+    margin: 1%;
 `;
 
 export const Option = styled.a`
     @media (max-width: 768px) {
-        font-size: 23px;
+        font-size: 18px;
         line-height: 2.5;
-        width: 50%;
     }
     @media (max-width: 376px) {
         font-size: 16px;
-        width: 66%;
-        line-height: 3.2;
-        margin: 16px;
+        line-height: 3.4;
         flex: 4;
     }
     flex: 6;
 
-
-    width: 30%;
-    margin: 1%;
-    text-align: center;
-    line-height: 2;
-    font-size: 28px;
-    align-items: center;
+    display: table-cell;
     vertical-align: middle;
+
+    text-align: center;
+    line-height: 2.5;
+    font-size: 22px;
     color: #000000;
 
     background: #FFFFFF;

@@ -26,3 +26,8 @@ export const FooterText = styled.a`
     color: #FFFFFF;
     text-decoration: none;
 `;
+
+export const LeafLogo = styled.img`
+    height: 20px;
+    width: 20px;
+`;
