@@ -24,7 +24,7 @@ class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // Store containers list from backend
+      // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
     };
   }
