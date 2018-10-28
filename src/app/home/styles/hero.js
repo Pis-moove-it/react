@@ -8,8 +8,7 @@ export const PrimaryBox = styled.div`
 
 export const HeroImage = styled.img`
     object-fit: cover;
-    min-height: 90vh;
-    height: 92vh;
+    height: calc(100vh - 55px);
     width: 100%;
     top: 0;
     left: 0;
