@@ -1,7 +1,6 @@
 import React from 'react';
 import MapViewComponent from '../styles/MapViewComponent';
 import InfoComponent from '../styles/InfoComponent';
-import MapComponent from '../styles/MapComponent';
 import MapContainer from './MapContainer';
 import BoxComponent from '../styles/BoxComponent';
 import QuestionTexBox from '../styles/QuestionTextBox';
@@ -73,9 +72,7 @@ const MapView = () => (
         </Text>
       </QuestionTexBox>
     </InfoComponent>
-    <MapComponent>
-      <MapContainer />
-    </MapComponent>
+    <MapContainer />
   </MapViewComponent>
 );
 
