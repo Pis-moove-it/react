@@ -1,4 +1,5 @@
 import React from 'react';
+import { Element } from 'react-scroll';
 import Footer from './home/components/Footer';
 import Header from './home/components/Header';
 import MapView from './map/MapView';
@@ -14,6 +15,7 @@ const App = () => (
     <Hero />
     <BackToTop />
     <BodyWrapper>
+      <Element id="Map" />
       <MapView />
       <Trivia />
       <Footer />

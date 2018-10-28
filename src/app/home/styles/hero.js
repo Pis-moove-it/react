@@ -4,11 +4,12 @@ export const PrimaryBox = styled.div`
     position: relative;
     text-align: center;
     color: white;
+    height: calc(100vh - 55px);
 `;
 
 export const HeroImage = styled.img`
     object-fit: cover;
-    height: calc(100vh - 55px);
+    height: 100%;
     width: 100%;
     top: 0;
     left: 0;
