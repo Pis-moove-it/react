@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  scroller as scroll,
+} from 'react-scroll';
 import logo from '../assets/logoBlanco.png';
 import {
   Box, SubBox, ReciclandoLogo, HeaderTitle,
@@ -11,6 +14,7 @@ class Header extends React.Component {
     this.state = {
       position: 'relative',
       animation: 'none',
+      offset: (-110),
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -29,23 +33,34 @@ class Header extends React.Component {
       this.setState({
         position: 'fixed',
         animation: 'fadeStickyIn .6s ease-in-out forwards',
+        offset: (-55),
       });
     } else if (window.scrollY < 200) {
       this.setState({
         position: 'relative',
         animation: 'none',
+        offset: (-110),
       });
     }
   }
 
   render() {
+    const props = {
+      delay: 0, smooth: 'easeInOutQuart', duration: 1000, offset: (this.state.offset),
+    };
     return (
       <Box position={this.state.position} transition={this.state.animation}>
         <ReciclandoLogo src={logo} />
         <SubBox>
-          <HeaderTitle>¿Dónde reciclo?</HeaderTitle>
-          <HeaderTitle>¿Qué reciclo?</HeaderTitle>
-          <HeaderTitle>¿Sabías qué?</HeaderTitle>
+          <HeaderTitle onClick={() => scroll.scrollTo('Map', props)}>
+¿Dónde reciclo?
+          </HeaderTitle>
+          <HeaderTitle onClick={() => scroll.scrollTo('Trivia', props)}>
+¿Sabías qué?
+          </HeaderTitle>
+          <HeaderTitle onClick={() => scroll.scrollTo('Info', props)}>
+Mundo actual
+          </HeaderTitle>
         </SubBox>
       </Box>
     );
