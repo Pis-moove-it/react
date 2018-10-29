@@ -8,6 +8,7 @@ import Trivia from './trivia/components/Trivia';
 import BackToTop from './home/components/BackToTop';
 import BodyWrapper from './home/styles/BodyWrapper';
 import Hero from './home/components/Hero';
+import MoreInfo from './info/components/MoreInfo';
 
 const App = () => (
   <div>
@@ -18,6 +19,7 @@ const App = () => (
       <Element id="Map" />
       <MapView />
       <Trivia />
+      <MoreInfo />
       <Footer />
     </BodyWrapper>
   </div>
