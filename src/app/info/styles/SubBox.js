@@ -5,7 +5,7 @@ const SubBox = styled.div`
   
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
   flex: 4;
   padding-bottom: 10%;
 

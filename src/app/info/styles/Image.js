@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-const Image = styled.img`  
-  width: ${props => props.width};
-  height: ${props => props.height};
-  src: ${props => props.src};
-
+const Image = styled.img`
   margin: 1%;
 
-  flex: 1;
+  flex: ${props => props.flex};
 `;
 
 export default Image;

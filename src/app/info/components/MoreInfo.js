@@ -8,6 +8,9 @@ import ImagesBox from '../styles/ImagesBox';
 import trashIsland1 from '../assets/trash-island1.jpeg';
 import trashIsland2 from '../assets/trash-island2.png';
 import trashIsland3 from '../assets/trash-island3.png';
+import finland1 from '../assets/finland1.jpeg';
+import finland2 from '../assets/finland2.png';
+import finland3 from '../assets/finland3.png';
 import TextBox from '../styles/TextBox';
 import Line from '../styles/Line';
 import TextTitle from '../styles/TextTitle';
@@ -21,10 +24,11 @@ const MoreInfo = () => (
       <Triangle />
     </TitleBox>
     <SubBox>
+      Subbox1
       <ImagesBox>
-        <Image src={trashIsland1} width="100%" height="50%" />
-        <Image src={trashIsland2} width="50%" height="50%" />
-        <Image src={trashIsland3} width="50%" height="50%" />
+        <Image src={trashIsland1} flex={2} />
+        <Image src={trashIsland2} flex={1} />
+        <Image src={trashIsland3} flex={1} />
       </ImagesBox>
       <TextBox>
         <TextTitle>Islas de basura</TextTitle>
@@ -38,9 +42,21 @@ const MoreInfo = () => (
         </Text>
       </TextBox>
     </SubBox>
-    <SubBox>
-      <ImagesBox />
-      <TextBox />
+    <SubBox reverse>
+      Subbox2
+      <ImagesBox>
+        <Image src={finland1} width="100%" height="100%" flex={2} />
+        <Image src={finland2} width="100%" height="100%" flex={1} />
+        <Image src={finland3} width="100%" height="100%" flex={1} />
+      </ImagesBox>
+      <TextBox>
+        <TextTitle>Finlandia es el país más verde</TextTitle>
+        <Line />
+        <Text>
+        Finlandia: es el país más verde del mundo. Se han marcado como objetivo para 2020
+         que un 38% de la energía que se consuma en este país provenga de energías renovables.
+        </Text>
+      </TextBox>
     </SubBox>
   </Box>
 );
