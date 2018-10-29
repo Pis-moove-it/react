@@ -45,11 +45,15 @@ class Header extends React.Component {
   }
 
   render() {
+    const {
+      offset, position, animation,
+    } = this.state;
+
     const props = {
-      delay: 0, smooth: 'easeInOutQuart', duration: 1000, offset: (this.state.offset),
+      delay: 0, smooth: 'easeInOutQuart', duration: 1000, offset,
     };
     return (
-      <Box position={this.state.position} transition={this.state.animation}>
+      <Box position={position} transition={animation}>
         <ReciclandoLogo src={logo} />
         <SubBox>
           <HeaderTitle onClick={() => scroll.scrollTo('Map', props)}>
