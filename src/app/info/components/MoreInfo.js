@@ -12,6 +12,7 @@ import TextBox from '../styles/TextBox';
 import Line from '../styles/Line';
 import TextTitle from '../styles/TextTitle';
 import Text from '../styles/Text';
+import Image from '../styles/Image';
 
 const MoreInfo = () => (
   <Box>
@@ -21,9 +22,9 @@ const MoreInfo = () => (
     </TitleBox>
     <SubBox>
       <ImagesBox>
-        <img src={trashIsland1} alt="" />
-        <img src={trashIsland2} alt="" />
-        <img src={trashIsland3} alt="" />
+        <Image src={trashIsland1} width="100%" height="50%" />
+        <Image src={trashIsland2} width="50%" height="50%" />
+        <Image src={trashIsland3} width="50%" height="50%" />
       </ImagesBox>
       <TextBox>
         <TextTitle>Islas de basura</TextTitle>

@@ -4,7 +4,7 @@ const TextBox = styled.div`
   line-height: normal;
   color: #000;
 
-  margin: 5%;
+  margin: 5% 2% 10%;
 
   display: flex;
   align-items: center;
