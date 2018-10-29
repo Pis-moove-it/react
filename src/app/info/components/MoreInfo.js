@@ -4,6 +4,14 @@ import TitleBox from '../styles/TitleBox';
 import Title from '../styles/Title';
 import Triangle from '../styles/Triangle';
 import SubBox from '../styles/SubBox';
+import ImagesBox from '../styles/ImagesBox';
+import trashIsland1 from '../assets/trash-island1.jpeg';
+import trashIsland2 from '../assets/trash-island2.png';
+import trashIsland3 from '../assets/trash-island3.png';
+import TextBox from '../styles/TextBox';
+import Line from '../styles/Line';
+import TextTitle from '../styles/TextTitle';
+import Text from '../styles/Text';
 
 const MoreInfo = () => (
   <Box>
@@ -11,8 +19,28 @@ const MoreInfo = () => (
       <Title>Más información</Title>
       <Triangle />
     </TitleBox>
-    <SubBox />
-    <SubBox />
+    <SubBox>
+      <ImagesBox>
+        <img src={trashIsland1} alt="" />
+        <img src={trashIsland2} alt="" />
+        <img src={trashIsland3} alt="" />
+      </ImagesBox>
+      <TextBox>
+        <TextTitle>Islas de basura</TextTitle>
+        <Line />
+        <Text>
+        Las islas de la basura son aglomeraciones de residuos no biodegradables que
+         por el influjo de los giros oceánicos (el sistema de corrientes marinas
+          rotativas) se van acumulando en extensas balsas flotantes. La más grande
+           hallada hasta el momento es la isla de basura en el Pacífico, pero hay otras cuatro
+            repartidas en los demás océanos a excepción del Ártico y el Antártico.
+        </Text>
+      </TextBox>
+    </SubBox>
+    <SubBox>
+      <ImagesBox />
+      <TextBox />
+    </SubBox>
   </Box>
 );
 

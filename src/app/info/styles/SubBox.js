@@ -5,7 +5,7 @@ const SubBox = styled.div`
   
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   flex: 4;
   padding-bottom: 10%;
 
