@@ -14,16 +14,16 @@ const Trivia = () => (
       <Question>¿Cuánto tarda en degradarse una botella?</Question>
       <BoxOption>
         <Option>10 años</Option>
-      </BoxOption>    
+      </BoxOption>
       <BoxOption>
         <Option>500 años</Option>
-      </BoxOption>   
+      </BoxOption>
       <BoxOption>
         <Option>100 años</Option>
-      </BoxOption> 
+      </BoxOption>
       <BoxOption>
         <Option>700 años</Option>
-      </BoxOption> 
+      </BoxOption>
     </SubBox>
   </Box>
 );

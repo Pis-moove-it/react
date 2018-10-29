@@ -40,7 +40,6 @@ export const ReciclandoLogo = styled.img`
 `;
 
 
-
 export const HeaderTitle = styled.a`
     padding-left: 40px;
     color: #FFFFFF;
