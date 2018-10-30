@@ -13,10 +13,12 @@ const Triangle = styled.div`
     flex: 2;
   }
 
-  width: 0; 
-  height: 0; 
-  border-left: 180px solid transparent; 
-  border-right: 180px solid transparent; 
+  width: 0;
+  height: 0;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-left: 180px solid transparent;
+  border-right: 180px solid transparent;
   border-top: 8px solid rgba(196, 196, 196, 0.7);
   flex: 1;
 `;

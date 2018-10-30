@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
 const ImagesBox = styled.div`
-  position: relative;
-  float: left;
-  top: 20%;
-  left: 33%;
-  transform: translate(-50%, -50%);
-
   height: 50vh;
+  margin: 1%;
 
   display: flex;
   justify-content: flex-start;
