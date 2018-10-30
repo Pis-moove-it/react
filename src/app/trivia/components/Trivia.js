@@ -31,7 +31,6 @@ class Trivia extends Component {
           loading: false }
 
         );
-        console.log(this.state.questions.pop())
       })
       .catch((err) => {})
   }
