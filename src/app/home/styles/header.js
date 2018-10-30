@@ -40,11 +40,11 @@ export const ReciclandoLogo = styled.img`
 `;
 
 
-
 export const HeaderTitle = styled.a`
     padding-left: 40px;
     color: #FFFFFF;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       text-decoration: none;
