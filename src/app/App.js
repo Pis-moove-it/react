@@ -17,7 +17,9 @@ const App = () => (
     <BodyWrapper>
       <Element id="Map" />
       <MapView />
+      <Element id="Trivia" />
       <Trivia />
+      <Element id="Info" />
       <Footer />
     </BodyWrapper>
   </div>

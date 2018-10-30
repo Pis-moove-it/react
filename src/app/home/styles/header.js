@@ -44,6 +44,7 @@ export const HeaderTitle = styled.a`
     padding-left: 40px;
     color: #FFFFFF;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       text-decoration: none;
