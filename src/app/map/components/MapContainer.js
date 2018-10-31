@@ -31,15 +31,20 @@ class MapContainer extends Component {
 
   componentDidMount() {
     // Fetch container list from backend
-    // url will change to one from a backend service (which should be placed in .env file
-    // and called like
-    // process.env.REACT_APP_API_CONTAINERS_LIST, where REACT_APP_API_CONTAINERS_LIST
-    // is the variable containing the url in .env file)
-    axios.get('http://localhost:3000/containers.json').then((res) => {
-      this.setState({
-        containers: res.data,
+    axios
+      .get(process.env.REACT_APP_API_CONTAINERS).then((res) => {
+        this.setState({
+          containers: res.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) { // If a response has been received from the server
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
       });
-    });
   }
 
   render() {
@@ -83,7 +88,7 @@ class MapContainer extends Component {
             { containers.map(elem => (
               <Feature
                 key={elem.id}
-                coordinates={[elem.lng, elem.lat]}
+                coordinates={[elem.longitude, elem.latitude]}
               />)) }
           </Layer>
         </Map>
