@@ -30,9 +30,19 @@ class MapContainer extends Component {
   }
 
   componentDidMount() {
+    // First, login
+
     // Fetch container list from backend
-    axios
-      .get(process.env.REACT_APP_API_CONTAINERS).then((res) => {
+    axios.get(
+      process.env.REACT_APP_API_CONTAINERS,
+      {},
+      {
+        headers: {
+          apikey: apikeylogin,
+        },
+      },
+    )
+      .then((res) => {
         this.setState({
           containers: res.data,
         });
