@@ -21,7 +21,7 @@ class Trivia extends Component {
 
   getQuestions() {
     this.setState({ loading: true });
-    axios.get('http://34.213.11.120/questions')
+    axios.get(process.env.REACT_APP_API_QUESTIONS)
       .then(({ data }) => {
         this.setState(
           {
