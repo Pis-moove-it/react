@@ -20,6 +20,59 @@ const enableMobileScroll = (map) => {
 const trashIcon = new Image(60, 60);
 trashIcon.src = trashLogo;
 
+async function getData() {
+  let apikeyLogin = null;
+  await axios.post(
+    process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN,
+    { name: 'Abrojo', password: 'password' },
+    {
+      headers: {
+        deviceIdHeader: 'prueba',
+        deviceTypeHeader: 'prueba',
+        'Content-Type': 'application/json',
+      },
+    },
+  )
+    .then((responseLogin) => {
+      const { apikey } = responseLogin.headers;
+      apikeyLogin = apikey;
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
+  // Fetch container list from backend
+  await axios.get(
+    process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS,
+    {
+      headers: {
+        deviceIdHeader: 'prueba',
+        deviceTypeHeader: 'prueba',
+        'Content-Type': 'application/json',
+        ApiKey: apikeyLogin,
+      },
+    },
+  )
+    .then((res) => {
+      this.setState({
+        containers: res.data,
+      });
+    })
+    .catch((error) => {
+      console.log('Api Key GET error', apikeyLogin);
+      console.log(error);
+      if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
+}
+
 class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -27,34 +80,11 @@ class MapContainer extends Component {
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
     };
+    this.getData = getData.bind(this);
   }
 
   componentDidMount() {
-    // First, login
-
-    // Fetch container list from backend
-    axios.get(
-      process.env.REACT_APP_API_CONTAINERS,
-      {},
-      {
-        headers: {
-          apikey: apikeylogin,
-        },
-      },
-    )
-      .then((res) => {
-        this.setState({
-          containers: res.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response) { // If a response has been received from the server
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
+    this.getData();
   }
 
   render() {
@@ -95,11 +125,13 @@ class MapContainer extends Component {
             images={['trash', trashIcon]}
           >
             {/* Add containers from state */}
-            { containers.map(elem => (
-              <Feature
-                key={elem.id}
-                coordinates={[elem.longitude, elem.latitude]}
-              />)) }
+            { (containers.length > 0)
+              ? containers.map(elem => (
+                <Feature
+                  key={elem.id}
+                  coordinates={[elem.longitude, elem.latitude]}
+                />))
+              : null}
           </Layer>
         </Map>
       </MapComponent>
