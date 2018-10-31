@@ -32,7 +32,14 @@ class Trivia extends Component {
 
         );
       })
-      .catch((err) => {})
+      .catch(function (error) {
+        console.log(error);
+        if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+        });
   }
 
 
@@ -40,7 +47,8 @@ class Trivia extends Component {
 
 render(){
   const actualQ = this.state.questions.pop()
-  if(!this.state.loading ){ 
+  const {loading} = this.state;
+  if(!loading ){ 
     return (
       <Box>  
         <TitleBox>

@@ -46,6 +46,8 @@ export const SubBox = styled.div`
     flex: 4;
     padding-bottom: 10%;
 
+    justify-content: center;
+    
     @media (max-width: 376px) {
         flex: 7;
     }
