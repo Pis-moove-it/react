@@ -26,8 +26,8 @@ const MoreInfo = () => (
     <SubBox>
       <ImagesBox>
         <Image src={trashIsland1} width="100%" height="70%" flex={2} />
-        <Image src={trashIsland2} width="100%" height="70%" flex={1} />
-        <Image src={trashIsland3} width="100%" height="70%" flex={1} />
+        <Image src={trashIsland2} width="100%" height="70%" flex={1} showTabletOrCell />
+        <Image src={trashIsland3} width="100%" height="70%" flex={1} showTabletOrCell />
       </ImagesBox>
       <TextBox>
         <TextTitle>Islas de basura</TextTitle>
@@ -44,8 +44,8 @@ const MoreInfo = () => (
     <SubBox reverse>
       <ImagesBox>
         <Image src={finland1} width="100%" height="70%" flex={2} />
-        <Image src={finland2} width="100%" height="70%" flex={1} />
-        <Image src={finland3} width="100%" height="70%" flex={1} />
+        <Image src={finland2} width="100%" height="70%" flex={1} showTabletOrCell />
+        <Image src={finland3} width="100%" height="70%" flex={1} showTabletOrCell />
       </ImagesBox>
       <TextBox>
         <TextTitle>Finlandia es el país más verde</TextTitle>

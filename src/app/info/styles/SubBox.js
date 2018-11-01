@@ -9,11 +9,6 @@ const SubBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
-  flex: 4;
-
-  @media (max-width: 376px) {
-      flex: 7;
-  }
 `;
 
 export default SubBox;
