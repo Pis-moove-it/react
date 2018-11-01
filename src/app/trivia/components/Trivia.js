@@ -21,7 +21,7 @@ class Trivia extends Component {
 
   getQuestions() {
     this.setState({ loading: true });
-    axios.get(process.env.REACT_APP_API_QUESTIONS)
+    axios.get(process.env.REACT_APP_CORS + process.env.REACT_APP_API_QUESTIONS)
       .then(({ data }) => {
         this.setState(
           {
