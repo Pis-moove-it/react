@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/js/runtime~main.657a0b0b.js"
   },
   {
-    "revision": "cbd54678f70280226a75",
-    "url": "/reciclando-web/static/js/main.cbd54678.chunk.js"
+    "revision": "9c86139cafe371ccb941",
+    "url": "/reciclando-web/static/js/main.9c86139c.chunk.js"
   },
   {
-    "revision": "b926333116793a42111c",
-    "url": "/reciclando-web/static/js/1.b9263331.chunk.js"
+    "revision": "776401d6e7bdf3433da6",
+    "url": "/reciclando-web/static/js/1.776401d6.chunk.js"
   },
   {
-    "revision": "cbd54678f70280226a75",
-    "url": "/reciclando-web/static/css/main.2974c7c8.chunk.css"
+    "revision": "9c86139cafe371ccb941",
+    "url": "/reciclando-web/static/css/main.21d1411b.chunk.css"
   },
   {
-    "revision": "61e9e9ec101fdc89c27891ea2c560dd6",
+    "revision": "a367eba459b28e8e3932182b29c407f9",
     "url": "/reciclando-web/index.html"
   }
 ];
