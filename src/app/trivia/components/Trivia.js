@@ -12,7 +12,9 @@ class Trivia extends Component {
       questions: [],
       correct: 0,
       loading: true,
+      okAns: 0
     };
+  //  this.optionClicked = this.optionClicked.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +43,20 @@ class Trivia extends Component {
       });
   }
 
+  optionClicked(op, correctOp) {
+    console.log(op)
+    console.log("la opcion correcta es:", correctOp)
+    if (op === correctOp){
+      this.setState( (prevState, props) => ( 
+      //                 prevState => {
+      //   return {correct: prevState.correct+1}
+      // }
+      {correct : 5}))
+      console.log(this.state.okAns)
+      console.log(this.state.correct)
+    }
+  }
+
 
   render() {
     const { questions } = this.state;
@@ -62,7 +78,7 @@ class Trivia extends Component {
               <Option>{actualQ.option_b}</Option>
             </BoxOption>
             <BoxOption>
-              <Option>{actualQ.option_c}</Option>
+              <Option onClick={this.optionClicked("C", actualQ.correct_option)}>{actualQ.option_c}</Option>
             </BoxOption>
             <BoxOption>
               <Option>{actualQ.option_d}</Option>
