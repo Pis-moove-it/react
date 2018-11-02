@@ -14,12 +14,15 @@ class Trivia extends Component {
       loading: true,
       okAns: 0
     };
-  //  this.optionClicked = this.optionClicked.bind(this);
+    this.optionClicked = this.optionClicked.bind(this);
+    this.prueba = this.prueba.bind(this);
   }
 
   componentDidMount() {
     this.getQuestions();
   }
+
+
 
   getQuestions() {
     this.setState({ loading: true });
@@ -47,14 +50,20 @@ class Trivia extends Component {
     console.log(op)
     console.log("la opcion correcta es:", correctOp)
     if (op === correctOp){
-      this.setState( (prevState, props) => ( 
-      //                 prevState => {
-      //   return {correct: prevState.correct+1}
-      // }
-      {correct : 5}))
-      console.log(this.state.okAns)
+      this.setState( {
+         correct: this.state.correct+1
+       })
       console.log(this.state.correct)
     }
+  }
+
+  prueba() {
+    this.setState( 
+      {
+        correct : 3
+      }
+    )
+    console.log(this.state.correct)
   }
 
 
@@ -72,16 +81,16 @@ class Trivia extends Component {
           <SubBox>
             <Question>{actualQ.question}</Question>
             <BoxOption>
-              <Option>{actualQ.option_a}</Option>
+              <Option onClick={()=>this.optionClicked("A", actualQ.correct_option, this.state)}>{actualQ.option_a}</Option>
             </BoxOption>
             <BoxOption>
-              <Option>{actualQ.option_b}</Option>
+              <Option onClick={()=>this.optionClicked("B", actualQ.correct_option, this.state)}>{actualQ.option_b}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={this.optionClicked("C", actualQ.correct_option)}>{actualQ.option_c}</Option>
+              <Option onClick={()=>this.optionClicked("C", actualQ.correct_option, this.state)}>{actualQ.option_c}</Option>
             </BoxOption>
             <BoxOption>
-              <Option>{actualQ.option_d}</Option>
+              <Option onClick={()=>this.optionClicked("D", actualQ.correct_option, this.state)}>{actualQ.option_d}</Option>
             </BoxOption>
           </SubBox>
         </Box>
