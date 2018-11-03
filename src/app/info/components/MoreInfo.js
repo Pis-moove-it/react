@@ -20,14 +20,14 @@ import Image from '../styles/Image';
 const MoreInfo = () => (
   <Box>
     <TitleBox>
-      <Title>Más información</Title>
+      <Title>Mundo actual</Title>
       <Triangle />
     </TitleBox>
     <SubBox>
       <ImagesBox>
-        <Image src={trashIsland1} width="100%" height="70%" flex={2} />
-        <Image src={trashIsland2} width="100%" height="70%" flex={1} showTabletOrCell />
-        <Image src={trashIsland3} width="100%" height="70%" flex={1} showTabletOrCell />
+        <Image src={trashIsland1} flex={2} flexBasis="100%" />
+        <Image src={trashIsland2} flex={1} showOnMobile />
+        <Image src={trashIsland3} flex={1} />
       </ImagesBox>
       <TextBox>
         <TextTitle>Islas de basura</TextTitle>
@@ -43,9 +43,9 @@ const MoreInfo = () => (
     </SubBox>
     <SubBox reverse>
       <ImagesBox>
-        <Image src={finland1} width="100%" height="70%" flex={2} />
-        <Image src={finland2} width="100%" height="70%" flex={1} showTabletOrCell />
-        <Image src={finland3} width="100%" height="70%" flex={1} showTabletOrCell />
+        <Image src={finland1} flex={2} flexBasis="100%" />
+        <Image src={finland2} flex={1} showOnMobile />
+        <Image src={finland3} flex={1} />
       </ImagesBox>
       <TextBox>
         <TextTitle>Finlandia es el país más verde</TextTitle>

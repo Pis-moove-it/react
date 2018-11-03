@@ -1,13 +1,23 @@
 import styled from 'styled-components';
 
 const ImagesBox = styled.div`
-  height: 50vh;
   margin: 1%;
+  height: 450px;
+  flex: 3;
+
+  &:hover > * {
+    transform: scale(0.97);
+    transition: 0.5s all ease;
+  }
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
-  flex: 3;
+  align-items: center;
+
+  @media (max-width: 425px) {
+    flex: 1;
+  }
 `;
 
 export default ImagesBox;
