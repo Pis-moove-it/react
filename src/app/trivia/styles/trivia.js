@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import cityPicture from '../assets/landing50.png'
+import cityPicture from '../assets/landing50.png';
 
 export const Box = styled.div`
     padding: 40px 0px;
@@ -46,6 +46,8 @@ export const SubBox = styled.div`
     flex: 4;
     padding-bottom: 10%;
 
+    justify-content: center;
+    
     @media (max-width: 376px) {
         flex: 7;
     }
@@ -125,7 +127,7 @@ export const Option = styled.a`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-export const Triangle = styled.div `    
+export const Triangle = styled.div`    
     @media (max-width: 768px) {
         border-left: 150px solid transparent; 
         border-right: 150px solid transparent; 
