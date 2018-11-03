@@ -10,10 +10,9 @@ class Trivia extends Component {
     super(props);
     this.state = {
       questions: [],
+      index: 0,
       correct: 0,
       loading: true,
-      okAns: 0,
-      timeOut: false,
       backColor: [null, null, null, null],
 
     };
@@ -50,8 +49,6 @@ class Trivia extends Component {
   
 
   optionClicked(op, correctOp) {
-    // console.log(op)
-    // console.log("la opcion correcta es:", correctOp)
     var opN = 0
     var correctOpN = 0
     switch(op) {
@@ -76,36 +73,25 @@ class Trivia extends Component {
         break;
     }
 
-    this.setState({
-      timeOut: true
-    })
-
-    // console.log(correctOpN)
-    // console.log(opN)
 
     if (op === correctOp){
-      const newBackColors = this.state.backColor.slice() //copy the array
-      newBackColors[opN] = '#2AAA36' //execute the manipulations
+      const newBackColors = this.state.backColor.slice() 
+      newBackColors[opN] = '#2AAA36' 
       this.setState( {
         backColor : newBackColors,
         correct: this.state.correct+1
        })
-      // console.log("emboco")
+
     } else{
-      const newBackColors = this.state.backColor.slice(0,3) //copy the array
-      newBackColors[opN] = '#FD1F01' //execute the manipulations
+      const newBackColors = this.state.backColor.slice(0,3) 
+      newBackColors[opN] = '#FD1F01' 
       newBackColors[correctOpN] = '#2AAA36' 
-      // console.log(newBackColors[opN])
-      // console.log(newBackColors[correctOpN])
       this.setState({backColor : newBackColors})
-      // console.log(this.state.backColor[opN])
-      // console.log(this.state.backColor[correctOpN])
     }
-      // Usage!
-    this.sleep(2500).then(() => {
+    this.sleep(1500).then(() => {
       this.resetBackColor()
       this.setState({
-        timeOut: false
+        index: this.state.index+1
       })
     })
   }
@@ -120,13 +106,19 @@ class Trivia extends Component {
     this.setState({
       backColor : [null, null, null, null],
     })
+    if (this.state.index === 5){
+      this.getQuestions()
+      this.setState({
+        index: 0
+      })
+    }
   }
 
   render() {
 
     const { questions } = this.state;
-    const { timeOut } = this.state;
-    const  actualQ  = questions.pop();
+    const { index } = this.state;
+    const  actualQ  = questions[index];
     const { loading } = this.state;
 
 
