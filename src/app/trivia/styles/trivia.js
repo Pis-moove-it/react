@@ -149,6 +149,7 @@ export const Option = styled.a`
     display: table-cell;
     vertical-align: middle;
 
+    cursor: pointer;
     text-align: center;
     line-height: 2.5;
     font-size: 22px;

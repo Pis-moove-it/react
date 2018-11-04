@@ -5,13 +5,9 @@ import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
 } from '../styles/trivia';
 
-<<<<<<< HEAD
 function sleep(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
-=======
-const sleep = time => new Promise(resolve => setTimeout(resolve, time));
->>>>>>> a1d1528bdf2f06be12752f33e3cc144b8f7ad51f
 
 class Trivia extends Component {
   constructor(props) {
@@ -120,10 +116,6 @@ class Trivia extends Component {
     }
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a1d1528bdf2f06be12752f33e3cc144b8f7ad51f
   resetBackColor() {
     const { index } = this.state;
     this.setState({
@@ -159,16 +151,16 @@ class Trivia extends Component {
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
             </BoxQuestion>
             <BoxOption>
-              <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]} style={{ cursor: 'pointer' }}>{actualQ.option_a}</Option>
+              <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]}>{actualQ.option_a}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={() => this.optionClicked('B', actualQ.correct_option, this.state)} correctOption={backColor[1]} style={{ cursor: 'pointer' }}>{actualQ.option_b}</Option>
+              <Option onClick={() => this.optionClicked('B', actualQ.correct_option, this.state)} correctOption={backColor[1]}>{actualQ.option_b}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={() => this.optionClicked('C', actualQ.correct_option, this.state)} correctOption={backColor[2]} style={{ cursor: 'pointer' }}>{actualQ.option_c}</Option>
+              <Option onClick={() => this.optionClicked('C', actualQ.correct_option, this.state)} correctOption={backColor[2]}>{actualQ.option_c}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]} style={{ cursor: 'pointer' }}>{actualQ.option_d}</Option>
+              <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]}>{actualQ.option_d}</Option>
             </BoxOption>
           </SubBox>
         </Box>
