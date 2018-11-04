@@ -85,6 +85,25 @@ export const Question = styled.a`
 
 `;
 
+export const CorrectText = styled.a`  
+    z-index: 2;
+    position: absolute;
+    // display: table-cell;
+    // vertical-align: middle;
+    padding: 0;
+    margin: 0;
+
+    font-family: Rockwell;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 45px;
+
+    color: #3DC826;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
 export const BoxOption = styled.div`
 
     @media (max-width: 768px) {
