@@ -1,24 +1,23 @@
 import React from 'react';
-import MapViewComponent from './styles/MapViewComponent';
-import InfoComponent from './styles/InfoComponent';
-import MapComponent from './styles/MapComponent';
-import MapContainer from './components/MapContainer';
-import BoxComponent from './styles/BoxComponent';
-import QuestionTexBox from './styles/QuestionTextBox';
-import Question from './styles/Question';
-import QuestionContent from './styles/QuestionContent';
-import Text from './styles/Text';
-import TextContent from './styles/TextContent';
-import BoxTitle from './styles/BoxTitle';
-import SubBoxTitle from './styles/SubBoxTitle';
-import BoxInfo from './styles/BoxInfo';
-import BoxLogo from './styles/BoxLogo';
-import SubBoxLogo from './styles/SubBoxLogo';
-import BoxText from './styles/BoxText';
-import SubBoxText from './styles/SubBoxText';
-import carton from './assets/carton.png';
-import paper from './assets/paper.png';
-import water from './assets/water.png';
+import MapViewComponent from '../styles/MapViewComponent';
+import InfoComponent from '../styles/InfoComponent';
+import MapContainer from './MapContainer';
+import BoxComponent from '../styles/BoxComponent';
+import QuestionTexBox from '../styles/QuestionTextBox';
+import Question from '../styles/Question';
+import QuestionContent from '../styles/QuestionContent';
+import Text from '../styles/Text';
+import TextContent from '../styles/TextContent';
+import BoxTitle from '../styles/BoxTitle';
+import SubBoxTitle from '../styles/SubBoxTitle';
+import BoxInfo from '../styles/BoxInfo';
+import BoxLogo from '../styles/BoxLogo';
+import SubBoxLogo from '../styles/SubBoxLogo';
+import BoxText from '../styles/BoxText';
+import SubBoxText from '../styles/SubBoxText';
+import carton from '../assets/carton.png';
+import paper from '../assets/paper.png';
+import water from '../assets/water.png';
 
 const MapView = () => (
   <MapViewComponent>
@@ -73,9 +72,7 @@ const MapView = () => (
         </Text>
       </QuestionTexBox>
     </InfoComponent>
-    <MapComponent>
-      <MapContainer />
-    </MapComponent>
+    <MapContainer />
   </MapViewComponent>
 );
 
