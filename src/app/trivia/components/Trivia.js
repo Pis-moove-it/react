@@ -27,7 +27,6 @@ class Trivia extends Component {
   }
 
 
-
   getQuestions() {
     this.setState({ loading: true });
     axios.get(process.env.REACT_APP_API_QUESTIONS)
@@ -49,90 +48,96 @@ class Trivia extends Component {
       });
   }
 
-  
 
   optionClicked(op, correctOp) {
-    if (this.state.showCorrect === 'hidden'){
-      var opN = 0
-      var correctOpN = 0
-      switch(op) {
-        case 'A' : opN = 0
+    const {
+      backColor, showCorrect,
+    } = this.state;
+    if (showCorrect === 'hidden') {
+      let opN = 0;
+      let correctOpN = 0;
+      switch (op) {
+        case 'A': opN = 0;
           break;
-        case 'B' : opN = 1
+        case 'B': opN = 1;
           break;
-        case 'C' : opN = 2
+        case 'C': opN = 2;
           break;
-        case 'D' : opN = 3
+        case 'D': opN = 3;
           break;
-      }
-
-      switch(correctOp) {
-        case 'A' : correctOpN = 0
-          break;
-        case 'B' : correctOpN = 1
-          break;
-        case 'C' : correctOpN = 2
-          break;
-        case 'D' : correctOpN = 3
+        default:
           break;
       }
 
-      const newBackColors = this.state.backColor.slice() 
-      if (op === correctOp){
-        newBackColors[opN] = '#2AAA36' 
-        this.setState( {
-          correct: this.state.correct+1,
+      switch (correctOp) {
+        case 'A': correctOpN = 0;
+          break;
+        case 'B': correctOpN = 1;
+          break;
+        case 'C': correctOpN = 2;
+          break;
+        case 'D': correctOpN = 3;
+          break;
+        default:
+          break;
+      }
+
+      const newBackColors = backColor.slice();
+      if (op === correctOp) {
+        newBackColors[opN] = '#2AAA36';
+        this.setState({
+          correct: this.state.correct + 1,
           textCorrect: 'CORRECTO',
           correctColor: '#2AAA36',
-        })
-
-      } else{
-        newBackColors[opN] = '#FD1F01' 
-        newBackColors[correctOpN] = '#2AAA36' 
-        this.setState( {
+        });
+      } else {
+        newBackColors[opN] = '#FD1F01';
+        newBackColors[correctOpN] = '#2AAA36';
+        this.setState({
           textCorrect: 'INCORRECTO',
-          correctColor: '#FD1F01'
-        })
+          correctColor: '#FD1F01',
+        });
       }
       this.setState({
-        backColor : newBackColors,
+        backColor: newBackColors,
         opacity: 0.2,
-        showCorrect : 'visible'
-      })
+        showCorrect: 'visible',
+      });
       this.sleep(1500).then(() => {
-        this.resetBackColor()
+        this.resetBackColor();
         this.setState({
-          index: this.state.index+1
-        })
-      })
+          index: this.state.index + 1,
+        });
+      });
     }
-    
   }
 
-  sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
+  sleep(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
   }
-  
 
 
-  resetBackColor(){
+  resetBackColor() {
+    const { index } = this.state;
     this.setState({
-      backColor : [null, null, null, null],
-      answered : false,
-      showCorrect : 'hidden',
-      opacity: 1
-    })
-    if (this.state.index === 5){
-      this.getQuestions()
+      backColor: [null, null, null, null],
+      answered: false,
+      showCorrect: 'hidden',
+      opacity: 1,
+    });
+    if (index === 5) {
+      this.getQuestions();
       this.setState({
-        index: 0
-      })
+        index: -1,
+      });
     }
   }
 
   render() {
-    const {questions, index, loading, showCorrect, opacity, textCorrect, correctColor} = this.state;
-    const  actualQ  = questions[index];
+    const {
+      questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor,
+    } = this.state;
+    const actualQ = questions[index];
 
     if (!loading) {
       return (
@@ -143,20 +148,20 @@ class Trivia extends Component {
           </TitleBox>
           <SubBox>
             <BoxQuestion>
-              <Question opacity = {opacity}>{actualQ.question}</Question>
-              <CorrectText show= {showCorrect} colorText = {correctColor}>{textCorrect}</CorrectText>           
-            </BoxQuestion>            
+              <Question opacity={opacity}>{actualQ.question}</Question>
+              <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
+            </BoxQuestion>
             <BoxOption>
-              <Option onClick={()=>this.optionClicked("A", actualQ.correct_option, this.state)} correctOption= {this.state.backColor[0]} style={{cursor: 'pointer'}}>{actualQ.option_a}</Option>
+              <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]} style={{ cursor: 'pointer' }}>{actualQ.option_a}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={()=>this.optionClicked("B", actualQ.correct_option, this.state)} correctOption= {this.state.backColor[1]} style={{cursor: 'pointer'}}>{actualQ.option_b}</Option>
+              <Option onClick={() => this.optionClicked('B', actualQ.correct_option, this.state)} correctOption={backColor[1]} style={{ cursor: 'pointer' }}>{actualQ.option_b}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={()=>this.optionClicked("C", actualQ.correct_option, this.state)} correctOption= {this.state.backColor[2]} style={{cursor: 'pointer'}}>{actualQ.option_c}</Option>
+              <Option onClick={() => this.optionClicked('C', actualQ.correct_option, this.state)} correctOption={backColor[2]} style={{ cursor: 'pointer' }}>{actualQ.option_c}</Option>
             </BoxOption>
             <BoxOption>
-              <Option onClick={()=>this.optionClicked("D", actualQ.correct_option, this.state)} correctOption= {this.state.backColor[3]} style={{cursor: 'pointer'}}>{actualQ.option_d}</Option>
+              <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]} style={{ cursor: 'pointer' }}>{actualQ.option_d}</Option>
             </BoxOption>
           </SubBox>
         </Box>

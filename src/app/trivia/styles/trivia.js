@@ -154,7 +154,7 @@ export const Option = styled.a`
     font-size: 22px;
     color: #000000;
 
-    background: ${props => props.correctOption || "#FFFF"};
+    background: ${props => props.correctOption || '#FFFF'};
     border: 2px solid rgba(196, 196, 196, 0.5);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
