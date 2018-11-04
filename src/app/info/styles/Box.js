@@ -7,7 +7,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: calc(150vh - 55px);
+  height: calc(180vh - 55px);
 `;
 
 export default Box;
