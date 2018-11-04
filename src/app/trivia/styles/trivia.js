@@ -54,29 +54,30 @@ export const SubBox = styled.div`
     
 `;
 export const BoxQuestion = styled.div`
-    flex: 7;
-    position: relative;
-    float: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 
+    @media (max-width: 768px) {
+        width: 40%;
+        margin: 2%;
+    }
+    @media (max-width: 376px) {
+        width: 66%;
+        margin: 10px;
+    }
+    text-align: center;
+    display: table;
+    width: 30%;
+    margin: 1%;
 `;
 
 
 export const Question = styled.a`
     @media (max-width: 768px) {
         font-size: 20px;
-        width: 40%;
     }
     @media (max-width: 376px) {
         font-size: 16px;
-        width: 66%;
-        margin: 10px;
     }
 
-    width: 30%;
-    margin: 1%;
 
     text-align: center;
     align-items: center;
