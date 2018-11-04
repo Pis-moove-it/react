@@ -5,6 +5,8 @@ import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
 } from '../styles/trivia';
 
+const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+
 class Trivia extends Component {
   constructor(props) {
     super(props);
@@ -103,7 +105,7 @@ class Trivia extends Component {
         opacity: 0.2,
         showCorrect: 'visible',
       });
-      this.sleep(1500).then(() => {
+      sleep(1500).then(() => {
         this.resetBackColor();
         this.setState({
           index: this.state.index + 1,
@@ -111,11 +113,6 @@ class Trivia extends Component {
       });
     }
   }
-
-  sleep(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
-
 
   resetBackColor() {
     const { index } = this.state;
