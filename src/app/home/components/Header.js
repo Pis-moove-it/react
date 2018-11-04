@@ -60,7 +60,7 @@ class Header extends React.Component {
 ¿Dónde reciclo?
           </HeaderTitle>
           <HeaderTitle onClick={() => scroll.scrollTo('Trivia', props)}>
-¿Sabías qué?
+¿Cuánto conocés?
           </HeaderTitle>
           <HeaderTitle onClick={() => scroll.scrollTo('Info', props)}>
 Mundo actual
