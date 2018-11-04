@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import {
-  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion,
+  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
 } from '../styles/trivia';
 
 class Trivia extends Component {
@@ -132,6 +132,7 @@ class Trivia extends Component {
           <SubBox>
             <BoxQuestion>
               <Question>{actualQ.question}</Question>
+              <CorrectText>CORRECTO</CorrectText>
             </BoxQuestion>
             
             <BoxOption>

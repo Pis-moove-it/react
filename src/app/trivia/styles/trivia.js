@@ -63,6 +63,7 @@ export const BoxQuestion = styled.div`
         width: 66%;
         margin: 10px;
     }
+    position: relative;
     text-align: center;
     display: table;
     width: 30%;
@@ -78,6 +79,9 @@ export const Question = styled.a`
         font-size: 16px;
     }
 
+    z-index: 0;
+
+    opacity: 0.2;
 
     text-align: center;
     align-items: center;
@@ -88,11 +92,14 @@ export const Question = styled.a`
 
 export const CorrectText = styled.a`  
     z-index: 2;
-    position: absolute;
+
     // display: table-cell;
     // vertical-align: middle;
-    padding: 0;
-    margin: 0;
+
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
 
     font-family: Rockwell;
     font-style: normal;
@@ -101,8 +108,8 @@ export const CorrectText = styled.a`
     font-size: 45px;
 
     color: #3DC826;
-
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5), 0px 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
 export const BoxOption = styled.div`
