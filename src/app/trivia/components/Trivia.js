@@ -13,6 +13,9 @@ class Trivia extends Component {
       index: 0,
       correct: 0,
       loading: true,
+      opacity: 1,
+      showCorrect: 'hidden',
+      correctColor: '',
       backColor: [null, null, null, null],
 
     };
@@ -49,51 +52,61 @@ class Trivia extends Component {
   
 
   optionClicked(op, correctOp) {
-    var opN = 0
-    var correctOpN = 0
-    switch(op) {
-      case 'A' : opN = 0
-        break;
-      case 'B' : opN = 1
-        break;
-      case 'C' : opN = 2
-        break;
-      case 'D' : opN = 3
-        break;
-    }
+    if (this.state.showCorrect === 'hidden'){
+      var opN = 0
+      var correctOpN = 0
+      switch(op) {
+        case 'A' : opN = 0
+          break;
+        case 'B' : opN = 1
+          break;
+        case 'C' : opN = 2
+          break;
+        case 'D' : opN = 3
+          break;
+      }
 
-    switch(correctOp) {
-      case 'A' : correctOpN = 0
-        break;
-      case 'B' : correctOpN = 1
-        break;
-      case 'C' : correctOpN = 2
-        break;
-      case 'D' : correctOpN = 3
-        break;
-    }
+      switch(correctOp) {
+        case 'A' : correctOpN = 0
+          break;
+        case 'B' : correctOpN = 1
+          break;
+        case 'C' : correctOpN = 2
+          break;
+        case 'D' : correctOpN = 3
+          break;
+      }
 
-
-    if (op === correctOp){
       const newBackColors = this.state.backColor.slice() 
-      newBackColors[opN] = '#2AAA36' 
-      this.setState( {
-        backColor : newBackColors,
-        correct: this.state.correct+1
-       })
+      if (op === correctOp){
+        newBackColors[opN] = '#2AAA36' 
+        this.setState( {
+          correct: this.state.correct+1,
+          textCorrect: 'CORRECTO',
+          correctColor: '#2AAA36',
+        })
 
-    } else{
-      const newBackColors = this.state.backColor.slice(0,3) 
-      newBackColors[opN] = '#FD1F01' 
-      newBackColors[correctOpN] = '#2AAA36' 
-      this.setState({backColor : newBackColors})
-    }
-    this.sleep(1500).then(() => {
-      this.resetBackColor()
+      } else{
+        newBackColors[opN] = '#FD1F01' 
+        newBackColors[correctOpN] = '#2AAA36' 
+        this.setState( {
+          textCorrect: 'INCORRECTO',
+          correctColor: '#FD1F01'
+        })
+      }
       this.setState({
-        index: this.state.index+1
+        backColor : newBackColors,
+        opacity: 0.2,
+        showCorrect : 'visible'
       })
-    })
+      this.sleep(1500).then(() => {
+        this.resetBackColor()
+        this.setState({
+          index: this.state.index+1
+        })
+      })
+    }
+    
   }
 
   sleep (time) {
@@ -105,6 +118,9 @@ class Trivia extends Component {
   resetBackColor(){
     this.setState({
       backColor : [null, null, null, null],
+      answered : false,
+      showCorrect : 'hidden',
+      opacity: 1
     })
     if (this.state.index === 5){
       this.getQuestions()
@@ -115,12 +131,8 @@ class Trivia extends Component {
   }
 
   render() {
-
-    const { questions } = this.state;
-    const { index } = this.state;
+    const {questions, index, loading, showCorrect, opacity, textCorrect, correctColor} = this.state;
     const  actualQ  = questions[index];
-    const { loading } = this.state;
-
 
     if (!loading) {
       return (
@@ -131,10 +143,9 @@ class Trivia extends Component {
           </TitleBox>
           <SubBox>
             <BoxQuestion>
-              <Question>{actualQ.question}</Question>
-              <CorrectText>CORRECTO</CorrectText>
-            </BoxQuestion>
-            
+              <Question opacity = {opacity}>{actualQ.question}</Question>
+              <CorrectText show= {showCorrect} colorText = {correctColor}>{textCorrect}</CorrectText>           
+            </BoxQuestion>            
             <BoxOption>
               <Option onClick={()=>this.optionClicked("A", actualQ.correct_option, this.state)} correctOption= {this.state.backColor[0]} style={{cursor: 'pointer'}}>{actualQ.option_a}</Option>
             </BoxOption>

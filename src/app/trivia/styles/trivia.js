@@ -81,7 +81,7 @@ export const Question = styled.a`
 
     z-index: 0;
 
-    opacity: 0.2;
+    opacity: ${props => props.opacity};
 
     text-align: center;
     align-items: center;
@@ -93,8 +93,12 @@ export const Question = styled.a`
 export const CorrectText = styled.a`  
     z-index: 2;
 
-    // display: table-cell;
-    // vertical-align: middle;
+    @media (max-width: 768px) {
+        font-size: 33px;
+    }
+    @media (max-width: 376px) {
+        font-size: 30px;
+    }
 
     position: absolute;
     width: 100%;
@@ -107,7 +111,9 @@ export const CorrectText = styled.a`
     line-height: normal;
     font-size: 45px;
 
-    color: #3DC826;
+    visibility: ${props => props.show};
+
+    color: ${props => props.colorText};
     
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5), 0px 4px 4px rgba(0, 0, 0, 0.5);
 `;
