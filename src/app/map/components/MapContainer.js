@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Layer, Feature, Popup } from 'react-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import MultiTouch from 'mapbox-gl-multitouch';
 import axios from 'axios';
@@ -23,7 +23,6 @@ import QuestionContent from '../styles/QuestionContent';
 import Text from '../styles/Text';
 import TextContent from '../styles/TextContent';
 import MapViewComponent from '../styles/MapViewComponent';
-import global from '../../home/css/global.css';
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -36,7 +35,7 @@ const enableMobileScroll = (map) => {
 };
 
 // Used for rendering the trash and user icons (see Layer component below)
-const trashIcon = new Image(60, 60);
+const trashIcon = new Image(30, 30);
 trashIcon.src = trashLogo;
 
 async function getData() {
@@ -98,16 +97,50 @@ class MapContainer extends Component {
     this.state = {
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
+      selectedId: 0,
+      selectedLon: 0,
+      selectedLat: 0,
+      infoContainer: '',
+      load: true,
     };
     this.getData = getData.bind(this);
+    this.showInfo = this.showInfo.bind(this);
   }
 
   componentDidMount() {
     this.getData();
+    this.showInfo('0');
+  }
+
+  showInfo(id, lon, lat) {
+    // axios.get(process.env.REACT_APP_CORS + process.env.REACT_APP_API_QUESTIONS)
+    const path = 'http://localhost:3000/info'.concat(id).concat('.json');
+    axios.get(path).then((res) => {
+      this.setState(
+        {
+          infoContainer: res.data,
+          load: false,
+          selectedId: id,
+          selectedLon: lon,
+          selectedLat: lat,
+        },
+
+      );
+    })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) { // If a response has been received from the server
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
   }
 
   render() {
-    const { containers } = this.state;
+    const {
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+    } = this.state;
 
     return (
       <MapViewComponent>
@@ -115,7 +148,10 @@ class MapContainer extends Component {
           <BoxComponent>
             <BoxTitle>
               <SubBoxTitle>
-                            En Rocha, durante el mes de Agosto hemos reciclado
+                            En
+                {' '}
+                {infoContainer.location}
+, durante el mes de Agosto hemos reciclado
               </SubBoxTitle>
             </BoxTitle>
             <BoxInfo>
@@ -124,7 +160,9 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                                10.582 kg de cartón
+                  {infoContainer.carton}
+                  {' '}
+kg de cartón
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -134,7 +172,9 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                                2.303 kg de papel
+                  {infoContainer.paper}
+                  {' '}
+kg de papel
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -144,7 +184,9 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                                5.273 kg de plástico
+                  {infoContainer.plastic}
+                  {' '}
+kg de plástico
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -170,8 +212,8 @@ class MapContainer extends Component {
               height: '100%',
               width: '100%',
             }}
-            center={[-56.165293, -34.889631]}
-            zoom={[11.5]}
+            center={load ? [-56.165293, -34.889631] : null}
+            zoom={load ? [11.5] : null}
             onStyleLoad={
           (map) => {
             // Add button to detect user's current location
@@ -186,11 +228,21 @@ class MapContainer extends Component {
             enableMobileScroll(map);
             map.addControl(new mapboxgl.FullscreenControl());
             map.addControl(new mapboxgl.ScaleControl());
+
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'trashes', () => {
+              map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'trashes', () => {
+              map.getCanvas().style.cursor = '';
+            });
           }
         }
           >
             <Layer
-              className="click" // Layer with trashes
+              // Layer with trashes
               type="symbol"
               id="trashes"
               layout={{ 'icon-image': 'trash', 'icon-allow-overlap': true }}
@@ -202,9 +254,19 @@ class MapContainer extends Component {
                   <Feature
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
+                    onClick={() => this.showInfo(elem.id, elem.longitude, elem.latitude)}
                   />))
                 : null}
             </Layer>
+            { (containers.length > 0 && selectedId != 0)
+              ? (
+                <Popup
+                  key={selectedId}
+                  coordinates={[selectedLon, selectedLat]}
+                >
+                  <SubBoxText>{infoContainer.location}</SubBoxText>
+                </Popup>
+              ) : null}
           </Map>
         </MapComponent>
       </MapViewComponent>
