@@ -35,7 +35,7 @@ const enableMobileScroll = (map) => {
 };
 
 // Used for rendering the trash and user icons (see Layer component below)
-const trashIcon = new Image(30, 30);
+const trashIcon = new Image(40, 40);
 trashIcon.src = trashLogo;
 
 async function getData() {
@@ -98,10 +98,10 @@ class MapContainer extends Component {
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
       selectedId: 0,
+      load: true,
       selectedLon: 0,
       selectedLat: 0,
       infoContainer: '',
-      load: true,
     };
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -109,20 +109,20 @@ class MapContainer extends Component {
 
   componentDidMount() {
     this.getData();
-    this.showInfo('0');
+    this.showInfo(0);
   }
 
   showInfo(id, lon, lat) {
     // axios.get(process.env.REACT_APP_CORS + process.env.REACT_APP_API_QUESTIONS)
-    const path = 'http://localhost:3000/info'.concat(id).concat('.json');
+    const path = '/info'.concat(id).concat('.json');
     axios.get(path).then((res) => {
       this.setState(
         {
           infoContainer: res.data,
-          load: false,
           selectedId: id,
           selectedLon: lon,
           selectedLat: lat,
+          load: false,
         },
 
       );
@@ -194,12 +194,12 @@ kg de plástico
           <QuestionTexBox>
             <Question>
               <QuestionContent>
-                            ¿Sabes cuánto se recicló en tu barrio?
+                  ¿Sabes cuánto se recicló en tu barrio?
               </QuestionContent>
             </Question>
             <Text>
               <TextContent>
-                            Presiona sobre la isla para más información
+                  Presiona sobre la isla para más información
               </TextContent>
             </Text>
           </QuestionTexBox>
@@ -258,7 +258,7 @@ kg de plástico
                   />))
                 : null}
             </Layer>
-            { (containers.length > 0 && selectedId != 0)
+            { (containers.length > 0 && selectedId !== 0)
               ? (
                 <Popup
                   key={selectedId}
