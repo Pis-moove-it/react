@@ -7,6 +7,8 @@ export const BackLink = styled.a`
     right: 2%;
     text-decoration: none;
     cursor: pointer;
+
+    z-index: 2;
         
     $:hover {
       text-decoration:none;
