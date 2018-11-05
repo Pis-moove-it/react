@@ -54,35 +54,68 @@ export const SubBox = styled.div`
     
 `;
 export const BoxQuestion = styled.div`
-    flex: 7;
-    position: relative;
-    float: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 
+    @media (max-width: 768px) {
+        width: 40%;
+        margin: 2%;
+    }
+    @media (max-width: 376px) {
+        width: 66%;
+        margin: 10px;
+    }
+    position: relative;
+    text-align: center;
+    display: table;
+    width: 30%;
+    margin: 1%;
 `;
 
 
 export const Question = styled.a`
     @media (max-width: 768px) {
         font-size: 20px;
-        width: 40%;
     }
     @media (max-width: 376px) {
         font-size: 16px;
-        width: 66%;
-        margin: 10px;
     }
 
-    width: 30%;
-    margin: 1%;
+    z-index: 0;
+
+    opacity: ${props => props.opacity};
 
     text-align: center;
     align-items: center;
     font-size: 24px;
     color: #000000;
 
+`;
+
+export const CorrectText = styled.a`  
+    z-index: 2;
+
+    @media (max-width: 768px) {
+        font-size: 33px;
+    }
+    @media (max-width: 376px) {
+        font-size: 30px;
+    }
+
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+
+    font-family: Rockwell;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 45px;
+
+    visibility: ${props => props.show};
+
+    color: ${props => props.colorText};
+    
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5), 0px 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
 export const BoxOption = styled.div`
@@ -116,12 +149,13 @@ export const Option = styled.a`
     display: table-cell;
     vertical-align: middle;
 
+    cursor: pointer;
     text-align: center;
     line-height: 2.5;
     font-size: 22px;
     color: #000000;
 
-    background: #FFFFFF;
+    background: ${props => props.correctOption || '#FFFF'};
     border: 2px solid rgba(196, 196, 196, 0.5);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
