@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/trash-island1.0accadbe.jpeg"
   },
   {
-    "revision": "22f6f2ba8cfe66c48b3b",
+    "revision": "8b126cb8369ea7c5e334",
     "url": "/reciclando-web/static/css/main.f92c2816.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
   },
   {
-    "revision": "22f6f2ba8cfe66c48b3b",
-    "url": "/reciclando-web/static/js/main.22f6f2ba.chunk.js"
+    "revision": "8b126cb8369ea7c5e334",
+    "url": "/reciclando-web/static/js/main.8b126cb8.chunk.js"
   },
   {
     "revision": "95653b2dc710c1a842c65a2a4792b495",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/finland3.82a7b419.png"
   },
   {
-    "revision": "82fbdd1af00c4c06eb64f5eedb2d0c59",
+    "revision": "bbc3dc0bb8a8bb30cb20b6e82d235746",
     "url": "/reciclando-web/index.html"
   }
 ];

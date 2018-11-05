@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/reciclando-web/precache-manifest.32c94fc30b126f64251e408c7645c02c.js"
+  "/reciclando-web/precache-manifest.b839841a5646885ed8129fa7dbc9223c.js"
 );
 
 workbox.clientsClaim();
