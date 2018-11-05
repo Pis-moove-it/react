@@ -2,13 +2,14 @@
   "name": "reciclando-web",
   "version": "0.1.0",
   "description": "Reciclando Web application",
+  "proxy": "https://pis-moove-it.github.io/reciclando-web",
   "repository": {
     "type": "git",
     "url": "https://github.com/Pis-moove-it/reciclando-web"
   },
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "latest",
     "easing-js": "^1.1.2",
     "lodash": "latest",
     "mapbox-gl": "^0.50.0-beta.1",
