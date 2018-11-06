@@ -16,6 +16,7 @@ class Trivia extends Component {
       questions: [],
       index: 0,
       correct: 0,
+      total: 0,
       loading: true,
       opacity: 1,
       showCorrect: 'hidden',
@@ -111,6 +112,7 @@ class Trivia extends Component {
         this.resetBackColor();
         this.setState({
           index: this.state.index + 1,
+          total: this.state.total + 1,
         });
       });
     }
@@ -147,6 +149,7 @@ class Trivia extends Component {
           </TitleBox>
           <SubBox>
             <a>{this.state.correct}</a>
+            <a>{this.state.total}</a>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
