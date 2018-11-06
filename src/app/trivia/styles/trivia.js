@@ -42,7 +42,7 @@ export const Correct = styled.a`
     text-align: right;
 
     color: ${props => props.colorText};
-    font-size: 40px;
+    font-size: 30px;
 `;
 
 export const SubBox = styled.div`

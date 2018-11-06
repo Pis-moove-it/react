@@ -167,7 +167,7 @@ class Trivia extends Component {
             <Title>¿Cuánto conocés?</Title>
             <Triangle />
           </TitleBox>
-          <Correct colorText={this.state.feedbackColor}>{this.state.correct}/{this.state.total}</Correct>
+          <Correct colorText={this.state.feedbackColor}>Puntaje: {this.state.correct}/{this.state.total}</Correct>
           <SubBox>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
