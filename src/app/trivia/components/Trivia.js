@@ -146,6 +146,7 @@ class Trivia extends Component {
             <Triangle />
           </TitleBox>
           <SubBox>
+            <a>{this.state.correct}</a>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>

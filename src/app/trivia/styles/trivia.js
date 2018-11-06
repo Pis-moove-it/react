@@ -27,6 +27,7 @@ export const Title = styled.a`
     flex: 1;
 `;
 
+
 export const TitleBox = styled.div`
     flex:1
     display: flex;
