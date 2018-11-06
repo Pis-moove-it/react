@@ -103,7 +103,7 @@ class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [], // The coordinates of user current location: [longitude, latitude]
+      user: [],
       route: null, // The route to the selected container
       geolocation: new mapboxgl.GeolocateControl({
         position: 'bottom-right',
@@ -112,6 +112,7 @@ class MapContainer extends Component {
         },
         trackUserLocation: true,
       }),
+      geolocationEnabled: false,
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
       selectedId: 0,
@@ -120,6 +121,19 @@ class MapContainer extends Component {
       selectedLat: 0,
       infoContainer: '',
     };
+    const { geolocation } = this.state;
+    // Set geolocationEnabled state to false when geolocation finishes
+    geolocation.on('trackuserlocationend', () => {
+      this.setState({
+        geolocationEnabled: false,
+      });
+    });
+    // Update user state when location updates
+    geolocation.on('geolocation', (data) => {
+      this.setState({
+        user: [data.coords.longitude, data.coords.latitude],
+      });
+    });
     navigator.geolocation.getCurrentPosition(success.bind(this)); // Get user's location
     this.getRoute = this.getRoute.bind(this);
     this.getData = getData.bind(this);
@@ -131,11 +145,18 @@ class MapContainer extends Component {
     this.showInfo(0);
   }
 
-  getRoute(lng, lat) {
+  // lan and lat are longitude and latitude of destination
+  // geo indicates wether geolocation is currently activated or not
+  getRoute(lng, lat, geo) {
     // Update user current location
     navigator.geolocation.getCurrentPosition(success.bind(this));
     const { geolocation } = this.state;
-    geolocation.trigger();
+    if (!geo) {
+      geolocation.trigger();
+      this.setState({
+        geolocationEnabled: true,
+      });
+    }
     const { user } = this.state;
     const start = user;
     const end = [lng, lat];
@@ -177,7 +198,9 @@ class MapContainer extends Component {
 
   render() {
     const {
-      user, route, geolocation, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      route,
+      geolocation,
+      geolocationEnabled, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
     } = this.state;
 
     return (
@@ -288,7 +311,7 @@ class MapContainer extends Component {
                     coordinates={[elem.longitude, elem.latitude]}
                     onClick={() => {
                       this.showInfo(elem.id, elem.longitude, elem.latitude);
-                      this.getRoute(elem.longitude, elem.latitude);
+                      this.getRoute(elem.longitude, elem.latitude, geolocationEnabled);
                     }}
                   />))
                 : null}
