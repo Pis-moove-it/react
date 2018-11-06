@@ -32,6 +32,17 @@ export const TitleBox = styled.div`
     flex:1
     display: flex;
     flex-direction: column;
+    z-index: 1;
+`;
+
+export const Correct = styled.a`
+    z-index: 0;
+    width: -webkit-fill-available;
+    padding-right: 5%;
+    text-align: right;
+
+    color: ${props => props.colorText};
+    font-size: 40px;
 `;
 
 export const SubBox = styled.div`

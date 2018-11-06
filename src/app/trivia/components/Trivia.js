@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import {
-  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
+  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText, Correct
 } from '../styles/trivia';
 
 function sleep(time) {
@@ -18,6 +18,7 @@ class Trivia extends Component {
       correct: 0,
       total: 0,
       loading: true,
+      feedbackColor: '#2AAA36',
       opacity: 1,
       showCorrect: 'hidden',
       correctColor: '',
@@ -56,7 +57,7 @@ class Trivia extends Component {
 
   optionClicked(op, correctOp) {
     const {
-      backColor, showCorrect,
+      backColor, showCorrect, correct, total
     } = this.state;
     if (showCorrect === 'hidden') {
       let opN = 0;
@@ -107,12 +108,31 @@ class Trivia extends Component {
         backColor: newBackColors,
         opacity: 0.2,
         showCorrect: 'visible',
+        total: this.state.total + 1,
       });
+      console.log({total})
+
+      
+      
       sleep(1500).then(() => {
         this.resetBackColor();
+
+        //color del porcentaje trivia
+        if(this.state.total>=1){
+          if((this.state.correct/this.state.total) < 0.25){
+            this.setState({ feedbackColor: '#FD1F01'})
+          }else if((this.state.correct/this.state.total)< 0.5){
+            this.setState({ feedbackColor: '#ff7b00'})
+          } else if ((this.state.correct/this.state.total) < 0.75){
+            this.setState({ feedbackColor: '#ffce00'})
+          } else {
+            this.setState({ feedbackColor: '#2AAA36'})
+          }
+        }
+
+        //
         this.setState({
           index: this.state.index + 1,
-          total: this.state.total + 1,
         });
       });
     }
@@ -136,7 +156,7 @@ class Trivia extends Component {
 
   render() {
     const {
-      questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor,
+      questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor, feedbackColor,
     } = this.state;
     const actualQ = questions[index];
 
@@ -147,9 +167,8 @@ class Trivia extends Component {
             <Title>¿Cuánto conocés?</Title>
             <Triangle />
           </TitleBox>
+          <Correct colorText={this.state.feedbackColor}>{this.state.correct}/{this.state.total}</Correct>
           <SubBox>
-            <a>{this.state.correct}</a>
-            <a>{this.state.total}</a>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
