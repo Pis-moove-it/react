@@ -91,10 +91,27 @@ async function getData() {
     });
 }
 
+// Set user coordinates taken from Geolocation API.
+// This function is triggered when Geolocation is succesfull
+function success(pos) {
+  this.setState({
+    user: [pos.coords.longitude, pos.coords.latitude],
+  });
+}
+
 class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: [], // The coordinates of user current location: [longitude, latitude]
+      route: null, // The route to the selected container
+      geolocation: new mapboxgl.GeolocateControl({
+        position: 'bottom-right',
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      }),
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
       selectedId: 0,
@@ -103,6 +120,8 @@ class MapContainer extends Component {
       selectedLat: 0,
       infoContainer: '',
     };
+    navigator.geolocation.getCurrentPosition(success.bind(this)); // Get user's location
+    this.getRoute = this.getRoute.bind(this);
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
   }
@@ -110,6 +129,25 @@ class MapContainer extends Component {
   componentDidMount() {
     this.getData();
     this.showInfo(0);
+  }
+
+  getRoute(lng, lat) {
+    // Update user current location
+    navigator.geolocation.getCurrentPosition(success.bind(this));
+    const { geolocation } = this.state;
+    geolocation.trigger();
+    const { user } = this.state;
+    const start = user;
+    const end = [lng, lat];
+    const type = 'walking';
+    const apiCall = `${process.env.REACT_APP_MAPBOX_DIRECTIONS}mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`;
+    fetch(apiCall)
+      .then(result => result.json())
+      .then((data) => {
+        this.setState({
+          route: data.routes[0].geometry.coordinates,
+        });
+      });
   }
 
   showInfo(id, lon, lat) {
@@ -139,7 +177,7 @@ class MapContainer extends Component {
 
   render() {
     const {
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      user, route, geolocation, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
     } = this.state;
 
     return (
@@ -148,10 +186,10 @@ class MapContainer extends Component {
           <BoxComponent>
             <BoxTitle>
               <SubBoxTitle>
-                            En
+                En
                 {' '}
                 {infoContainer.location}
-, durante el mes de Agosto hemos reciclado
+                , durante el mes de Agosto hemos reciclado
               </SubBoxTitle>
             </BoxTitle>
             <BoxInfo>
@@ -162,7 +200,7 @@ class MapContainer extends Component {
                 <SubBoxText>
                   {infoContainer.carton}
                   {' '}
-kg de cartón
+                  kg de cartón
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -174,7 +212,7 @@ kg de cartón
                 <SubBoxText>
                   {infoContainer.paper}
                   {' '}
-kg de papel
+                  kg de papel
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -186,7 +224,7 @@ kg de papel
                 <SubBoxText>
                   {infoContainer.plastic}
                   {' '}
-kg de plástico
+                  kg de plástico
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -194,12 +232,12 @@ kg de plástico
           <QuestionTexBox>
             <Question>
               <QuestionContent>
-                  ¿Sabes cuánto se recicló en tu barrio?
+                ¿Sabes cuánto se recicló en tu barrio?
               </QuestionContent>
             </Question>
             <Text>
               <TextContent>
-                  Presiona sobre la isla para más información
+                Presiona sobre la isla para más información
               </TextContent>
             </Text>
           </QuestionTexBox>
@@ -217,13 +255,7 @@ kg de plástico
             onStyleLoad={
           (map) => {
             // Add button to detect user's current location
-            map.addControl(new mapboxgl.GeolocateControl({
-              position: 'bottom-right',
-              positionOptions: {
-                enableHighAccuracy: true,
-              },
-              trackUserLocation: true,
-            }));
+            map.addControl(geolocation);
             map.addControl(new mapboxgl.NavigationControl());
             enableMobileScroll(map);
             map.addControl(new mapboxgl.FullscreenControl());
@@ -254,7 +286,10 @@ kg de plástico
                   <Feature
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
-                    onClick={() => this.showInfo(elem.id, elem.longitude, elem.latitude)}
+                    onClick={() => {
+                      this.showInfo(elem.id, elem.longitude, elem.latitude);
+                      this.getRoute(elem.longitude, elem.latitude);
+                    }}
                   />))
                 : null}
             </Layer>
@@ -267,6 +302,16 @@ kg de plástico
                   <SubBoxText>{infoContainer.location}</SubBoxText>
                 </Popup>
               ) : null}
+            { route && (
+              <Layer // Layer with the route
+                type="line"
+                id="route"
+                layout={{ 'line-cap': 'round', 'line-join': 'round' }}
+                paint={{ 'line-color': '#4790E5', 'line-width': 8 }}
+              >
+                <Feature coordinates={route} />
+              </Layer>
+            ) }
           </Map>
         </MapComponent>
       </MapViewComponent>
