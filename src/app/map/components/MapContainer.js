@@ -106,7 +106,6 @@ class MapContainer extends Component {
       user: [],
       route: null, // The route to the selected container
       geolocation: new mapboxgl.GeolocateControl({
-        position: 'bottom-right',
         positionOptions: {
           enableHighAccuracy: true,
         },
@@ -122,20 +121,24 @@ class MapContainer extends Component {
       infoContainer: '',
     };
     const { geolocation } = this.state;
-    // Set geolocationEnabled state to false when geolocation finishes
-    geolocation.on('trackuserlocationend', () => {
-      this.setState({
-        geolocationEnabled: false,
-      });
-    });
+
     // Update user state when location updates
     geolocation.on('geolocation', (data) => {
       this.setState({
         user: [data.coords.longitude, data.coords.latitude],
       });
     });
-    navigator.geolocation.getCurrentPosition(success.bind(this)); // Get user's location
-    this.getRoute = this.getRoute.bind(this);
+    // Set geolocationEnabled state to false when geolocation finishes
+    geolocation.on('trackuserlocationend', () => {
+      this.setState({
+        geolocationEnabled: false,
+      });
+    });
+
+    if (navigator.geolocation) { // Get user's location
+      navigator.geolocation.getCurrentPosition(success.bind(this));
+      this.getRoute = this.getRoute.bind(this);
+    }
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
   }
@@ -146,29 +149,34 @@ class MapContainer extends Component {
   }
 
   // lan and lat are longitude and latitude of destination
-  // geo indicates wether geolocation is currently activated or not
-  getRoute(lng, lat, geo) {
+  getRoute(lng, lat) {
     // Update user current location
-    navigator.geolocation.getCurrentPosition(success.bind(this));
-    const { geolocation } = this.state;
-    if (!geo) {
-      geolocation.trigger();
-      this.setState({
-        geolocationEnabled: true,
-      });
-    }
-    const { user } = this.state;
-    const start = user;
-    const end = [lng, lat];
-    const type = 'walking';
-    const apiCall = `${process.env.REACT_APP_MAPBOX_DIRECTIONS}mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`;
-    fetch(apiCall)
-      .then(result => result.json())
-      .then((data) => {
+    const { geolocation, geolocationEnabled } = this.state;
+    // Check if geolocation is available in this device and browser
+    if (navigator.geolocation) {
+      // If geolocation button isn't currently activated
+      if (!geolocationEnabled) {
+        geolocation.trigger();
         this.setState({
-          route: data.routes[0].geometry.coordinates,
+          geolocationEnabled: true,
         });
-      });
+        navigator.geolocation.getCurrentPosition(success.bind(this));
+      }
+      const { user } = this.state;
+      const start = user;
+      const end = [lng, lat];
+      const type = 'walking';
+      const apiCall = `${process.env.REACT_APP_MAPBOX_DIRECTIONS}mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`;
+      fetch(apiCall)
+        .then(result => result.json())
+        .then((data) => {
+          if (data.routes) { // Only attempt to set route state if Mapbox API sent a response
+            this.setState({
+              route: data.routes[0].geometry.coordinates,
+            });
+          }
+        });
+    }
   }
 
   showInfo(id, lon, lat) {
@@ -198,9 +206,7 @@ class MapContainer extends Component {
 
   render() {
     const {
-      route,
-      geolocation,
-      geolocationEnabled, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      route, geolocation, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
     } = this.state;
 
     return (
@@ -279,6 +285,12 @@ class MapContainer extends Component {
           (map) => {
             // Add button to detect user's current location
             map.addControl(geolocation);
+            geolocation.on('geolocate', (e) => {
+              map.flyTo({
+                center: [e.coords.longitude, e.coords.latitude],
+                zoom: 11.5,
+              });
+            });
             map.addControl(new mapboxgl.NavigationControl());
             enableMobileScroll(map);
             map.addControl(new mapboxgl.FullscreenControl());
@@ -311,7 +323,7 @@ class MapContainer extends Component {
                     coordinates={[elem.longitude, elem.latitude]}
                     onClick={() => {
                       this.showInfo(elem.id, elem.longitude, elem.latitude);
-                      this.getRoute(elem.longitude, elem.latitude, geolocationEnabled);
+                      this.getRoute(elem.longitude, elem.latitude);
                     }}
                   />))
                 : null}
