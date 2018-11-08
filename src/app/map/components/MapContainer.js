@@ -39,7 +39,7 @@ const trashIcon = new Image(40, 40);
 trashIcon.src = trashLogo;
 
 async function getData() {
-  let apikeyLogin = null;
+  const apikeyLogin = null;
   await axios.post(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN,
     { name: 'Abrojo', password: 'password' },
@@ -53,7 +53,9 @@ async function getData() {
   )
     .then((responseLogin) => {
       const { apikey } = responseLogin.headers;
-      apikeyLogin = apikey;
+      this.setState({
+        apiKey: apikey,
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -71,7 +73,7 @@ async function getData() {
         deviceIdHeader: 'prueba',
         deviceTypeHeader: 'prueba',
         'Content-Type': 'application/json',
-        ApiKey: apikeyLogin,
+        ApiKey: this.state.apiKey,
       },
     },
   )
@@ -102,6 +104,7 @@ class MapContainer extends Component {
       selectedLon: 0,
       selectedLat: 0,
       infoContainer: '',
+      apiKey: '',
     };
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -109,13 +112,19 @@ class MapContainer extends Component {
 
   componentDidMount() {
     this.getData();
-    this.showInfo(0);
+    this.showInfo(1);
   }
 
   showInfo(id, lon, lat) {
-    // axios.get(process.env.REACT_APP_CORS + process.env.REACT_APP_API_QUESTIONS)
-    const path = '/info'.concat(id).concat('.json');
-    axios.get(path).then((res) => {
+    axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
+      {
+        headers: {
+          deviceIdHeader: 'prueba',
+          deviceTypeHeader: 'prueba',
+          'Content-Type': 'application/json',
+          ApiKey: this.state.apiKey,
+        },
+      }).then((res) => {
       this.setState(
         {
           infoContainer: res.data,
@@ -160,7 +169,7 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.carton}
+                  {infoContainer.kg_trash}
                   {' '}
 kg de cartón
                 </SubBoxText>
@@ -172,7 +181,7 @@ kg de cartón
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.paper}
+                  {infoContainer.kg_recycled_glass}
                   {' '}
 kg de papel
                 </SubBoxText>
@@ -184,7 +193,7 @@ kg de papel
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.plastic}
+                  {infoContainer.kg_recycled_plastic}
                   {' '}
 kg de plástico
                 </SubBoxText>
