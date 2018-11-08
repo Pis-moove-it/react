@@ -41,6 +41,7 @@ const MoreInfo = () => (
         </Text>
       </TextBox>
     </SubBox>
+    
     <SubBox reverse>
       <ImagesBox>
         <Image src={finland1} flex={2} flexBasis="100%" />

@@ -6,6 +6,7 @@ const Line = styled.div`
   margin: 5% auto;
 
   border: 1px solid #000;
+  
 `;
 
 export default Line;
