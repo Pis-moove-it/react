@@ -12,7 +12,9 @@ const TextBox = styled.div`
   flex: 1;
 
   @media (max-width: 425px) {
-    margin: 0% 8%;
+    margin: 0% 7% ;
+    flex: 2;
+    margin-bottom: 3%;
   }
 `;
 

@@ -16,8 +16,8 @@ const ImagesBox = styled.div`
   align-items: center;
 
   @media (max-width: 425px) {
-    flex: 2;
-    width: 80%;
+    flex: 1;
+    width: 70%;
   }
 `;
 

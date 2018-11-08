@@ -8,6 +8,10 @@ const Box = styled.div`
   flex-direction: column;
 
   height: calc(180vh - 55px);
+
+  @media (max-width: 425px) {
+    height: 100%;
+  }
 `;
 
 export default Box;

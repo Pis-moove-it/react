@@ -26,8 +26,8 @@ const MoreInfo = () => (
     <SubBox>
       <ImagesBox>
         <Image src={trashIsland1} flex={2} flexBasis="100%" />
-        <Image src={trashIsland2} flex={1} showOnMobile />
-        <Image src={trashIsland3} flex={1} />
+        <Image src={trashIsland2} flex={1}  />
+        <Image src={trashIsland3} flex={1} showOnMobile />
       </ImagesBox>
       <TextBox>
         <TextTitle>Islas de basura</TextTitle>

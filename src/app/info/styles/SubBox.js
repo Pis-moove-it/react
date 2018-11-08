@@ -4,6 +4,7 @@ const SubBox = styled.div`
   width: -webkit-fill-available;
   height: auto;
   flex: 7;
+  botton: 3%;
 
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@ const SubBox = styled.div`
 
   @media (max-width: 425px) {
     flex-direction: column;
+    flex: 5;
   }
 `;
 

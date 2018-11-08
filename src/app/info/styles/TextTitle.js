@@ -6,10 +6,10 @@ const TextTitle = styled.div`
     font-size: 26px;
   }
   @media (max-width: 376px) {
-    font-size: 16px;
+    font-size: 20px;
   }
 
-  flex: 1;
+  flex: 2;
 `;
 
 export default TextTitle;
