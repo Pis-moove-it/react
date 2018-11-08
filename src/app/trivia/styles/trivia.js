@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import cityPicture from '../assets/landing50.png';
 
+
 export const Box = styled.div`
     padding: 40px 0px;
     font-family: "Candara";
@@ -33,6 +34,20 @@ export const TitleBox = styled.div`
     display: flex;
     flex-direction: column;
     z-index: 1;
+`;
+
+export const ProgressBox = styled.div`
+    width:  -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 0;
+    padding-right: 3%;
+`;
+
+export const ProgressSubBox = styled.div`
+    width: 15%;
+    align-self: right;
 `;
 
 export const Correct = styled.a`

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import {
-  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText, Correct
+  Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
+   Correct, ProgressBox, ProgressSubBox 
 } from '../styles/trivia';
+import { Line } from 'rc-progress';
 
 function sleep(time) {
   return new Promise(resolve => setTimeout(resolve, time));
@@ -109,10 +111,7 @@ class Trivia extends Component {
         opacity: 0.2,
         showCorrect: 'visible',
         total: this.state.total + 1,
-      });
-      console.log({total})
-
-      
+      });      
       
       sleep(1500).then(() => {
         this.resetBackColor();
@@ -167,7 +166,11 @@ class Trivia extends Component {
             <Title>¿Cuánto conocés?</Title>
             <Triangle />
           </TitleBox>
-          <Correct colorText={this.state.feedbackColor}>Puntaje: {this.state.correct}/{this.state.total}</Correct>
+          <ProgressBox>
+            <ProgressSubBox>
+              <Line percent={this.state.correct/this.state.total*100} strokeWidth="10" strokeColor= {this.state.feedbackColor} />
+          </ProgressSubBox>
+          </ProgressBox>
           <SubBox>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
