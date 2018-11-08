@@ -10,6 +10,10 @@ const TextBox = styled.div`
   align-items: center;
   flex-direction: column;
   flex: 1;
+
+  @media (max-width: 425px) {
+    margin: 0% 8%;
+  }
 `;
 
 export default TextBox;
