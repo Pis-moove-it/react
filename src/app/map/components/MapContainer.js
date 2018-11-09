@@ -375,30 +375,30 @@ class MapContainer extends Component {
                       <BoxPopUpComponent>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={carton} />
+                            <SubBoxLogo src={carton} height="25px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText>
+                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
                               {`${infoContainer.carton} kg`}
                             </SubBoxText>
                           </BoxText>
                         </BoxInfo>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={paper} />
+                            <SubBoxLogo src={paper} height="25px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText>
+                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
                               {`${infoContainer.paper} kg`}
                             </SubBoxText>
                           </BoxText>
                         </BoxInfo>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={water} />
+                            <SubBoxLogo src={water} height="25px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText>
+                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
                               {`${infoContainer.plastic} kg`}
                             </SubBoxText>
                           </BoxText>

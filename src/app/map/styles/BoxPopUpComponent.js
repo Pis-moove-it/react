@@ -15,12 +15,12 @@ const BoxPopUpComponent = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   @media (max-width: 425px) {
     height: auto;
     padding: 5px;
     margin: 10px;
-    justify-content: space-between;
   }
 `;
 

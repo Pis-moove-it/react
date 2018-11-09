@@ -5,6 +5,9 @@ const SubBoxText = styled.a`
   font-weight: bold;
   line-height: normal;
   font-size: 18px;
+  white-space: ${props => props.whiteSpace};
+
+  padding: ${props => props.padding};
 
   display: table-cell;
   vertical-align: middle;
