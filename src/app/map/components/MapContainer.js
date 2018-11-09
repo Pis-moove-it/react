@@ -23,6 +23,15 @@ import QuestionContent from '../styles/QuestionContent';
 import Text from '../styles/Text';
 import TextContent from '../styles/TextContent';
 import MapViewComponent from '../styles/MapViewComponent';
+import ButtonRoute from '../styles/ButtonRoute';
+import walking from '../assets/walking.png';
+import bicycle from '../assets/bicycle.png';
+import car from '../assets/car.png';
+import RouteBox from '../styles/RouteBox';
+import InfoRoute from '../styles/InfoRoute';
+import BoxPopUpComponent from '../styles/BoxPopUpComponent';
+import popup from '../css/popup.css'; // eslint-disable-line
+import BoxButton from '../styles/BoxButton';
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -91,6 +100,15 @@ async function getData() {
     });
 }
 
+function clearRouteInfo() {
+  this.setState({
+    route: null,
+    distance: null,
+    duration: null,
+    selectedRoute: null,
+  });
+}
+
 // Set user coordinates taken from Geolocation API.
 // This function is triggered when Geolocation is succesfull
 function success(pos) {
@@ -105,10 +123,14 @@ class MapContainer extends Component {
     this.state = {
       user: [],
       route: null, // The route to the selected container
+      distance: 0, // Distance (in meters) to selected container
+      duration: 0, // Estimated time to selected container
+      selectedRoute: '',
       geolocation: new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
         },
+        fitBoundsOptions: { maxZoom: 11.5 },
         trackUserLocation: true,
       }),
       geolocationEnabled: false,
@@ -122,12 +144,6 @@ class MapContainer extends Component {
     };
     const { geolocation } = this.state;
 
-    // Update user state when location updates
-    geolocation.on('geolocation', (data) => {
-      this.setState({
-        user: [data.coords.longitude, data.coords.latitude],
-      });
-    });
     // Set geolocationEnabled state to false when geolocation finishes
     geolocation.on('trackuserlocationend', () => {
       this.setState({
@@ -135,9 +151,11 @@ class MapContainer extends Component {
       });
     });
 
-    if (navigator.geolocation) { // Get user's location
+    // Check if geolocation is available in this device and browser
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success.bind(this));
       this.getRoute = this.getRoute.bind(this);
+      this.clearRouteInfo = clearRouteInfo.bind(this);
     }
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -149,7 +167,8 @@ class MapContainer extends Component {
   }
 
   // lan and lat are longitude and latitude of destination
-  getRoute(lng, lat) {
+  // type can only be 'walking', 'driving' or 'cycling'
+  getRoute(lng, lat, type) {
     // Update user current location
     const { geolocation, geolocationEnabled } = this.state;
     // Check if geolocation is available in this device and browser
@@ -165,7 +184,6 @@ class MapContainer extends Component {
       const { user } = this.state;
       const start = user;
       const end = [lng, lat];
-      const type = 'walking';
       const apiCall = `${process.env.REACT_APP_MAPBOX_DIRECTIONS}mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`;
       fetch(apiCall)
         .then(result => result.json())
@@ -173,6 +191,8 @@ class MapContainer extends Component {
           if (data.routes) { // Only attempt to set route state if Mapbox API sent a response
             this.setState({
               route: data.routes[0].geometry.coordinates,
+              distance: data.routes[0].distance,
+              duration: data.routes[0].duration,
             });
           }
         });
@@ -180,7 +200,6 @@ class MapContainer extends Component {
   }
 
   showInfo(id, lon, lat) {
-    // axios.get(process.env.REACT_APP_CORS + process.env.REACT_APP_API_QUESTIONS)
     const path = '/info'.concat(id).concat('.json');
     axios.get(path).then((res) => {
       this.setState(
@@ -191,7 +210,6 @@ class MapContainer extends Component {
           selectedLat: lat,
           load: false,
         },
-
       );
     })
       .catch((error) => {
@@ -206,7 +224,9 @@ class MapContainer extends Component {
 
   render() {
     const {
-      route, geolocation, containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      route, distance, duration, selectedRoute,
+      geolocation,
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon,
     } = this.state;
 
     return (
@@ -273,7 +293,7 @@ class MapContainer extends Component {
         </InfoComponent>
         <MapComponent>
           <Map
-        // style prop is required by React Mapbox
+            // style prop is required by React Mapbox
             style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
             containerStyle={{
               height: '100%',
@@ -285,10 +305,14 @@ class MapContainer extends Component {
           (map) => {
             // Add button to detect user's current location
             map.addControl(geolocation);
+            // Fly to user position and update user state when geolocation is triggered
             geolocation.on('geolocate', (e) => {
               map.flyTo({
                 center: [e.coords.longitude, e.coords.latitude],
                 zoom: 11.5,
+              });
+              this.setState({
+                user: [e.coords.longitude, e.coords.latitude],
               });
             });
             map.addControl(new mapboxgl.NavigationControl());
@@ -308,6 +332,16 @@ class MapContainer extends Component {
           }
         }
           >
+            { route && (
+              <Layer // Layer with the route
+                type="line"
+                id="route"
+                layout={{ 'line-cap': 'round', 'line-join': 'round' }}
+                paint={{ 'line-color': '#4790E5', 'line-width': 8 }}
+              >
+                <Feature coordinates={route} />
+              </Layer>
+            ) }
             <Layer
               // Layer with trashes
               type="symbol"
@@ -323,7 +357,7 @@ class MapContainer extends Component {
                     coordinates={[elem.longitude, elem.latitude]}
                     onClick={() => {
                       this.showInfo(elem.id, elem.longitude, elem.latitude);
-                      this.getRoute(elem.longitude, elem.latitude);
+                      this.clearRouteInfo();
                     }}
                   />))
                 : null}
@@ -333,20 +367,95 @@ class MapContainer extends Component {
                 <Popup
                   key={selectedId}
                   coordinates={[selectedLon, selectedLat]}
+                  className="popup"
                 >
                   <SubBoxText>{infoContainer.location}</SubBoxText>
+                  { (!route) // Only render container info until user asks for a route
+                    ? (
+                      <BoxPopUpComponent>
+                        <BoxInfo>
+                          <BoxLogo>
+                            <SubBoxLogo src={carton} />
+                          </BoxLogo>
+                          <BoxText>
+                            <SubBoxText>
+                              {`${infoContainer.carton} kg`}
+                            </SubBoxText>
+                          </BoxText>
+                        </BoxInfo>
+                        <BoxInfo>
+                          <BoxLogo>
+                            <SubBoxLogo src={paper} />
+                          </BoxLogo>
+                          <BoxText>
+                            <SubBoxText>
+                              {`${infoContainer.paper} kg`}
+                            </SubBoxText>
+                          </BoxText>
+                        </BoxInfo>
+                        <BoxInfo>
+                          <BoxLogo>
+                            <SubBoxLogo src={water} />
+                          </BoxLogo>
+                          <BoxText>
+                            <SubBoxText>
+                              {`${infoContainer.plastic} kg`}
+                            </SubBoxText>
+                          </BoxText>
+                        </BoxInfo>
+                      </BoxPopUpComponent>
+                    )
+                    : null }
+                  { (navigator.geolocation)
+                    // Only show route buttons and route info
+                    // if the device and the browser supports geolocation
+                    ? (
+                      <RouteBox>
+                        { route && (
+                          // Render distance and estimated time converted to km and min
+                          // and rounded to one decimal
+                          <InfoRoute>
+                            { `${Math.round(distance / 100) / 10} km` }
+                            { '\xa0\xa0\xa0' }
+                            { `${Math.round(duration / 6) / 10} min` }
+                          </InfoRoute>) }
+                        <BoxButton>
+                          <ButtonRoute
+                            img={walking}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'walking');
+                              this.setState({
+                                selectedRoute: 'walking',
+                              });
+                            }}
+                            selected={selectedRoute === 'walking'}
+                          />
+                          <ButtonRoute
+                            img={bicycle}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'cycling');
+                              this.setState({
+                                selectedRoute: 'cycling',
+                              });
+                            }}
+                            selected={selectedRoute === 'cycling'}
+                          />
+                          <ButtonRoute
+                            img={car}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'driving');
+                              this.setState({
+                                selectedRoute: 'driving',
+                              });
+                            }}
+                            selected={selectedRoute === 'driving'}
+                          />
+                        </BoxButton>
+                      </RouteBox>
+                    )
+                    : null}
                 </Popup>
               ) : null}
-            { route && (
-              <Layer // Layer with the route
-                type="line"
-                id="route"
-                layout={{ 'line-cap': 'round', 'line-join': 'round' }}
-                paint={{ 'line-color': '#4790E5', 'line-width': 8 }}
-              >
-                <Feature coordinates={route} />
-              </Layer>
-            ) }
           </Map>
         </MapComponent>
       </MapViewComponent>
