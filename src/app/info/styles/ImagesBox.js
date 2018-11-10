@@ -17,6 +17,7 @@ const ImagesBox = styled.div`
 
   @media (max-width: 425px) {
     flex: 1;
+    width: 70%;
   }
 `;
 
