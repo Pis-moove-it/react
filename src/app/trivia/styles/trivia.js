@@ -35,6 +35,19 @@ export const TitleBox = styled.div`
     flex-direction: column;
     z-index: 1;
 `;
+export const TBox = styled.div`
+    position: relative;
+    width: 100%;
+    
+`;
+
+export const PBox = styled.div`
+flex:1
+display: flex;
+flex-direction: column;
+z-index: 1;
+
+`;
 
 export const ProgressBox = styled.div`
     width:  -webkit-fill-available;
@@ -43,11 +56,13 @@ export const ProgressBox = styled.div`
     align-items: flex-end;
     z-index: 0;
     padding-right: 3%;
+    
 `;
 
 export const ProgressSubBox = styled.div`
     width: 15%;
     align-self: right;
+    display: ${props => (props.total ? null : 'none')};
 `;
 
 export const Correct = styled.a`
@@ -55,9 +70,10 @@ export const Correct = styled.a`
     width: -webkit-fill-available;
     padding-right: 5%;
     text-align: right;
+    opacity: 0.3;
 
     color: ${props => props.colorText};
-    font-size: 26px;
+    font-size: 20px;
 
     @media (max-width: 768px) {
         font-size: 20px;
@@ -209,6 +225,7 @@ export const Triangle = styled.div`
         flex: 2;
     }
 
+    align-self: center;
     width: 0; 
     height: 0; 
     border-left: 180px solid transparent; 

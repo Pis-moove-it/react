@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactLoading from 'react-loading';
 import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
-   Correct, ProgressBox, ProgressSubBox 
+   Correct, ProgressBox, ProgressSubBox, TBox, PBox
 } from '../styles/trivia';
 import { Line } from 'rc-progress';
 
@@ -111,25 +111,23 @@ class Trivia extends Component {
         opacity: 0.2,
         showCorrect: 'visible',
         total: this.state.total + 1,
-      });      
+      });    
       
+      sleep(100).then(() => {
+      if(this.state.total>=1){
+        if((this.state.correct/this.state.total) < 0.25){
+          this.setState({ feedbackColor: '#FD1F01'})
+        }else if((this.state.correct/this.state.total)< 0.5){
+          this.setState({ feedbackColor: '#ff7b00'})
+        } else if ((this.state.correct/this.state.total) < 0.75){
+          this.setState({ feedbackColor: '#ffce00'})
+        } else {
+          this.setState({ feedbackColor: '#2AAA36'})
+        }
+      }
+    });
       sleep(1500).then(() => {
         this.resetBackColor();
-
-        //color del porcentaje trivia
-        if(this.state.total>=1){
-          if((this.state.correct/this.state.total) < 0.25){
-            this.setState({ feedbackColor: '#FD1F01'})
-          }else if((this.state.correct/this.state.total)< 0.5){
-            this.setState({ feedbackColor: '#ff7b00'})
-          } else if ((this.state.correct/this.state.total) < 0.75){
-            this.setState({ feedbackColor: '#ffce00'})
-          } else {
-            this.setState({ feedbackColor: '#2AAA36'})
-          }
-        }
-
-        //
         this.setState({
           index: this.state.index + 1,
         });
@@ -162,15 +160,23 @@ class Trivia extends Component {
     if (!loading) {
       return (
         <Box>
+          <TBox>
           <TitleBox>
             <Title>¿Cuánto conocés?</Title>
             <Triangle />
           </TitleBox>
+          <PBox>
           <ProgressBox>
-            <ProgressSubBox>
-              <Line percent={this.state.correct/this.state.total*100} strokeWidth="10" strokeColor= {this.state.feedbackColor} />
-          </ProgressSubBox>
+            <ProgressSubBox total={this.state.total}>
+              <Line percent={this.state.correct/this.state.total*100} strokeWidth="4" strokeColor= {this.state.feedbackColor} />
+            </ProgressSubBox>
           </ProgressBox>
+            <Correct>Respuestas correctas: {this.state.correct}</Correct>
+            <Correct>Total: {this.state.total}</Correct>
+          </PBox>
+          </TBox>
+
+
           <SubBox>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
