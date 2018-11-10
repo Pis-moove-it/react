@@ -309,7 +309,7 @@ class MapContainer extends Component {
             geolocation.on('geolocate', (e) => {
               map.flyTo({
                 center: [e.coords.longitude, e.coords.latitude],
-                zoom: 11.5,
+                zoom: 13.5,
               });
               this.setState({
                 user: [e.coords.longitude, e.coords.latitude],
@@ -375,30 +375,30 @@ class MapContainer extends Component {
                       <BoxPopUpComponent>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={carton} height="25px" />
+                            <SubBoxLogo src={carton} height="20px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
+                            <SubBoxText>
                               {`${infoContainer.carton} kg`}
                             </SubBoxText>
                           </BoxText>
                         </BoxInfo>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={paper} height="25px" />
+                            <SubBoxLogo src={paper} height="20px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
+                            <SubBoxText>
                               {`${infoContainer.paper} kg`}
                             </SubBoxText>
                           </BoxText>
                         </BoxInfo>
                         <BoxInfo>
                           <BoxLogo>
-                            <SubBoxLogo src={water} height="25px" />
+                            <SubBoxLogo src={water} height="20px" />
                           </BoxLogo>
                           <BoxText>
-                            <SubBoxText padding="0% 40%" whiteSpace="nowrap">
+                            <SubBoxText>
                               {`${infoContainer.plastic} kg`}
                             </SubBoxText>
                           </BoxText>

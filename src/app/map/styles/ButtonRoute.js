@@ -5,18 +5,18 @@ const ButtonRoute = styled.button`
   background-position: center;
   background-size: 35px 35px;
   background-repeat: no-repeat;
-  background-color: greenyellow;
+  background-color: skyblue;
 
   flex: 1;
 
-  border-radius: 15px;
-  border: ${props => (props.selected ? 'inset' : 'outset')};
+  border-radius: 25px;
+  border-style: none;
   :focus {
     outline: 0;
   }
-  background-color: ${props => (props.selected ? 'skyblue' : 'greenyellow')};
+  background-color: ${props => (props.selected ? 'blue' : 'skyblue')};
   :hover {
-    background-color: skyblue;
+    background-color: blue;
   }
   cursor: pointer;
   width: 40px;

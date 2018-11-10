@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const BoxButton = styled.div`
   flex: 2;
   width: 100%;
+  background-color: skyblue;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: row;
