@@ -63,6 +63,26 @@ async function getData() {
         console.log(error.response.headers);
       }
     });
+  // Login to user with id 1 of the organization with id 1
+  await axios.post(
+    process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN_USER,
+    {
+      headers: {
+        deviceIdHeader: 'prueba',
+        deviceTypeHeader: 'prueba',
+        'Content-Type': 'application/json',
+        ApiKey: apikeyLogin,
+      },
+    },
+  )
+    .catch((error) => {
+      console.log(error);
+      if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
   // Fetch container list from backend
   await axios.get(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS,
