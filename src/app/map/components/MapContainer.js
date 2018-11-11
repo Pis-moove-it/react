@@ -146,13 +146,10 @@ class MapContainer extends Component {
 
     // Set geolocationEnabled state to false when geolocation finishes
     geolocation.on('trackuserlocationend', () => {
-      console.log('trackuserlocationend');
       this.setState({
         geolocationEnabled: false,
       });
     });
-    geolocation.on('error', () => console.log('error'));
-    geolocation.on('trackuserlocationstart', () => console.log('trackuserlocationstart'));
 
     // Check if geolocation is available in this device and browser
     if (navigator.geolocation) {
@@ -310,13 +307,18 @@ class MapContainer extends Component {
             map.addControl(geolocation);
             // Fly to user position and update user state when geolocation is triggered
             geolocation.on('geolocate', (e) => {
-              console.log('geolocate');
               map.flyTo({
-                center: [e.coords.longitude, e.coords.latitude],
+                center: [this.state.selectedLon, this.state.selectedLat],
                 zoom: 13.5,
               });
               this.setState({
                 user: [e.coords.longitude, e.coords.latitude],
+              });
+            });
+            geolocation.on('trackuserlocationstart', () => {
+              map.flyTo({
+                center: [this.state.selectedLon, this.state.selectedLat],
+                zoom: 13.5,
               });
             });
             map.addControl(new mapboxgl.NavigationControl());
@@ -379,14 +381,6 @@ class MapContainer extends Component {
                     // if the device and the browser supports geolocation
                     ? (
                       <RouteBox>
-                        { route && (
-                          // Render distance and estimated time converted to km and min
-                          // and rounded to one decimal
-                          <InfoRoute>
-                            { `${Math.round(distance / 100) / 10} km` }
-                            { '\xa0\xa0\xa0' }
-                            { `${Math.round(duration / 6) / 10} min` }
-                          </InfoRoute>) }
                         <BoxButton>
                           <ButtonRoute
                             img={walking}
@@ -419,6 +413,14 @@ class MapContainer extends Component {
                             selected={selectedRoute === 'driving'}
                           />
                         </BoxButton>
+                        { route && (
+                          // Render distance and estimated time converted to km and min
+                          // and rounded to one decimal
+                          <InfoRoute>
+                            { `${Math.round(distance / 100) / 10} km` }
+                            { '\xa0\xa0\xa0' }
+                            { `${Math.round(duration / 6) / 10} min` }
+                          </InfoRoute>) }
                       </RouteBox>
                     )
                     : null}
