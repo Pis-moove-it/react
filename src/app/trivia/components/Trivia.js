@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
+import { Line } from 'rc-progress';
 import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
-   Correct, ProgressBox, ProgressSubBox, TBox, PBox
+  Correct, ProgressBox, ProgressSubBox, TBox, PBox, ProgressSubBoxM,
 } from '../styles/trivia';
-import { Line } from 'rc-progress';
 
 function sleep(time) {
   return new Promise(resolve => setTimeout(resolve, time));
@@ -59,7 +59,7 @@ class Trivia extends Component {
 
   optionClicked(op, correctOp) {
     const {
-      backColor, showCorrect, correct, total
+      backColor, showCorrect,
     } = this.state;
     if (showCorrect === 'hidden') {
       let opN = 0;
@@ -111,21 +111,21 @@ class Trivia extends Component {
         opacity: 0.2,
         showCorrect: 'visible',
         total: this.state.total + 1,
-      });    
-      
+      });
+
       sleep(100).then(() => {
-      if(this.state.total>=1){
-        if((this.state.correct/this.state.total) < 0.25){
-          this.setState({ feedbackColor: '#FD1F01'})
-        }else if((this.state.correct/this.state.total)< 0.5){
-          this.setState({ feedbackColor: '#ff7b00'})
-        } else if ((this.state.correct/this.state.total) < 0.75){
-          this.setState({ feedbackColor: '#ffce00'})
-        } else {
-          this.setState({ feedbackColor: '#2AAA36'})
+        if (this.state.total >= 1) {
+          if ((this.state.correct / this.state.total) < 0.25) {
+            this.setState({ feedbackColor: '#FD1F01' });
+          } else if ((this.state.correct / this.state.total) < 0.5) {
+            this.setState({ feedbackColor: '#ff7b00' });
+          } else if ((this.state.correct / this.state.total) < 0.75) {
+            this.setState({ feedbackColor: '#ffce00' });
+          } else {
+            this.setState({ feedbackColor: '#2AAA36' });
+          }
         }
-      }
-    });
+      });
       sleep(1500).then(() => {
         this.resetBackColor();
         this.setState({
@@ -153,7 +153,7 @@ class Trivia extends Component {
 
   render() {
     const {
-      questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor, feedbackColor,
+      questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor,
     } = this.state;
     const actualQ = questions[index];
 
@@ -161,19 +161,25 @@ class Trivia extends Component {
       return (
         <Box>
           <TBox>
-          <TitleBox>
-            <Title>¿Cuánto conocés?</Title>
-            <Triangle />
-          </TitleBox>
-          <PBox>
-          <ProgressBox>
-            <ProgressSubBox total={this.state.total}>
-              <Line percent={this.state.correct/this.state.total*100} strokeWidth="4" strokeColor= {this.state.feedbackColor} />
-            </ProgressSubBox>
-          </ProgressBox>
-            <Correct>Respuestas correctas: {this.state.correct}</Correct>
-            <Correct>Total: {this.state.total}</Correct>
-          </PBox>
+            <TitleBox>
+              <Title>¿Cuánto conocés?</Title>
+              <Triangle />
+            </TitleBox>
+            <PBox>
+              <ProgressBox>
+                <ProgressSubBox total={this.state.total}>
+                  <Line percent={this.state.correct / this.state.total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+                </ProgressSubBox>
+              </ProgressBox>
+              <Correct>
+Respuestas correctas:
+                {this.state.correct}
+              </Correct>
+              <Correct>
+Total:
+                {this.state.total}
+              </Correct>
+            </PBox>
           </TBox>
 
 
@@ -194,7 +200,18 @@ class Trivia extends Component {
             <BoxOption>
               <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]}>{actualQ.option_d}</Option>
             </BoxOption>
+            <ProgressSubBoxM total={this.state.total} mobileV>
+              <Line percent={this.state.correct / this.state.total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+            </ProgressSubBoxM>
+            <Correct mobileV="true">
+Puntaje:
+              {this.state.correct}
+/
+              {this.state.total}
+            </Correct>
           </SubBox>
+
+
         </Box>
       );
     } return (

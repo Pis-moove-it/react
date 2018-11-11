@@ -63,6 +63,20 @@ export const ProgressSubBox = styled.div`
     width: 15%;
     align-self: right;
     display: ${props => (props.total ? null : 'none')};
+    @media (max-width: 376px) {
+        display: none;
+    }
+    
+`;
+
+export const ProgressSubBoxM = styled.div`
+    opacity: 0;
+    @media (max-width: 376px) {
+        opacity: 1;
+        width: 50%;
+        align-self: right;
+        display: ${props => (props.total ? null : 'none')};
+    }
 `;
 
 export const Correct = styled.a`
@@ -70,7 +84,7 @@ export const Correct = styled.a`
     width: -webkit-fill-available;
     padding-right: 5%;
     text-align: right;
-    opacity: 0.3;
+    opacity: ${props => (props.mobileV ? '0' : '0.3')}; 
 
     color: ${props => props.colorText};
     font-size: 20px;
@@ -80,7 +94,10 @@ export const Correct = styled.a`
     }
 
     @media (max-width: 376px) {
-        display: none;
+        display: ${props => (props.mobileV ? null : 'none')};
+        font-size: 18px;
+        text-align: center;
+        opacity: 0.5;
     }
 `;
 
