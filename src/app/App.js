@@ -3,7 +3,7 @@ import { Element } from 'react-scroll';
 import Footer from './home/components/Footer';
 import Header from './home/components/Header';
 import MapView from './map/components/MapContainer';
-//import MapView from './map/components/MapView';
+// import MapView from './map/components/MapView';
 import global from './home/css/global.css'; // eslint-disable-line
 import Trivia from './trivia/components/Trivia';
 import BackToTop from './home/components/BackToTop';
@@ -16,15 +16,13 @@ const App = () => (
     <Header />
     <Hero />
     <BackToTop />
-    <BodyWrapper>
-      <Element id="Map" />
-      <MapView />
-      <Element id="Trivia" />
-      <Trivia />
-      <Element id="Info" />
-      <MoreInfo />
-      <Footer />
-    </BodyWrapper>
+    <Element id="Map" />
+    <MapView />
+    <Element id="Trivia" />
+    <Trivia />
+    <Element id="Info" />
+    <MoreInfo />
+    <Footer />
   </div>
 );
 
