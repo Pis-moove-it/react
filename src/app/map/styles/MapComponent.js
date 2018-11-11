@@ -7,7 +7,7 @@ const MapComponent = styled.div`
   z-index: 0;
   flex: 3;
   position: absolute;
-  width: 99vw;
+  width: 100vw;
   height: calc(100vh - 55px); /* all vertical height minus header */
 `;
 
