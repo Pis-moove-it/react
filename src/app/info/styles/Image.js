@@ -10,6 +10,7 @@ const Image = styled.div`
   display: block;
 
   @media (max-width: 425px) {
+    margin: 0%;
     flex: 1;
     height: 300px;
     display: ${props => (props.showOnMobile ? null : 'none')};
