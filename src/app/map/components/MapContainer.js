@@ -29,7 +29,6 @@ import bicycle from '../assets/bicycle.png';
 import car from '../assets/car.png';
 import RouteBox from '../styles/RouteBox';
 import InfoRoute from '../styles/InfoRoute';
-import BoxPopUpComponent from '../styles/BoxPopUpComponent';
 import popup from '../css/popup.css'; // eslint-disable-line
 import BoxButton from '../styles/BoxButton';
 
@@ -129,8 +128,9 @@ class MapContainer extends Component {
       geolocation: new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
+          timeout: 6000,
         },
-        fitBoundsOptions: { maxZoom: 11.5 },
+        fitBoundsOptions: { maxZoom: 13.5 },
         trackUserLocation: true,
       }),
       geolocationEnabled: false,
@@ -146,10 +146,13 @@ class MapContainer extends Component {
 
     // Set geolocationEnabled state to false when geolocation finishes
     geolocation.on('trackuserlocationend', () => {
+      console.log('trackuserlocationend');
       this.setState({
         geolocationEnabled: false,
       });
     });
+    geolocation.on('error', () => console.log('error'));
+    geolocation.on('trackuserlocationstart', () => console.log('trackuserlocationstart'));
 
     // Check if geolocation is available in this device and browser
     if (navigator.geolocation) {
@@ -307,6 +310,7 @@ class MapContainer extends Component {
             map.addControl(geolocation);
             // Fly to user position and update user state when geolocation is triggered
             geolocation.on('geolocate', (e) => {
+              console.log('geolocate');
               map.flyTo({
                 center: [e.coords.longitude, e.coords.latitude],
                 zoom: 13.5,
@@ -370,42 +374,6 @@ class MapContainer extends Component {
                   className="popup"
                 >
                   <SubBoxText>{infoContainer.location}</SubBoxText>
-                  { (!route) // Only render container info until user asks for a route
-                    ? (
-                      <BoxPopUpComponent>
-                        <BoxInfo>
-                          <BoxLogo>
-                            <SubBoxLogo src={carton} height="20px" />
-                          </BoxLogo>
-                          <BoxText>
-                            <SubBoxText>
-                              {`${infoContainer.carton} kg`}
-                            </SubBoxText>
-                          </BoxText>
-                        </BoxInfo>
-                        <BoxInfo>
-                          <BoxLogo>
-                            <SubBoxLogo src={paper} height="20px" />
-                          </BoxLogo>
-                          <BoxText>
-                            <SubBoxText>
-                              {`${infoContainer.paper} kg`}
-                            </SubBoxText>
-                          </BoxText>
-                        </BoxInfo>
-                        <BoxInfo>
-                          <BoxLogo>
-                            <SubBoxLogo src={water} height="20px" />
-                          </BoxLogo>
-                          <BoxText>
-                            <SubBoxText>
-                              {`${infoContainer.plastic} kg`}
-                            </SubBoxText>
-                          </BoxText>
-                        </BoxInfo>
-                      </BoxPopUpComponent>
-                    )
-                    : null }
                   { (navigator.geolocation)
                     // Only show route buttons and route info
                     // if the device and the browser supports geolocation
