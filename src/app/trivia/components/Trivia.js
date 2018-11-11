@@ -154,6 +154,7 @@ class Trivia extends Component {
   render() {
     const {
       questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor,
+      total, correct,
     } = this.state;
     const actualQ = questions[index];
 
@@ -167,17 +168,17 @@ class Trivia extends Component {
             </TitleBox>
             <PBox>
               <ProgressBox>
-                <ProgressSubBox total={this.state.total}>
-                  <Line percent={this.state.correct / this.state.total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+                <ProgressSubBox total={total}>
+                  <Line percent={correct / total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
                 </ProgressSubBox>
               </ProgressBox>
               <Correct>
 Respuestas correctas:
-                {this.state.correct}
+                {correct}
               </Correct>
               <Correct>
 Total:
-                {this.state.total}
+                {total}
               </Correct>
             </PBox>
           </TBox>
@@ -200,14 +201,14 @@ Total:
             <BoxOption>
               <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]}>{actualQ.option_d}</Option>
             </BoxOption>
-            <ProgressSubBoxM total={this.state.total} mobileV>
-              <Line percent={this.state.correct / this.state.total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+            <ProgressSubBoxM total={total} mobileV>
+              <Line percent={correct / total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
             </ProgressSubBoxM>
             <Correct mobileV="true">
 Puntaje:
-              {this.state.correct}
+              {correct}
 /
-              {this.state.total}
+              {total}
             </Correct>
           </SubBox>
 
