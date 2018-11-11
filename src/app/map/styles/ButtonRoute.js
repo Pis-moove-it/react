@@ -14,9 +14,9 @@ const ButtonRoute = styled.button`
   :focus {
     outline: 0;
   }
-  background-color: ${props => (props.selected ? 'blue' : 'skyblue')};
+  background-color: ${props => (props.selected ? '#0797BA' : 'skyblue')};
   :hover {
-    background-color: blue;
+    background-color: #0797BA;
   }
   cursor: pointer;
   width: 40px;
