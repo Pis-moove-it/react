@@ -4,7 +4,6 @@ const BoxText = styled.div`
   flex: 6;
   height: 100%;
   margin-left: 15px;
-  margin-right: 15px;
   position: relative;
   display: table;
 
