@@ -8,7 +8,6 @@ export const Box = styled.footer`
   background: #0797BA;
   color: #FFFFFF;
   font-family: "Candara";
-  font-weight: bold;
   padding: 15px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -45,7 +44,7 @@ export const Line = styled.div`
   flex: 1;
   width: 80%;
   margin: 1% 0% 2% 0%;
-  border: 1px solid #FFFFFF;
+  border: 0.5px solid #FFFFFF;
 `;
 
 export const FooterText = styled.a`
