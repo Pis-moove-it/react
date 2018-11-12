@@ -6,7 +6,7 @@ const Text = styled.div`
     font-size: 16px;
   }
   @media (max-width: 376px) {
-    font-size: 9px;
+    font-size: 14px;
   }
 
   flex: 7;

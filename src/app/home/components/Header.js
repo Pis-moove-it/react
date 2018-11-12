@@ -2,6 +2,7 @@ import React from 'react';
 import {
   scroller as scroll,
 } from 'react-scroll';
+import animateScroll from 'react-scroll';
 import logo from '../assets/logoBlanco.png';
 import {
   Box, SubBox, ReciclandoLogo, HeaderTitle,
@@ -54,7 +55,7 @@ class Header extends React.Component {
     };
     return (
       <Box position={position} transition={animation}>
-        <ReciclandoLogo src={logo} />
+        <ReciclandoLogo src={logo} onClick={() => animateScroll.animateScroll.scrollToTop()} />
         <SubBox>
           <HeaderTitle onClick={() => scroll.scrollTo('Map', props)}>
 ¿Dónde reciclo?

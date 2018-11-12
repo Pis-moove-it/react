@@ -37,6 +37,12 @@ export const ReciclandoLogo = styled.img`
     height: 25px;
     width: auto;
     padding-right: 20px;
+
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      color: #dfedf3;
+    }    
 `;
 
 
