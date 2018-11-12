@@ -375,7 +375,7 @@ class MapContainer extends Component {
                   coordinates={[selectedLon, selectedLat]}
                   className="popup"
                 >
-                  <SubBoxText>{infoContainer.location}</SubBoxText>
+                  <SubBoxText textAlign="center" width="170px">{infoContainer.location}</SubBoxText>
                   { (navigator.geolocation)
                     // Only show route buttons and route info
                     // if the device and the browser supports geolocation
@@ -418,7 +418,7 @@ class MapContainer extends Component {
                           // and rounded to one decimal
                           <InfoRoute>
                             { `${Math.round(distance / 100) / 10} km` }
-                            { '\xa0\xa0\xa0' }
+                            { '\xa0\xa0\xa0\xa0' }
                             { `${Math.round(duration / 6) / 10} min` }
                           </InfoRoute>) }
                       </RouteBox>

@@ -5,7 +5,8 @@ const BoxButton = styled.div`
   width: 100%;
   background-color: skyblue;
   border-radius: 5px;
-  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 7%;
 
   display: flex;
   flex-direction: row;

@@ -9,7 +9,6 @@ const InfoRoute = styled.div`
   font-size: 18px;
   white-space: nowrap;
 
-  margin-left: 4%;
   flex: 3;
   justify-content: center;
 
