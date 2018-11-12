@@ -1,7 +1,7 @@
 {
   "main.css": "/reciclando-web/static/css/main.13452559.chunk.css",
-  "main.js": "/reciclando-web/static/js/main.86abc066.chunk.js",
-  "main.js.map": "/reciclando-web/static/js/main.86abc066.chunk.js.map",
+  "main.js": "/reciclando-web/static/js/main.6c229e20.chunk.js",
+  "main.js.map": "/reciclando-web/static/js/main.6c229e20.chunk.js.map",
   "static/js/1.f2a7c10f.chunk.js": "/reciclando-web/static/js/1.f2a7c10f.chunk.js",
   "static/js/1.f2a7c10f.chunk.js.map": "/reciclando-web/static/js/1.f2a7c10f.chunk.js.map",
   "runtime~main.js": "/reciclando-web/static/js/runtime~main.657a0b0b.js",
@@ -21,6 +21,6 @@
   "static/media/bicycle.png": "/reciclando-web/static/media/bicycle.7628ba88.png",
   "static/css/main.13452559.chunk.css.map": "/reciclando-web/static/css/main.13452559.chunk.css.map",
   "index.html": "/reciclando-web/index.html",
-  "precache-manifest.5142d4d52cfd34bb711b7347f6452681.js": "/reciclando-web/precache-manifest.5142d4d52cfd34bb711b7347f6452681.js",
+  "precache-manifest.30e0d7a448824cf015569ba32f78f44e.js": "/reciclando-web/precache-manifest.30e0d7a448824cf015569ba32f78f44e.js",
   "service-worker.js": "/reciclando-web/service-worker.js"
 }

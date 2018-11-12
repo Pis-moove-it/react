@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
   },
   {
-    "revision": "86abc066fa17a988f0a4",
+    "revision": "6c229e205cd82483bb7c",
     "url": "/reciclando-web/static/css/main.13452559.chunk.css"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
   },
   {
-    "revision": "86abc066fa17a988f0a4",
-    "url": "/reciclando-web/static/js/main.86abc066.chunk.js"
+    "revision": "6c229e205cd82483bb7c",
+    "url": "/reciclando-web/static/js/main.6c229e20.chunk.js"
   },
   {
     "revision": "0accadbe394c426ecc35750f4fd2f2f6",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/CANDARA.e6623399.TTF"
   },
   {
-    "revision": "3a26b0ac7c964b232969a08996c9b567",
+    "revision": "54faa09c1bb2a95699a6aa256c2cdbb3",
     "url": "/reciclando-web/index.html"
   }
 ];
