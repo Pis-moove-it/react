@@ -12,7 +12,7 @@ const SubBox = styled.div`
   @media (max-width: 425px) {
     flex-direction: column;
     flex: 5;
-    background:  ${props => (props.reverse ? '#f3f3f3': '')}; 
+    background:  ${props => (props.reverse ? '#f3f3f3' : '')}; 
   }
 `;
 
