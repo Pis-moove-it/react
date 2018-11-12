@@ -20,7 +20,7 @@ const App = () => (
     <Trivia />
     <Element id="Info" />
     <MoreInfo />
-    <Footer />
+    <Footer id="myFooter" />
   </div>
 );
 
