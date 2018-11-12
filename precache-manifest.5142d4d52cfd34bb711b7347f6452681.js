@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "0accadbe394c426ecc35750f4fd2f2f6",
-    "url": "/reciclando-web/static/media/trash-island1.0accadbe.jpeg"
+    "revision": "1b05b4ae68fb66f745c87467b030a325",
+    "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
   },
   {
-    "revision": "8b126cb8369ea7c5e334",
-    "url": "/reciclando-web/static/css/main.f92c2816.chunk.css"
+    "revision": "86abc066fa17a988f0a4",
+    "url": "/reciclando-web/static/css/main.13452559.chunk.css"
   },
   {
-    "revision": "663f8c2704109fc1893f",
-    "url": "/reciclando-web/static/js/1.663f8c27.chunk.js"
+    "revision": "f2a7c10f9bfddb8f3ebd",
+    "url": "/reciclando-web/static/js/1.f2a7c10f.chunk.js"
   },
   {
     "revision": "657a0b0bb11111a490fc",
@@ -20,16 +20,28 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/carton.e2a8a9ea.png"
   },
   {
+    "revision": "7628ba88a83b81ab09ddbbe23809a64b",
+    "url": "/reciclando-web/static/media/bicycle.7628ba88.png"
+  },
+  {
+    "revision": "c4fd6320736cd96f3d9907aa7b0a6ce6",
+    "url": "/reciclando-web/static/media/car.c4fd6320.png"
+  },
+  {
+    "revision": "6c9efe0c8c1fb630cd48d0381ece4297",
+    "url": "/reciclando-web/static/media/left-arrow.6c9efe0c.svg"
+  },
+  {
     "revision": "38ebc74debf3391756eaec99fb52c8ce",
     "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
   },
   {
-    "revision": "1b05b4ae68fb66f745c87467b030a325",
-    "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
+    "revision": "86abc066fa17a988f0a4",
+    "url": "/reciclando-web/static/js/main.86abc066.chunk.js"
   },
   {
-    "revision": "8b126cb8369ea7c5e334",
-    "url": "/reciclando-web/static/js/main.8b126cb8.chunk.js"
+    "revision": "0accadbe394c426ecc35750f4fd2f2f6",
+    "url": "/reciclando-web/static/media/trash-island1.0accadbe.jpeg"
   },
   {
     "revision": "95653b2dc710c1a842c65a2a4792b495",
@@ -52,7 +64,11 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/finland3.82a7b419.png"
   },
   {
-    "revision": "bbc3dc0bb8a8bb30cb20b6e82d235746",
+    "revision": "e662339992c4abf5b43f537391bd3169",
+    "url": "/reciclando-web/static/media/CANDARA.e6623399.TTF"
+  },
+  {
+    "revision": "3a26b0ac7c964b232969a08996c9b567",
     "url": "/reciclando-web/index.html"
   }
 ];
