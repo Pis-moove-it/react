@@ -23,6 +23,7 @@ import QuestionContent from '../styles/QuestionContent';
 import Text from '../styles/Text';
 import TextContent from '../styles/TextContent';
 import MapViewComponent from '../styles/MapViewComponent';
+import ToggleMenu from '../styles/ToggleMenu';
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -91,6 +92,14 @@ async function getData() {
     });
 }
 
+function Toggle() {
+  this.setState(
+    {
+      showMenu: !this.state.showMenu,
+    },
+  );
+}
+
 class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -102,9 +111,11 @@ class MapContainer extends Component {
       selectedLon: 0,
       selectedLat: 0,
       infoContainer: '',
+      showMenu: true,
     };
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
+    this.Toggle = Toggle.bind(this);
   }
 
   componentDidMount() {
@@ -124,7 +135,6 @@ class MapContainer extends Component {
           selectedLat: lat,
           load: false,
         },
-
       );
     })
       .catch((error) => {
@@ -139,12 +149,12 @@ class MapContainer extends Component {
 
   render() {
     const {
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon, showMenu,
     } = this.state;
 
     return (
       <MapViewComponent>
-        <InfoComponent>
+        <InfoComponent showMenu={showMenu}>
           <BoxComponent>
             <BoxTitle>
               <SubBoxTitle>
@@ -204,6 +214,7 @@ kg de plástico
             </Text>
           </QuestionTexBox>
         </InfoComponent>
+        <ToggleMenu moveLeft={showMenu} onClick={this.Toggle} />
         <MapComponent>
           <Map
         // style prop is required by React Mapbox
@@ -212,8 +223,8 @@ kg de plástico
               height: '100%',
               width: '100%',
             }}
-            center={load ? [-56.165293, -34.889631] : null}
-            zoom={load ? [11.5] : null}
+            center={load ? [-56.165293, -34.919999] : null}
+            zoom={load ? [13.5] : null}
             onStyleLoad={
           (map) => {
             // Add button to detect user's current location

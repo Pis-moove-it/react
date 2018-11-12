@@ -4,7 +4,7 @@ const QuestionContent = styled.a`
   font-family: Candara;
   font-weight: bold;
   line-height: normal;
-  font-size: 20px;
+  font-size: 16px;
 
   text-align: center;
 
