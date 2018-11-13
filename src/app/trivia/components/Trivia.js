@@ -198,7 +198,7 @@ Total:
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
             </BoxQuestion>
             <Sound url={correctSound} playStatus={this.state.correctS}/>
-            <Sound url={wrongSound} playStatus={this.state.wrongS}/>
+            <Sound url={wrongSound} playStatus={this.state.wrongS} />
             <BoxOption>
               <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]}>{actualQ.option_a}</Option>
             </BoxOption>
