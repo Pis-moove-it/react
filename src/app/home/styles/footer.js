@@ -18,7 +18,11 @@ export const Box = styled.footer`
   align-items: center;
   flex-direction: row;
   flex: 10;
-  `;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
+`;
 
 export const SubBox = styled.div`
   flex: 1;
@@ -27,8 +31,10 @@ export const SubBox = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  @media (max-width: 768px) {
-    display: ${props => (props.displayAlways ? null : 'none')};
+  @media (max-width: 425px) {
+    /* display: ${props => (props.displayAlways ? null : 'none')}; */
+    width: 100%;
+    margin-bottom: 15px;
   }
 `;
 
@@ -51,6 +57,10 @@ export const FooterText = styled.a`
     padding-left: 40px;
     color: #FFFFFF;
     text-decoration: none;
+
+    @media (max-width: 768px) {
+      padding-left: 0px;
+    }
 `;
 
 export const Logo = styled.img`

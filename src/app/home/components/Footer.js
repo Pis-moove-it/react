@@ -35,10 +35,12 @@ const Footer = () => (
       <SubBoxText>
         <Logo src={phone} />
         1955
-        <br />
+        {(window.innerWidth > 425) ? <br /> : null}
         <Link href="www.rocha.gub.uy">www.rocha.gub.uy</Link>
-        <br />
-        <br />
+        {(window.innerWidth > 425)
+          ? <div><br /><br /></div>
+          : null
+        }
       </SubBoxText>
     </SubBox>
     <SubBox>
@@ -47,9 +49,10 @@ const Footer = () => (
       <SubBoxText>
         <Logo src={mail} />
         <Link href="mailto:admin@example.com.uy">admin@example.com.uy</Link>
-        <br />
-        <br />
-        <br />
+        {(window.innerWidth > 425)
+          ? <div><br /><br /><br /></div>
+          : null
+        }
       </SubBoxText>
     </SubBox>
     <LeafLogo src={leafLogo} />
