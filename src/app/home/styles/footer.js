@@ -32,7 +32,6 @@ export const SubBox = styled.div`
   align-items: flex-start;
 
   @media (max-width: 425px) {
-    /* display: ${props => (props.displayAlways ? null : 'none')}; */
     width: 100%;
     margin-bottom: 15px;
   }
@@ -65,6 +64,7 @@ export const FooterText = styled.a`
 
 export const Logo = styled.img`
   filter: brightness(0) invert(1);
+  margin-right: 10px;
 `;
 
 export const Link = styled.a`
