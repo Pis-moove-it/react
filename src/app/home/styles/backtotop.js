@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BackLink = styled.a`
     position: fixed;
-    bottom: 50px;
+    bottom: ${props => (props.bottom ? props.bottom : '50px')};
     float: right;
     right: 2%;
     text-decoration: none;
