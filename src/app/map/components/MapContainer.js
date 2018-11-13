@@ -48,7 +48,7 @@ const trashIcon = new Image(40, 40);
 trashIcon.src = trashLogo;
 
 async function getData() {
-  let apikeyLogin = null;
+  const apikeyLogin = null;
   await axios.post(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN,
     { name: 'Abrojo', password: 'password' },
@@ -62,7 +62,9 @@ async function getData() {
   )
     .then((responseLogin) => {
       const { apikey } = responseLogin.headers;
-      apikeyLogin = apikey;
+      this.setState({
+        apiKey: apikey,
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -80,13 +82,37 @@ async function getData() {
         deviceIdHeader: 'prueba',
         deviceTypeHeader: 'prueba',
         'Content-Type': 'application/json',
-        ApiKey: apikeyLogin,
+        ApiKey: this.state.apiKey,
       },
     },
   )
     .then((res) => {
       this.setState({
         containers: res.data,
+      });
+    })
+    .catch((error) => {
+      console.log('Api Key GET error', apikeyLogin);
+      console.log(error);
+      if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
+
+  await axios.post(
+    process.env.REACT_APP_CORS + process.env.REACT_APP_API_ORGANIZATION_INFO,
+    { month: (new Date()).getMonth() + 1 },
+    {
+      headers: {
+        ApiKey: this.state.apiKey,
+      },
+    },
+  )
+    .then((res) => {
+      this.setState({
+        infoContainer: res.data,
       });
     })
     .catch((error) => {
@@ -116,7 +142,7 @@ function success(pos) {
     user: [pos.coords.longitude, pos.coords.latitude],
   });
 }
-  
+
 function Toggle() {
   this.setState(
     {
@@ -150,6 +176,8 @@ class MapContainer extends Component {
       selectedLon: 0,
       selectedLat: 0,
       infoContainer: '',
+      apiKey: '',
+      selectedDescription: '',
       showMenu: true,
     };
     const { geolocation } = this.state;
@@ -174,7 +202,6 @@ class MapContainer extends Component {
 
   componentDidMount() {
     this.getData();
-    this.showInfo(0);
   }
 
   // lan and lat are longitude and latitude of destination
@@ -210,15 +237,23 @@ class MapContainer extends Component {
     }
   }
 
-  showInfo(id, lon, lat) {
-    const path = '/info'.concat(id).concat('.json');
-    axios.get(path).then((res) => {
+  showInfo(id, lon, lat, descr) {
+    axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
+      {
+        headers: {
+          deviceIdHeader: 'prueba',
+          deviceTypeHeader: 'prueba',
+          'Content-Type': 'application/json',
+          ApiKey: this.state.apiKey,
+        },
+      }).then((res) => {
       this.setState(
         {
           infoContainer: res.data,
           selectedId: id,
           selectedLon: lon,
           selectedLat: lat,
+          selectedDescription: descr,
           load: false,
         },
       );
@@ -234,10 +269,12 @@ class MapContainer extends Component {
   }
 
   render() {
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre',
+      'Noviembre', 'Diciembre'];
     const {
       route, distance, duration, selectedRoute,
       geolocation,
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon, showMenu,
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon, showMenu, selectedDescription,
     } = this.state;
 
     return (
@@ -248,8 +285,8 @@ class MapContainer extends Component {
               <SubBoxTitle>
                 En
                 {' '}
-                {infoContainer.location}
-                , durante el mes de Agosto hemos reciclado
+                {(selectedDescription === '') ? infoContainer.organization : selectedDescription}
+, durante el mes de {months[(new Date()).getMonth()]} hemos reciclado
               </SubBoxTitle>
             </BoxTitle>
             <BoxInfo>
@@ -258,7 +295,7 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.carton}
+                  {infoContainer.kg_trash}
                   {' '}
                   kg de cartón
                 </SubBoxText>
@@ -270,7 +307,7 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.paper}
+                  {(infoContainer.kg_recycled_glass === undefined) ? infoContainer.kg_glass : infoContainer.kg_recycled_glass}
                   {' '}
                   kg de papel
                 </SubBoxText>
@@ -282,7 +319,7 @@ class MapContainer extends Component {
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.plastic}
+                  {(infoContainer.kg_recycled_plastic === undefined) ? infoContainer.kg_plastic : infoContainer.kg_recycled_plastic}
                   {' '}
                   kg de plástico
                 </SubBoxText>
@@ -374,7 +411,7 @@ class MapContainer extends Component {
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
                     onClick={() => {
-                      this.showInfo(elem.id, elem.longitude, elem.latitude);
+                      this.showInfo(elem.id, elem.longitude, elem.latitude, elem.description);
                       this.clearRouteInfo();
                     }}
                   />))
@@ -387,7 +424,7 @@ class MapContainer extends Component {
                   coordinates={[selectedLon, selectedLat]}
                   className="popup"
                 >
-                  <SubBoxText textAlign="center" width="170px">{infoContainer.location}</SubBoxText>
+                  <SubBoxText textAlign="center" width="170px">{selectedDescription}</SubBoxText>
                   { (navigator.geolocation)
                     // Only show route buttons and route info
                     // if the device and the browser supports geolocation
