@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "1b05b4ae68fb66f745c87467b030a325",
-    "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
+    "revision": "38ebc74debf3391756eaec99fb52c8ce",
+    "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
   },
   {
-    "revision": "6c229e205cd82483bb7c",
+    "revision": "541272967203dc7316d6",
     "url": "/reciclando-web/static/css/main.13452559.chunk.css"
   },
   {
-    "revision": "f2a7c10f9bfddb8f3ebd",
-    "url": "/reciclando-web/static/js/1.f2a7c10f.chunk.js"
+    "revision": "e1a8332d066781dacb03",
+    "url": "/reciclando-web/static/js/1.e1a8332d.chunk.js"
   },
   {
     "revision": "657a0b0bb11111a490fc",
@@ -32,12 +32,20 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/left-arrow.6c9efe0c.svg"
   },
   {
-    "revision": "38ebc74debf3391756eaec99fb52c8ce",
-    "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
+    "revision": "54f089c6efc6aabb25a148537e491ec8",
+    "url": "/reciclando-web/static/media/correct-sound.54f089c6.mp3"
   },
   {
-    "revision": "6c229e205cd82483bb7c",
-    "url": "/reciclando-web/static/js/main.6c229e20.chunk.js"
+    "revision": "37738a5118093dd983b0cf9f5f3cb247",
+    "url": "/reciclando-web/static/media/wrong-sound.37738a51.mp3"
+  },
+  {
+    "revision": "541272967203dc7316d6",
+    "url": "/reciclando-web/static/js/main.54127296.chunk.js"
+  },
+  {
+    "revision": "1b05b4ae68fb66f745c87467b030a325",
+    "url": "/reciclando-web/static/media/heroImage.1b05b4ae.jpg"
   },
   {
     "revision": "0accadbe394c426ecc35750f4fd2f2f6",
@@ -68,7 +76,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/CANDARA.e6623399.TTF"
   },
   {
-    "revision": "54faa09c1bb2a95699a6aa256c2cdbb3",
+    "revision": "527eb1d5b00b1e8491498b253bda7b6c",
     "url": "/reciclando-web/index.html"
   }
 ];
