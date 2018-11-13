@@ -78,10 +78,12 @@ class BackToTop extends Component {
         this.animate = this.animate.bind(this);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.getScrollTop = this.getScrollTop.bind(this);
+        this.getScrollBottom = this.getScrollBottom.bind(this);
         this.setScrollTop = this.setScrollTop.bind(this);
 
         this.state = {
-            visible: false
+            visible: false,
+            bottom: '',
         };
     }
 
@@ -126,6 +128,17 @@ class BackToTop extends Component {
     updateScroll() {
         let {visibilityHeight} = this.props;
         this.setState({visible: this.getScrollTop() > (visibilityHeight || BackToTop.VISIBILITY_HEIGHT)});
+        // Adjust bottom css propery of the button, so that it's not above footer
+        const scrollBottom = (window.innerHeight + document.documentElement.scrollTop) - (55 + document.body.offsetHeight - document.getElementsByTagName('footer')[0].clientHeight);
+        if (scrollBottom > 0) {
+          this.setState({
+            bottom: `${scrollBottom+55}px`
+          })
+        } else {
+          this.setState({
+            bottom: '55px'
+          })
+        }
     }
 
     scrollToTop(e) {
@@ -142,6 +155,10 @@ class BackToTop extends Component {
         return document.documentElement.scrollTop;
     }
 
+    getScrollBottom() {
+      return (document.documentElement.scrollTop - document.documentElement.scrollHeight)
+    }
+
     setScrollTop(value) {
         document.body.scrollTop = value;
         document.documentElement.scrollTop = value;
@@ -154,10 +171,12 @@ class BackToTop extends Component {
         } = this.props;
         let opacity = this.animate('opacity', visible ? 1 : 0, fadeDuration || BackToTop.FADE_DURATION);
         if (opacity === 0) return false;
+        const { bottom } = this.state;
         return (
             <BackLink {...options}
                       style={{display: 'inline', opacity: opacity}}
-                      onClick={this.scrollToTop}>
+                      onClick={this.scrollToTop}
+                      bottom={bottom}>
                 <BackIcon src={arrowUp} />
             </BackLink>
         );
