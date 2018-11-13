@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { Line } from 'rc-progress';
+import Sound from 'react-sound';
+import correctSound from '../assets/correct-sound.mp3'; 
+import wrongSound from '../assets/wrong-sound.mp3'; 
 import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
   Correct, ProgressBox, ProgressSubBox, TBox, PBox, ProgressSubBoxM,
@@ -25,7 +28,8 @@ class Trivia extends Component {
       showCorrect: 'hidden',
       correctColor: '',
       backColor: [null, null, null, null],
-
+      correctS: 'STOPPED',
+      wrongS: 'STOPPED',
     };
     this.optionClicked = this.optionClicked.bind(this);
   }
@@ -96,6 +100,7 @@ class Trivia extends Component {
         this.setState({
           correct: this.state.correct + 1,
           textCorrect: 'CORRECTO',
+          correctS: 'PLAYING',
           correctColor: '#2AAA36',
         });
       } else {
@@ -103,6 +108,7 @@ class Trivia extends Component {
         newBackColors[correctOpN] = '#2AAA36';
         this.setState({
           textCorrect: 'INCORRECTO',
+          wrongS: 'PLAYING',
           correctColor: '#FD1F01',
         });
       }
@@ -142,6 +148,8 @@ class Trivia extends Component {
       answered: false,
       showCorrect: 'hidden',
       opacity: 1,
+      correctS: "STOPPED",
+      wrongS: "STOPPED",
     });
     if (index === 5) {
       this.getQuestions();
@@ -189,6 +197,8 @@ Total:
               <Question opacity={opacity}>{actualQ.question}</Question>
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
             </BoxQuestion>
+            <Sound url={correctSound} playStatus={this.state.correctS}/>
+            <Sound url={wrongSound} playStatus={this.state.wrongS} />
             <BoxOption>
               <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]}>{actualQ.option_a}</Option>
             </BoxOption>
