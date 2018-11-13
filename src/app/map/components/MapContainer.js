@@ -91,6 +91,30 @@ async function getData() {
         console.log(error.response.headers);
       }
     });
+
+  await axios.post(
+    process.env.REACT_APP_CORS + process.env.REACT_APP_API_ORGANIZATION_INFO,
+    { month: 8 },
+    {
+      headers: {
+        ApiKey: this.state.apiKey,
+      },
+    },
+  )
+    .then((res) => {
+      this.setState({
+        infoContainer: res.data,
+      });
+    })
+    .catch((error) => {
+      console.log('Api Key GET error', apikeyLogin);
+      console.log(error);
+      if (error.response) { // If a response has been received from the server
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    });
 }
 
 class MapContainer extends Component {
@@ -99,12 +123,14 @@ class MapContainer extends Component {
     this.state = {
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
+      organization: [],
       selectedId: 0,
       load: true,
       selectedLon: 0,
       selectedLat: 0,
       infoContainer: '',
       apiKey: '',
+      selectedDescription: '',
     };
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
@@ -112,10 +138,9 @@ class MapContainer extends Component {
 
   componentDidMount() {
     this.getData();
-    this.showInfo(1);
   }
 
-  showInfo(id, lon, lat) {
+  showInfo(id, lon, lat, descr) {
     axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
       {
         headers: {
@@ -131,6 +156,7 @@ class MapContainer extends Component {
           selectedId: id,
           selectedLon: lon,
           selectedLat: lat,
+          selectedDescription: descr,
           load: false,
         },
 
@@ -148,7 +174,7 @@ class MapContainer extends Component {
 
   render() {
     const {
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon,
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon, selectedDescription,
     } = this.state;
 
     return (
@@ -159,7 +185,7 @@ class MapContainer extends Component {
               <SubBoxTitle>
                             En
                 {' '}
-                {infoContainer.location}
+                {(selectedDescription === '') ? infoContainer.organization : selectedDescription}
 , durante el mes de Agosto hemos reciclado
               </SubBoxTitle>
             </BoxTitle>
@@ -181,7 +207,7 @@ kg de cartón
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.kg_recycled_glass}
+                  {(infoContainer.kg_recycled_glass === undefined) ? infoContainer.kg_glass : infoContainer.kg_recycled_glass}
                   {' '}
 kg de papel
                 </SubBoxText>
@@ -193,7 +219,7 @@ kg de papel
               </BoxLogo>
               <BoxText>
                 <SubBoxText>
-                  {infoContainer.kg_recycled_plastic}
+                  {(infoContainer.kg_recycled_plastic === undefined) ? infoContainer.kg_plastic : infoContainer.kg_recycled_plastic}
                   {' '}
 kg de plástico
                 </SubBoxText>
@@ -263,7 +289,7 @@ kg de plástico
                   <Feature
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
-                    onClick={() => this.showInfo(elem.id, elem.longitude, elem.latitude)}
+                    onClick={() => this.showInfo(elem.id, elem.longitude, elem.latitude, elem.description)}
                   />))
                 : null}
             </Layer>
@@ -273,7 +299,7 @@ kg de plástico
                   key={selectedId}
                   coordinates={[selectedLon, selectedLat]}
                 >
-                  <SubBoxText>{infoContainer.location}</SubBoxText>
+                  <SubBoxText>{selectedDescription}</SubBoxText>
                 </Popup>
               ) : null}
           </Map>
