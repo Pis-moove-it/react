@@ -103,7 +103,7 @@ async function getData() {
 
   await axios.post(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_ORGANIZATION_INFO,
-    { month: 8 },
+    { month: (new Date()).getMonth() + 1 },
     {
       headers: {
         ApiKey: this.state.apiKey,
@@ -142,7 +142,7 @@ function success(pos) {
     user: [pos.coords.longitude, pos.coords.latitude],
   });
 }
-  
+
 function Toggle() {
   this.setState(
     {
@@ -237,7 +237,7 @@ class MapContainer extends Component {
     }
   }
 
- showInfo(id, lon, lat, descr) {
+  showInfo(id, lon, lat, descr) {
     axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
       {
         headers: {
@@ -269,6 +269,8 @@ class MapContainer extends Component {
   }
 
   render() {
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre',
+      'Noviembre', 'Diciembre'];
     const {
       route, distance, duration, selectedRoute,
       geolocation,
@@ -284,7 +286,7 @@ class MapContainer extends Component {
                 En
                 {' '}
                 {(selectedDescription === '') ? infoContainer.organization : selectedDescription}
-, durante el mes de Agosto hemos reciclado
+, durante el mes de {months[(new Date()).getMonth()]} hemos reciclado
               </SubBoxTitle>
             </BoxTitle>
             <BoxInfo>
