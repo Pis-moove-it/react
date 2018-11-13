@@ -28,9 +28,9 @@ class Trivia extends Component {
       showCorrect: 'hidden',
       correctColor: '',
       backColor: [null, null, null, null],
-      correctS: 'STOPPED',
-      wrongS: 'STOPPED',
     };
+    this.audioC = new Audio(correctSound);
+    this.audioW = new Audio(wrongSound);
     this.optionClicked = this.optionClicked.bind(this);
   }
 
@@ -100,17 +100,17 @@ class Trivia extends Component {
         this.setState({
           correct: this.state.correct + 1,
           textCorrect: 'CORRECTO',
-          correctS: 'PLAYING',
           correctColor: '#2AAA36',
         });
+        this.audioC.play();
       } else {
         newBackColors[opN] = '#FD1F01';
         newBackColors[correctOpN] = '#2AAA36';
         this.setState({
           textCorrect: 'INCORRECTO',
-          wrongS: 'PLAYING',
           correctColor: '#FD1F01',
         });
+        this.audioW.play();        
       }
       this.setState({
         backColor: newBackColors,
@@ -132,7 +132,7 @@ class Trivia extends Component {
           }
         }
       });
-      sleep(1500).then(() => {
+      sleep(2500).then(() => {
         this.resetBackColor();
         this.setState({
           index: this.state.index + 1,
@@ -148,8 +148,6 @@ class Trivia extends Component {
       answered: false,
       showCorrect: 'hidden',
       opacity: 1,
-      correctS: "STOPPED",
-      wrongS: "STOPPED",
     });
     if (index === 5) {
       this.getQuestions();
@@ -197,8 +195,7 @@ Total:
               <Question opacity={opacity}>{actualQ.question}</Question>
               <CorrectText show={showCorrect} colorText={correctColor}>{textCorrect}</CorrectText>
             </BoxQuestion>
-            <Sound url={correctSound} playStatus={this.state.correctS}/>
-            <Sound url={wrongSound} playStatus={this.state.wrongS} />
+            
             <BoxOption>
               <Option onClick={() => this.optionClicked('A', actualQ.correct_option, this.state)} correctOption={backColor[0]}>{actualQ.option_a}</Option>
             </BoxOption>
