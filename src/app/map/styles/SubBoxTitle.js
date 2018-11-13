@@ -4,7 +4,7 @@ const SubBoxTitle = styled.a`
   font-family: Candara;
   font-weight: bold;
   line-height: normal;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
 
   color: #0797BA;

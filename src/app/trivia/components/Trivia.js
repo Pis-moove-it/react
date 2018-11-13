@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
+import { Line } from 'rc-progress';
 import {
   Box, Title, SubBox, Option, Question, Triangle, TitleBox, BoxOption, BoxQuestion, CorrectText,
+  Correct, ProgressBox, ProgressSubBox, TBox, PBox, ProgressSubBoxM,
 } from '../styles/trivia';
 
 function sleep(time) {
@@ -16,7 +18,9 @@ class Trivia extends Component {
       questions: [],
       index: 0,
       correct: 0,
+      total: 0,
       loading: true,
+      feedbackColor: '#2AAA36',
       opacity: 1,
       showCorrect: 'hidden',
       correctColor: '',
@@ -106,6 +110,21 @@ class Trivia extends Component {
         backColor: newBackColors,
         opacity: 0.2,
         showCorrect: 'visible',
+        total: this.state.total + 1,
+      });
+
+      sleep(100).then(() => {
+        if (this.state.total >= 1) {
+          if ((this.state.correct / this.state.total) < 0.25) {
+            this.setState({ feedbackColor: '#FD1F01' });
+          } else if ((this.state.correct / this.state.total) < 0.5) {
+            this.setState({ feedbackColor: '#ff7b00' });
+          } else if ((this.state.correct / this.state.total) < 0.75) {
+            this.setState({ feedbackColor: '#ffce00' });
+          } else {
+            this.setState({ feedbackColor: '#2AAA36' });
+          }
+        }
       });
       sleep(1500).then(() => {
         this.resetBackColor();
@@ -135,16 +154,36 @@ class Trivia extends Component {
   render() {
     const {
       questions, index, loading, showCorrect, opacity, textCorrect, correctColor, backColor,
+      total, correct,
     } = this.state;
     const actualQ = questions[index];
 
     if (!loading) {
       return (
         <Box>
-          <TitleBox>
-            <Title>¿Cuánto conocés?</Title>
-            <Triangle />
-          </TitleBox>
+          <TBox>
+            <TitleBox>
+              <Title>¿Cuánto conocés?</Title>
+              <Triangle />
+            </TitleBox>
+            <PBox>
+              <ProgressBox>
+                <ProgressSubBox total={total}>
+                  <Line percent={correct / total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+                </ProgressSubBox>
+              </ProgressBox>
+              <Correct>
+Respuestas correctas:
+                {correct}
+              </Correct>
+              <Correct>
+Total:
+                {total}
+              </Correct>
+            </PBox>
+          </TBox>
+
+
           <SubBox>
             <BoxQuestion>
               <Question opacity={opacity}>{actualQ.question}</Question>
@@ -162,7 +201,18 @@ class Trivia extends Component {
             <BoxOption>
               <Option onClick={() => this.optionClicked('D', actualQ.correct_option, this.state)} correctOption={backColor[3]}>{actualQ.option_d}</Option>
             </BoxOption>
+            <ProgressSubBoxM total={total} mobileV>
+              <Line percent={correct / total * 100} strokeWidth="4" strokeColor={this.state.feedbackColor} />
+            </ProgressSubBoxM>
+            <Correct mobileV="true">
+Puntaje:
+              {correct}
+/
+              {total}
+            </Correct>
           </SubBox>
+
+
         </Box>
       );
     } return (

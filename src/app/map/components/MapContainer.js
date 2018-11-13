@@ -23,6 +23,15 @@ import QuestionContent from '../styles/QuestionContent';
 import Text from '../styles/Text';
 import TextContent from '../styles/TextContent';
 import MapViewComponent from '../styles/MapViewComponent';
+import ButtonRoute from '../styles/ButtonRoute';
+import walking from '../assets/walking.png';
+import bicycle from '../assets/bicycle.png';
+import car from '../assets/car.png';
+import RouteBox from '../styles/RouteBox';
+import InfoRoute from '../styles/InfoRoute';
+import popup from '../css/popup.css'; // eslint-disable-line
+import BoxButton from '../styles/BoxButton';
+import ToggleMenu from '../styles/ToggleMenu';
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -117,13 +126,51 @@ async function getData() {
     });
 }
 
+function clearRouteInfo() {
+  this.setState({
+    route: null,
+    distance: null,
+    duration: null,
+    selectedRoute: null,
+  });
+}
+
+// Set user coordinates taken from Geolocation API.
+// This function is triggered when Geolocation is succesfull
+function success(pos) {
+  this.setState({
+    user: [pos.coords.longitude, pos.coords.latitude],
+  });
+}
+  
+function Toggle() {
+  this.setState(
+    {
+      showMenu: !this.state.showMenu,
+    },
+  );
+}
+
 class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: [],
+      route: null, // The route to the selected container
+      distance: 0, // Distance (in meters) to selected container
+      duration: 0, // Estimated time to selected container
+      selectedRoute: '',
+      geolocation: new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+          timeout: 6000,
+        },
+        fitBoundsOptions: { maxZoom: 13.5 },
+        trackUserLocation: true,
+      }),
+      geolocationEnabled: false,
       // Store containers list from backend. Each container has "id", "lat" and "lng"
       containers: [],
-      organization: [],
       selectedId: 0,
       load: true,
       selectedLon: 0,
@@ -131,16 +178,66 @@ class MapContainer extends Component {
       infoContainer: '',
       apiKey: '',
       selectedDescription: '',
+      showMenu: true,
     };
+    const { geolocation } = this.state;
+
+    // Set geolocationEnabled state to false when geolocation finishes
+    geolocation.on('trackuserlocationend', () => {
+      this.setState({
+        geolocationEnabled: false,
+      });
+    });
+
+    // Check if geolocation is available in this device and browser
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success.bind(this));
+      this.getRoute = this.getRoute.bind(this);
+      this.clearRouteInfo = clearRouteInfo.bind(this);
+    }
     this.getData = getData.bind(this);
     this.showInfo = this.showInfo.bind(this);
+    this.Toggle = Toggle.bind(this);
   }
 
   componentDidMount() {
     this.getData();
   }
 
-  showInfo(id, lon, lat, descr) {
+  // lan and lat are longitude and latitude of destination
+  // type can only be 'walking', 'driving' or 'cycling'
+  getRoute(lng, lat, type) {
+    // Update user current location
+    const { geolocation, geolocationEnabled } = this.state;
+    // Check if geolocation is available in this device and browser
+    if (navigator.geolocation) {
+      // If geolocation button isn't currently activated
+      if (!geolocationEnabled) {
+        geolocation.trigger();
+        this.setState({
+          geolocationEnabled: true,
+        });
+        navigator.geolocation.getCurrentPosition(success.bind(this));
+      }
+      const { user } = this.state;
+      const start = user;
+      const end = [lng, lat];
+      const apiCall = `${process.env.REACT_APP_MAPBOX_DIRECTIONS}mapbox/${type}/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`;
+      fetch(apiCall)
+        .then(result => result.json())
+        .then((data) => {
+          if (data.routes) { // Only attempt to set route state if Mapbox API sent a response
+            this.setState({
+              route: data.routes[0].geometry.coordinates,
+              distance: data.routes[0].distance,
+              duration: data.routes[0].duration,
+            });
+          }
+        });
+    }
+  }
+
+ showInfo(id, lon, lat, descr) {
     axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
       {
         headers: {
@@ -159,7 +256,6 @@ class MapContainer extends Component {
           selectedDescription: descr,
           load: false,
         },
-
       );
     })
       .catch((error) => {
@@ -174,16 +270,18 @@ class MapContainer extends Component {
 
   render() {
     const {
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon, selectedDescription,
+      route, distance, duration, selectedRoute,
+      geolocation,
+      containers, infoContainer, load, selectedId, selectedLat, selectedLon, showMenu, selectedDescription,
     } = this.state;
 
     return (
       <MapViewComponent>
-        <InfoComponent>
+        <InfoComponent showMenu={showMenu}>
           <BoxComponent>
             <BoxTitle>
               <SubBoxTitle>
-                            En
+                En
                 {' '}
                 {(selectedDescription === '') ? infoContainer.organization : selectedDescription}
 , durante el mes de Agosto hemos reciclado
@@ -197,7 +295,7 @@ class MapContainer extends Component {
                 <SubBoxText>
                   {infoContainer.kg_trash}
                   {' '}
-kg de cartón
+                  kg de cartón
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -209,7 +307,7 @@ kg de cartón
                 <SubBoxText>
                   {(infoContainer.kg_recycled_glass === undefined) ? infoContainer.kg_glass : infoContainer.kg_recycled_glass}
                   {' '}
-kg de papel
+                  kg de papel
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -221,7 +319,7 @@ kg de papel
                 <SubBoxText>
                   {(infoContainer.kg_recycled_plastic === undefined) ? infoContainer.kg_plastic : infoContainer.kg_recycled_plastic}
                   {' '}
-kg de plástico
+                  kg de plástico
                 </SubBoxText>
               </BoxText>
             </BoxInfo>
@@ -229,36 +327,47 @@ kg de plástico
           <QuestionTexBox>
             <Question>
               <QuestionContent>
-                  ¿Sabes cuánto se recicló en tu barrio?
+                ¿Sabes cuánto se recicló en tu barrio?
               </QuestionContent>
             </Question>
             <Text>
               <TextContent>
-                  Presiona sobre la isla para más información
+                Presiona sobre la isla para más información
               </TextContent>
             </Text>
           </QuestionTexBox>
         </InfoComponent>
+        <ToggleMenu moveLeft={showMenu} onClick={this.Toggle} />
         <MapComponent>
           <Map
-        // style prop is required by React Mapbox
+            // style prop is required by React Mapbox
             style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
             containerStyle={{
               height: '100%',
               width: '100%',
             }}
-            center={load ? [-56.165293, -34.889631] : null}
-            zoom={load ? [11.5] : null}
+            center={load ? [-56.165293, -34.919999] : null}
+            zoom={load ? [13.5] : null}
             onStyleLoad={
           (map) => {
             // Add button to detect user's current location
-            map.addControl(new mapboxgl.GeolocateControl({
-              position: 'bottom-right',
-              positionOptions: {
-                enableHighAccuracy: true,
-              },
-              trackUserLocation: true,
-            }));
+            map.addControl(geolocation);
+            // Fly to user position and update user state when geolocation is triggered
+            geolocation.on('geolocate', (e) => {
+              map.flyTo({
+                center: [this.state.selectedLon, this.state.selectedLat],
+                zoom: 13.5,
+              });
+              this.setState({
+                user: [e.coords.longitude, e.coords.latitude],
+              });
+            });
+            geolocation.on('trackuserlocationstart', () => {
+              map.flyTo({
+                center: [this.state.selectedLon, this.state.selectedLat],
+                zoom: 13.5,
+              });
+            });
             map.addControl(new mapboxgl.NavigationControl());
             enableMobileScroll(map);
             map.addControl(new mapboxgl.FullscreenControl());
@@ -276,6 +385,16 @@ kg de plástico
           }
         }
           >
+            { route && (
+              <Layer // Layer with the route
+                type="line"
+                id="route"
+                layout={{ 'line-cap': 'round', 'line-join': 'round' }}
+                paint={{ 'line-color': '#4790E5', 'line-width': 8 }}
+              >
+                <Feature coordinates={route} />
+              </Layer>
+            ) }
             <Layer
               // Layer with trashes
               type="symbol"
@@ -289,7 +408,10 @@ kg de plástico
                   <Feature
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
-                    onClick={() => this.showInfo(elem.id, elem.longitude, elem.latitude, elem.description)}
+                    onClick={() => {
+                      this.showInfo(elem.id, elem.longitude, elem.latitude, elem.description);
+                      this.clearRouteInfo();
+                    }}
                   />))
                 : null}
             </Layer>
@@ -298,8 +420,57 @@ kg de plástico
                 <Popup
                   key={selectedId}
                   coordinates={[selectedLon, selectedLat]}
+                  className="popup"
                 >
-                  <SubBoxText>{selectedDescription}</SubBoxText>
+                  <SubBoxText textAlign="center" width="170px">{selectedDescription}</SubBoxText>
+                  { (navigator.geolocation)
+                    // Only show route buttons and route info
+                    // if the device and the browser supports geolocation
+                    ? (
+                      <RouteBox>
+                        <BoxButton>
+                          <ButtonRoute
+                            img={walking}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'walking');
+                              this.setState({
+                                selectedRoute: 'walking',
+                              });
+                            }}
+                            selected={selectedRoute === 'walking'}
+                          />
+                          <ButtonRoute
+                            img={bicycle}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'cycling');
+                              this.setState({
+                                selectedRoute: 'cycling',
+                              });
+                            }}
+                            selected={selectedRoute === 'cycling'}
+                          />
+                          <ButtonRoute
+                            img={car}
+                            onClick={() => {
+                              this.getRoute(selectedLon, selectedLat, 'driving');
+                              this.setState({
+                                selectedRoute: 'driving',
+                              });
+                            }}
+                            selected={selectedRoute === 'driving'}
+                          />
+                        </BoxButton>
+                        { route && (
+                          // Render distance and estimated time converted to km and min
+                          // and rounded to one decimal
+                          <InfoRoute>
+                            { `${Math.round(distance / 100) / 10} km` }
+                            { '\xa0\xa0\xa0\xa0' }
+                            { `${Math.round(duration / 6) / 10} min` }
+                          </InfoRoute>) }
+                      </RouteBox>
+                    )
+                    : null}
                 </Popup>
               ) : null}
           </Map>

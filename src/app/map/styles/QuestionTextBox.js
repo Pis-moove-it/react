@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const QuestionTextBox = styled.div`
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
 
   flex: 3;
 

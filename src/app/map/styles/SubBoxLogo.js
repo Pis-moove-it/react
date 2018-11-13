@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const SubBoxLogo = styled.img`
-  height: 30px;
-  width: auto;
+  height: ${props => (props.height ? props.height : '30px')};
+  width: ${props => (props.width ? props.width : 'auto')};
   padding-left: 15%;
   padding-right: 20%;
 

@@ -4,7 +4,7 @@ const TextContent = styled.a`
   font-family: Candara;
   font-weight: bold;
   line-height: normal;
-  font-size: 18px;
+  font-size: 16px;
 
   text-align: center;
 
