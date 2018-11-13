@@ -175,6 +175,7 @@ class MapContainer extends Component {
       load: true,
       selectedLon: 0,
       selectedLat: 0,
+      showPopup: false,
       infoContainer: '',
       apiKey: '',
       selectedDescription: '',
@@ -237,7 +238,7 @@ class MapContainer extends Component {
     }
   }
 
-  showInfo(id, lon, lat, descr) {
+  showInfo(id) {
     axios.get(`${process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS}/${id}`,
       {
         headers: {
@@ -250,10 +251,6 @@ class MapContainer extends Component {
       this.setState(
         {
           infoContainer: res.data,
-          selectedId: id,
-          selectedLon: lon,
-          selectedLat: lat,
-          selectedDescription: descr,
           load: false,
         },
       );
@@ -274,7 +271,9 @@ class MapContainer extends Component {
     const {
       route, distance, duration, selectedRoute,
       geolocation,
-      containers, infoContainer, load, selectedId, selectedLat, selectedLon, showMenu, selectedDescription,
+      containers,
+      infoContainer,
+      showPopup, load, selectedId, selectedLat, selectedLon, showMenu, selectedDescription,
     } = this.state;
 
     return (
@@ -411,13 +410,32 @@ class MapContainer extends Component {
                     key={elem.id}
                     coordinates={[elem.longitude, elem.latitude]}
                     onClick={() => {
-                      this.showInfo(elem.id, elem.longitude, elem.latitude, elem.description);
-                      this.clearRouteInfo();
+                      // Check if current selected container was the last one selected before
+                      // In that case, hide the pop up
+                      const prevSelectedLat = selectedLat;
+                      const prevSelectedLon = selectedLon;
+                      this.showInfo(elem.id);
+                      if (prevSelectedLon === elem.longitude && prevSelectedLat === elem.latitude) {
+                        this.setState({
+                          showPopup: !showPopup,
+                        });
+                      } else {
+                        this.clearRouteInfo();
+                        this.setState({
+                          showPopup: true,
+                        });
+                      }
+                      this.setState({
+                        selectedId: elem.id,
+                        selectedLon: elem.longitude,
+                        selectedLat: elem.latitude,
+                        selectedDescription: elem.description,
+                      });
                     }}
                   />))
                 : null}
             </Layer>
-            { (containers.length > 0 && selectedId !== 0)
+            { (containers.length > 0 && selectedId !== 0 && showPopup)
               ? (
                 <Popup
                   key={selectedId}
