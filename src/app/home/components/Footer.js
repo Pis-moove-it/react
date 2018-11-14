@@ -10,7 +10,7 @@ const today = new Date();
 
 const Footer = () => (
   <Box>
-    <SubBox displayAlways>
+    <SubBox>
       <FooterText>
         {'\u00A9 PIS, '}
         {today.getFullYear()}

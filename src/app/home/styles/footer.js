@@ -53,13 +53,8 @@ export const Line = styled.div`
 `;
 
 export const FooterText = styled.a`
-    padding-left: 40px;
     color: #FFFFFF;
     text-decoration: none;
-
-    @media (max-width: 768px) {
-      padding-left: 0px;
-    }
 `;
 
 export const Logo = styled.img`
