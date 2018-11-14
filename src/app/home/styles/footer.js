@@ -65,6 +65,7 @@ export const FooterText = styled.a`
 export const Logo = styled.img`
   filter: brightness(0) invert(1);
   margin-right: 10px;
+  vertical-align: middle;
 `;
 
 export const Link = styled.a`
