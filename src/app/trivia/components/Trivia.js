@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { Line } from 'rc-progress';
-import Sound from 'react-sound';
 import correctSound from '../assets/correct-sound.mp3'; 
 import wrongSound from '../assets/wrong-sound.mp3'; 
 import {
