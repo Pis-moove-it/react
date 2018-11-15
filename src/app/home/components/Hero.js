@@ -13,14 +13,14 @@ const Hero = () => (
     <HeroImage src={heroImage} />
     <TextBox>
       <HeroTitle>
-              Se parte del futuro de nuestro planeta.
+          Con tu ayuda podemos hacer del planeta un lugar mejor.
         <Br />
-               Dejanos guiarte en tu camino hacia el reciclaje.
+          Permite que te guiemos en tu camino al reciclaje.
       </HeroTitle>
     </TextBox>
     <HeroSubTitle>
       <SubTextBox>
-              Presione para continuar
+          Continua tu camino
       </SubTextBox>
     </HeroSubTitle>
     <GoToMapLink onClick={() => scroll.scrollTo('Map', {
