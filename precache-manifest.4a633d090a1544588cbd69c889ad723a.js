@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
   },
   {
-    "revision": "541272967203dc7316d6",
-    "url": "/reciclando-web/static/css/main.13452559.chunk.css"
+    "revision": "6b8f3183e6bcaf42bb91",
+    "url": "/reciclando-web/static/css/main.969418df.chunk.css"
   },
   {
-    "revision": "e1a8332d066781dacb03",
-    "url": "/reciclando-web/static/js/1.e1a8332d.chunk.js"
+    "revision": "4243b0dd955fe196a074",
+    "url": "/reciclando-web/static/js/1.4243b0dd.chunk.js"
   },
   {
     "revision": "657a0b0bb11111a490fc",
@@ -32,16 +32,16 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/left-arrow.6c9efe0c.svg"
   },
   {
-    "revision": "54f089c6efc6aabb25a148537e491ec8",
-    "url": "/reciclando-web/static/media/correct-sound.54f089c6.mp3"
+    "revision": "de51089019b339248fbc4423189d7ebb",
+    "url": "/reciclando-web/static/media/correct-sound.de510890.mp3"
   },
   {
     "revision": "37738a5118093dd983b0cf9f5f3cb247",
     "url": "/reciclando-web/static/media/wrong-sound.37738a51.mp3"
   },
   {
-    "revision": "541272967203dc7316d6",
-    "url": "/reciclando-web/static/js/main.54127296.chunk.js"
+    "revision": "6b8f3183e6bcaf42bb91",
+    "url": "/reciclando-web/static/js/main.6b8f3183.chunk.js"
   },
   {
     "revision": "1b05b4ae68fb66f745c87467b030a325",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/CANDARA.e6623399.TTF"
   },
   {
-    "revision": "527eb1d5b00b1e8491498b253bda7b6c",
+    "revision": "3a8ad4c1302148122e3213692e254476",
     "url": "/reciclando-web/index.html"
   }
 ];
