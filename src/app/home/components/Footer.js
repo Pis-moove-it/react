@@ -10,7 +10,7 @@ const today = new Date();
 
 const Footer = () => (
   <Box>
-    <SubBox displayAlways>
+    <SubBox shrink>
       <FooterText>
         {'\u00A9 PIS, '}
         {today.getFullYear()}
@@ -29,7 +29,7 @@ const Footer = () => (
         <Link href="www.elabrojo.org.uy">www.elabrojo.org.uy</Link>
       </SubBoxText>
     </SubBox>
-    <SubBox>
+    <SubBox dontShowOnTablet>
       <SubBoxTitle>Intendencia de Rocha</SubBoxTitle>
       <Line />
       <SubBoxText>
@@ -38,7 +38,7 @@ const Footer = () => (
         {(window.innerWidth > 425) ? <br /> : null}
         <Link href="www.rocha.gub.uy">www.rocha.gub.uy</Link>
         {(window.innerWidth > 425)
-          ? <div><br /><br /></div>
+          ? <div><br /></div>
           : null
         }
       </SubBoxText>
@@ -50,7 +50,7 @@ const Footer = () => (
         <Logo src={mail} />
         <Link href="mailto:admin@example.com.uy">admin@example.com.uy</Link>
         {(window.innerWidth > 425)
-          ? <div><br /><br /><br /></div>
+          ? <div><br /><br /></div>
           : null
         }
       </SubBoxText>

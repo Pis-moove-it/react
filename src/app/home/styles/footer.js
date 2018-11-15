@@ -25,14 +25,17 @@ export const Box = styled.footer`
 `;
 
 export const SubBox = styled.div`
-  flex: 1;
+  flex: ${props => (props.shrink ? 0.4 : 1)};
+
+  @media (min-width : 426px) and (max-width : 768px) {
+    display: ${props => (props.dontShowOnTablet ? 'none' : null)};
+  }
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
   @media (max-width: 425px) {
-    /* display: ${props => (props.displayAlways ? null : 'none')}; */
     width: 100%;
     margin-bottom: 15px;
   }
@@ -44,6 +47,7 @@ export const SubBoxTitle = styled.div`
 
 export const SubBoxText = styled.div`
   flex: 1;
+  white-space: nowrap;
 `;
 
 export const Line = styled.div`
@@ -54,17 +58,14 @@ export const Line = styled.div`
 `;
 
 export const FooterText = styled.a`
-    padding-left: 40px;
     color: #FFFFFF;
     text-decoration: none;
-
-    @media (max-width: 768px) {
-      padding-left: 0px;
-    }
 `;
 
 export const Logo = styled.img`
   filter: brightness(0) invert(1);
+  margin-right: 10px;
+  vertical-align: middle;
 `;
 
 export const Link = styled.a`
