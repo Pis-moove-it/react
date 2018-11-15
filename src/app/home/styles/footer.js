@@ -18,6 +18,7 @@ export const Box = styled.footer`
   align-items: center;
   flex-direction: row;
   flex: 10;
+  margin-top: 45px;
 
   @media (max-width: 425px) {
     flex-direction: column;
