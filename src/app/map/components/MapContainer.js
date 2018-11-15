@@ -48,7 +48,6 @@ const trashIcon = new Image(40, 40);
 trashIcon.src = trashLogo;
 
 async function getData() {
-  const apikeyLogin = null;
   await axios.post(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN,
     { name: 'Abrojo', password: 'password' },
@@ -65,6 +64,28 @@ async function getData() {
       this.setState({
         apiKey: apikey,
       });
+      // Login to user with id 1 in organization with id 1
+      axios.post(
+        process.env.REACT_APP_CORS + process.env.REACT_APP_API_LOGIN_USER,
+        { empty: '' },
+        {
+          headers: {
+            deviceIdHeader: 'prueba',
+            deviceTypeHeader: 'prueba',
+            'Content-Type': 'application/json',
+            ApiKey: this.state.apiKey,
+          },
+        },
+      )
+        .catch((error) => {
+          console.log('Api Key GET error', this.state.apiKey);
+          console.log(error);
+          if (error.response) { // If a response has been received from the server
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
     })
     .catch((error) => {
       console.log(error);
@@ -74,6 +95,7 @@ async function getData() {
         console.log(error.response.headers);
       }
     });
+
   // Fetch container list from backend
   await axios.get(
     process.env.REACT_APP_CORS + process.env.REACT_APP_API_CONTAINERS,
@@ -92,7 +114,7 @@ async function getData() {
       });
     })
     .catch((error) => {
-      console.log('Api Key GET error', apikeyLogin);
+      console.log('Api Key GET error', this.state.apiKey);
       console.log(error);
       if (error.response) { // If a response has been received from the server
         console.log(error.response.data);
@@ -116,7 +138,7 @@ async function getData() {
       });
     })
     .catch((error) => {
-      console.log('Api Key GET error', apikeyLogin);
+      console.log('Api Key GET error', this.state.apiKey);
       console.log(error);
       if (error.response) { // If a response has been received from the server
         console.log(error.response.data);
