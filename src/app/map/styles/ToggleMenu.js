@@ -12,7 +12,7 @@ const ToggleMenu = styled.div`
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
   position: absolute;
   z-index: 1;
-  top: 78px;
+  top: 15%;
   left: ${props => (props.moveLeft ? '310px' : '1%')};
   transform: ${props => (props.moveLeft ? 'none' : 'translateX(-50%) rotate(-180deg)')};
 
