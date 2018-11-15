@@ -25,7 +25,11 @@ export const Box = styled.footer`
 `;
 
 export const SubBox = styled.div`
-  flex: 1;
+  flex: ${props => (props.shrink ? 0.4 : 1)};
+
+  @media (min-width : 426px) and (max-width : 768px) {
+    display: ${props => (props.dontShowOnTablet ? 'none' : null)};
+  }
 
   display: flex;
   flex-direction: column;
@@ -43,6 +47,7 @@ export const SubBoxTitle = styled.div`
 
 export const SubBoxText = styled.div`
   flex: 1;
+  white-space: nowrap;
 `;
 
 export const Line = styled.div`

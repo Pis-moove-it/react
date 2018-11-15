@@ -10,7 +10,7 @@ const today = new Date();
 
 const Footer = () => (
   <Box>
-    <SubBox>
+    <SubBox shrink>
       <FooterText>
         {'\u00A9 PIS, '}
         {today.getFullYear()}
@@ -29,7 +29,7 @@ const Footer = () => (
         <Link href="www.elabrojo.org.uy">www.elabrojo.org.uy</Link>
       </SubBoxText>
     </SubBox>
-    <SubBox>
+    <SubBox dontShowOnTablet>
       <SubBoxTitle>Intendencia de Rocha</SubBoxTitle>
       <Line />
       <SubBoxText>
