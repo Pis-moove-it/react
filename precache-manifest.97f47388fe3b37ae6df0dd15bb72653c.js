@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/landing50.38ebc74d.png"
   },
   {
-    "revision": "8466fd0678a8461e4604",
+    "revision": "57b5e9a556bfa26599ae",
     "url": "/reciclando-web/static/css/main.969418df.chunk.css"
   },
   {
-    "revision": "4243b0dd955fe196a074",
-    "url": "/reciclando-web/static/js/1.4243b0dd.chunk.js"
+    "revision": "eb64016b2b587da4a92d",
+    "url": "/reciclando-web/static/js/1.eb64016b.chunk.js"
   },
   {
     "revision": "657a0b0bb11111a490fc",
@@ -40,8 +40,8 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/wrong-sound.37738a51.mp3"
   },
   {
-    "revision": "8466fd0678a8461e4604",
-    "url": "/reciclando-web/static/js/main.8466fd06.chunk.js"
+    "revision": "57b5e9a556bfa26599ae",
+    "url": "/reciclando-web/static/js/main.57b5e9a5.chunk.js"
   },
   {
     "revision": "1b05b4ae68fb66f745c87467b030a325",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/reciclando-web/static/media/CANDARA.e6623399.TTF"
   },
   {
-    "revision": "454ad615c16adc9b6a9fc721df3a4afb",
+    "revision": "102d9754d9d9c330ec25f573032a068e",
     "url": "/reciclando-web/index.html"
   }
 ];

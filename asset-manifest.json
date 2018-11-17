@@ -1,9 +1,9 @@
 {
   "main.css": "/reciclando-web/static/css/main.969418df.chunk.css",
-  "main.js": "/reciclando-web/static/js/main.8466fd06.chunk.js",
-  "main.js.map": "/reciclando-web/static/js/main.8466fd06.chunk.js.map",
-  "static/js/1.4243b0dd.chunk.js": "/reciclando-web/static/js/1.4243b0dd.chunk.js",
-  "static/js/1.4243b0dd.chunk.js.map": "/reciclando-web/static/js/1.4243b0dd.chunk.js.map",
+  "main.js": "/reciclando-web/static/js/main.57b5e9a5.chunk.js",
+  "main.js.map": "/reciclando-web/static/js/main.57b5e9a5.chunk.js.map",
+  "static/js/1.eb64016b.chunk.js": "/reciclando-web/static/js/1.eb64016b.chunk.js",
+  "static/js/1.eb64016b.chunk.js.map": "/reciclando-web/static/js/1.eb64016b.chunk.js.map",
   "runtime~main.js": "/reciclando-web/static/js/runtime~main.657a0b0b.js",
   "runtime~main.js.map": "/reciclando-web/static/js/runtime~main.657a0b0b.js.map",
   "static/media/finland3.png": "/reciclando-web/static/media/finland3.82a7b419.png",
@@ -23,6 +23,6 @@
   "static/media/global.css": "/reciclando-web/static/media/CANDARA.e6623399.TTF",
   "static/css/main.969418df.chunk.css.map": "/reciclando-web/static/css/main.969418df.chunk.css.map",
   "index.html": "/reciclando-web/index.html",
-  "precache-manifest.9bf0e271451e90be5a37c72d967c85ae.js": "/reciclando-web/precache-manifest.9bf0e271451e90be5a37c72d967c85ae.js",
+  "precache-manifest.97f47388fe3b37ae6df0dd15bb72653c.js": "/reciclando-web/precache-manifest.97f47388fe3b37ae6df0dd15bb72653c.js",
   "service-worker.js": "/reciclando-web/service-worker.js"
 }
